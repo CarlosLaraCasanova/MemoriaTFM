@@ -1,0 +1,148 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+ 
+% Plantilla, basada en la clase `scrbook` del paquete KOMA-script,  para la elaboración de un TFG siguiendo las directrices del la comisión del Grado en Matemáticas de la Universidad de Granada.
+
+% Francisco Torralbo Torralbo
+
+\documentclass[print, color]{ugrTFG}
+
+% VERSIÓN ELECTRÓNICA PARA TABLETA
+% Cambiando la opción "print" por "tablet" generaremos un pdf adaptado para leerlo en tabletas de 9 pulgadas.
+
+
+
+
+\usepackage[]{graphicx}
+\usepackage{eurosym}
+\usepackage[]{wrapfig}
+\usepackage[]{subcaption}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{hyperref}
+\usepackage[a4paper , bindingoffset=0.2in, right=1in, left=1.4in,
+            top=2in, bottom=2in, footskip=.3in]{geometry}
+\usepackage[skip=10pt plus1pt, indent=40pt]{parskip}
+\usepackage{indentfirst}
+\usepackage{tabto}     
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[titletoc,toc,page]{appendix}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\usepackage{listings}
+\usepackage{amsfonts}
+\usepackage{mathabx}
+\usepackage{verbatim}
+\usepackage{pdfpages}
+\usepackage{soul}
+\usepackage[strict]{changepage}
+\usepackage[figurename=Figura]{caption}
+\usepackage{afterpage}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{float} % para [H]
+\usepackage{enumitem}
+
+\renewcommand{\appendixtocname}{Ap\'endices}
+\renewcommand{\appendixpagename}{Ap\'endices}
+
+\newcommand{\highlight}[1]{%
+  \colorbox{yellow}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\strut #1}}%
+}
+
+
+\newcommand{\ttimes}{{\,\otimes\,}}
+\newcommand{\gtimes}{{\,\otimes_g\,}}
+\newcommand{\bx}{\textnormal{\textbf{x}}}
+\newcommand{\by}{\textnormal{\textbf{y}}}
+\newcommand{\ba}{\textnormal{\textbf{a}}}
+\newcommand{\bb}{\textnormal{\textbf{b}}}
+\newcommand{\bu}{\textnormal{\textbf{u}}}
+\newcommand{\bv}{\textnormal{\textbf{v}}}
+\newcommand{\bw}{\textnormal{\textbf{w}}}
+\newcommand{\kroprod}{\textnormal{\bigodot}}
+\setlength{\parindent}{0pt}
+
+
+
+
+% -------------------------------------------------------------------
+% INFORMACIÓN DEL TFG Y EL AUTOR
+% -------------------------------------------------------------------
+
+\newcommand{\miTitulo}{Mejora de la Interpretabilidad en Modelos de Clasificación de Lesiones Cancerosas en Biopsias de Próstata mediante Técnicas de XAI.\xspace}
+\newcommand{\miNombre}{Carlos Lara Casanova\xspace}
+\newcommand{\miGrado}{Máster en Ciencia de Datos e Ingeniería de Computadores}
+\newcommand{\miFacultad}{ETS Ingeniería Informática y de Telecomunicación}
+\newcommand{\miUniversidad}{Universidad de Granada}
+
+% Añadir tantos tutores como sea necesario separando cada uno de ellos mediante el comando `\medskip` y una línea en blanco
+\newcommand{\miTutor}{
+  Francisco Herrera Triguero\\ \emph{Departamento de Ciencias de la Computación e Inteligencia Artificial} 
+
+  % Añadir tantos tutores como sea necesario. 
+
+  \medskip
+  Iván Sevillano-García \\ \emph{Departamento de Ciencias de la Computación e Inteligencia Artificial}
+  }
+
+\newcommand{\miCurso}{2024-2025\xspace}
+
+
+\hypersetup{
+	pdftitle={\miTitulo},
+	pdfauthor={\textcopyright\ \miNombre, \miFacultad, \miUniversidad}
+}
+
+\begin{document}
+
+\maketitle
+
+% -------------------------------------------------------------------
+% FRONTMATTER
+% -------------------------------------------------------------------
+\frontmatter % Desactiva la numeración de capítulos y usa numeración romana para las páginas
+
+\input{preliminares/declaracion-originalidad}   
+\input{preliminares/tablacontenidos}            
+\input{preliminares/agradecimientos}            % Opcional
+
+\input{preliminares/summary}                    
+\input{preliminares/resumen}               
+
+% -------------------------------------------------------------------
+% MAINMATTER
+% -------------------------------------------------------------------
+\mainmatter % activa la numeración de capítulos, resetea la numeración de las páginas y usa números arábigos
+
+\input{ParteInformatica}
+
+% -------------------------------------------------------------------
+% APPENDIX: Opcional
+% -------------------------------------------------------------------
+
+\appendix % Reinicia la numeración de los capítulos y usa letras para numerarlos
+\pdfbookmark[-1]{Apéndices}{appendix} % Alternativamente podemos agrupar los apéndices con un nuevo \part{Apéndices}
+
+%\input{Apendices}
+% Añadir tantos apéndices como sea necesario 
+
+% -------------------------------------------------------------------
+% BACKMATTER
+% -------------------------------------------------------------------
+
+\backmatter % Desactiva la numeración de los capítulos
+\pdfbookmark[-1]{Referencias}{BM-Referencias}
+
+% BIBLIOGRAFÍA
+%-------------------------------------------------------------------
+
+\bibliographystyle{alpha-es} 
+\begin{small} 
+  \bibliography{biblio.bib}
+\end{small}
+
+
+\end{document}

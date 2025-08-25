@@ -1,0 +1,132 @@
+\begin{appendices}
+\appendix
+\chapter{Tablas de resultados} \label{APENDICEA}
+
+En este apéndice se encuentran las tablas con las métricas  divididas por landmark para cada modelo propuesto y para el método geométrico original.
+\begin{table}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/tabla_resultados_metodo_geometrico}}
+\caption{Esta tabla contiene las métricas para el método geométrico introducido en \cite{GOMEZTRENADO2023106391} para nuestro conjunto test.}
+\label{tab:tabla_resultados_metodo_geometrico}
+\end{table}
+
+\begin{table}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/tabla_resultados_clasificador}}
+\caption{Esta tabla contiene las métricas para el modelo FSCNet con clasificador.}
+\label{tab:tabla_resultados_clasificador}
+\end{table}
+
+\begin{table}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/tabla_resultados_clasificador_freeze}}
+\caption{Esta tabla contiene las métricas para el modelo FSCNet con clasificador y los pesos de Resnet-18 congelados.}
+\label{tab:tabla_resultados_clasificador_freeze}
+\end{table}
+
+\begin{table}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/tabla_resultados_hibrido}}
+\caption{Esta tabla contiene las métricas para el modelo FSCNet híbrido.}
+\label{tab:tabla_resultados_hibrido}
+\end{table}
+
+\begin{table}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/tabla_resultados_caracompleta}}
+\caption{Esta tabla contiene las métricas para el modelo FSCNet con la cara completa.}
+\label{tab:tabla_resultados_caracompleta}
+\end{table}
+
+\begin{table}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/tabla_resultados_caracompleta_normales}}
+\caption{Esta tabla contiene las métricas para el modelo FSCNet con la cara completa y las normales de los landmarks1.}
+\label{tab:tabla_resultados_caracompleta_normales}
+\end{table}
+\clearpage
+\chapter{Curvas de aprendizaje} \label{APENDICEB}
+En este apéndice se muestran las distintas curvas de aprendizaje obtenidas durante el entrenamiento de los modelos. Las curvas de aprendizaje muestran la evolución de la función de error en los conjuntos de entrenamiento y test a lo largo del proceso de entrenamiento. Mientras que hay un valor para el error en el conjunto de entrenamiento para cada iteración, el error en test se muestrea únicamente cada época completada. Además se ha añadido la gráfica de la evolución de la accuracy en entrenamiento también.
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/curvas_clasificador}}
+\caption{Curvas de aprendizaje para el modelo FSCNet + clasificador.}
+\label{fig:curvas_clasificador}
+\end{figure}
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/curvas_clasificador_freeze}}
+\caption{Curvas de aprendizaje para el modelo FSCNet + clasificador con los pesos de Resnet-18 congelados.}
+\label{fig:curvas_clasificador_freeze}
+\end{figure}
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/curvas_hibrido}}
+\caption{Curvas de aprendizaje para el modelo FSCNet híbrido.}
+\label{fig:curvas_hibrido}
+\end{figure}
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/curvas_caracompleta}}
+\caption{Curvas de aprendizaje para el modelo FSCNet con la cara completa.}
+\label{fig:curvas_caracompleta}
+\end{figure}
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.9]{images/curvas_caracompleta_normales}}
+\caption{Curvas de aprendizaje para el modelo FSCNet con la cara completa + normales.}
+\label{fig:curvas_caracompleta_normales}
+\end{figure}
+
+\clearpage
+\chapter{Matrices de confusión} \label{APENDICEC}
+En esta sección se muestran las distintas matrices de confusión obtenidas para los modelos presentados. Están divididas por landmarks.
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.7]{images/mc_geometrico}}
+\caption{Matriz de confusión del método geométrico.}
+\label{fig:mc_geometrico}
+\end{figure}
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.7]{images/mc_clas}}
+\caption{Matriz de confusión  de FSCNet con clasificador.}
+\label{fig:mc_clas}
+\end{figure}
+
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.7]{images/mc_clas_cong}}
+\caption{Matriz de confusión de FSCNet con clasificador y pesos de Resnet-18 congelados.}
+\label{fig:mc_clas_cong}
+\end{figure}
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.7]{images/mc_hibrido}}
+\caption{Matriz de confusión de FSCNet híbrido.}
+\label{fig:mc_hibrido}
+\end{figure}
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.7]{images/mc_cara}}
+\caption{Matriz de confusión de FSCNet con cara completa .}
+\label{fig:mc_cara}
+\end{figure}
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.7]{images/mc_cara_normal}}
+\caption{Matriz de confusión de FSCNet con cara completa + Normales.}
+\label{fig:mc_cara_normal}
+\end{figure}
+\end{appendices}
