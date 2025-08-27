@@ -342,7 +342,7 @@ Para la generación de vecinos en $N(x)$ se muestrea un valor $v'$ de la distrib
 
 La elección de lo que es una característica depende del tipo de dato con el que se trate. En el caso de este TFM se trata con imágenes. Para las imágenes se puede tratar cada pixel individualmente como una característica. Sin embargo esto hace que haya muchas características lo que hace que generar este tipo de explicaciones sea caro. Además desde un punto de vista humano un pixel individual no suele tener un significado específico en una imagen, es más natural que un conjunto de pixeles tengan un significado. Por ello consideramos una división de la imagen en cuadrados del mismo tamaño y cada uno de ello conlleva una característica.
 
-\subsection{Métricas ReVEL}
+\subsection{Métricas ReVEL} \label{subsec:revel}
 
 El framework \textbf{Evaluación robusta vectorizada de explicaciones-lineales-locales} (\textit{Robust Evaluation VEctorized Loca-linear-explanation, REVEL}) \cite{REVEL} ofrece un análisis robusto y consistente de explicaciones LLEs generadas para modelos de caja negra. En este se presentan cinco métricas que miden distintos aspectos cualitativos de la explicación. 
 
@@ -449,6 +449,57 @@ En la práctica, para aproximar la \textit{Robustness} se hace la media de la si
 Esta no es una métrica sobre la explicación en específico sino sobre el método que las genera. Cuanta más cercana a 1 menos varían las explicaciones generadas por el método estudiado. Esta métrica al contrario que todas las anteriores puede obtener valores negativos, lo que indicaría explicaciones que se ``contradicen''.
 
 \subsection{Regularización X-Shield}
+
+La \textbf{regularización} \cite{XSHIELD, Regularization} es la modificación de la arquitectura del modelo, del proceso de aprendizaje o inferencia para imponer algún criterio sobre este. Por ejemplo, dropout, que ya se vió previamente, es una regularización. 
+
+En particular nos interesan las regularizaciones que implican añadir a la función de coste un nuevo término que indica el criterio que queremos minimizar en el modelo. Algunos ejemplos típicos son la regularización L1 o L2. En general se tiene que una regularización de este tipo se expresa como:
+
+\begin{equation}
+coste\_regularizado(\Theta, X, Y) = coste(f_\Theta (X), Y) + regularizacion(X,\Theta )
+\end{equation}
+
+Dónde se tiene que $\Theta$ son el conjunto de parámetros del modelo, $X$ son las entradas del conjunto de datos y $Y$ las salidas. Por lo tanto la regularización es una función que puede ser de los parámetros y de las datos de entrada.
+
+En primer lugar presentamos la familia de regularizaciones \textbf{\textit{Transformation-Selective Hidden Input Evaluation for Learning} ,T-SHIELD} \cite{XSHIELD}. Esta esta diseñada para hacer que el modelo aprenda con menos features. Para ello se ocluye parte de la entrada. 
+
+Para ello se utiliza una transformación $T: \mathbb{R}^F \rightarrow \mathbb{R}^F$ tal que $T(x)_i = x_0$ si $i$ es una característica a esconder y $T(x)_i = x_i$ si no lo es. Es decir está transformación cambia todas las características de una entrada $x$ por un valor constante $x_0$ y deja el resto intactos.
+
+Para una transformación $T$ como la anterior descrita, se define la regularización T-SHIELD como sigue:
+
+\begin{equation}
+T-SHIELD(x,\Theta) = KL(f_\Theta(T(x)),f_\Theta(x)) + KL(f_\Theta(x),f_\Theta(T(x))) 
+\end{equation}
+
+Dónde $KL(\cdot,\cdot)$ denota la distancia de Kullback-Leibler, que se trata de un tipo de distancia que mide como difieren dos distribuciones distintas. Por lo tanto esta regularización no es más que la distancia de Kullback-Leibler simétrica. Según como se construya la transformación $T$ esta regularización penalizará ciertos aspectos del modelo. En la Figura \ref{fig:tshield_flow} se puede ver cómo funcionaría una regularización de esta familia de forma general.
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.5]{images/tshield_flow}}
+\caption{ En esta figura se puede ver cómo funciona en general la familia de regularizaciones T-SHIELD durante el entrenamiento. En gris se puede ver el flujo normal de la imagen en el modelo. En azul se encontraría la forma en la que la regularización decide qué características ocluir. Finalmente en rojo se encontraría el flujo de la imagen con las características ya ocluidas y cómo se calcula la función de regularización. Imagen extraída de \cite{REVEL}.}
+\label{fig:tshield_flow}
+\end{figure}
+
+Se denomina \textbf{Random-SHIELD (R-SHIELD)} a la regularización de la familia T-SHIELD que para un parámetro $\lambda \in [0,100]$ define la transformación $T$ como aquella que esconde un $\lambda\%$ de las características de forma aleatoria (misma probabilidad para cada una).
+
+Se denomina \textbf{XAI-SHIELD (X-SHIELD)} a otra regularización de la familia T-SHIELD. Comparte el parámetro $\lambda$ de R-SHIELD pero en vez de ocultar el $\lambda\%$ de características aleatorias, va a ocultar las $\lambda\%$ menos importantes. Para ello, a cada característica le otorga la importancia $||v_i||$ donde $v_i$ es la fila $i$ de la matriz de importancia $A$ introducida en la subsección \ref{subsec:revel}, pero para el modelo que se está entrenando.
+
+De manera más formal se describe $T_{xai}(x;\lambda)$ como la transformación:
+
+\begin{equation}
+T_{xai}(x_1,...,x_F; \lambda) = (\underbrace{x_0,x_0...,x_0,x_0}_{0 \leq i\leq F : \quad \lambda < \frac{i}{n}\cdot 100\%},x_i,x_{i+1},....,x_F)
+\end{equation}
+
+Dónde se ha supuesto los atributos $x_i$ ordenados de menor a mayor por importancia y tenemos que $i$ es el primer valor tal que se ocluyen al menos el $\lambda \%$ de características.
+
+En la Figura \ref{fig:rshield_vs_xshield} se puede apreciar la diferencia entre los comportamientos de los dos tipos de regularización T-SHIELD vistos.
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.5]{images/rshield_vs_xshield}}
+\caption{ Comparación entre el comportamiento de $T$ en R-SHIELD y X-SHIELD. La imagen está sacada del dataset \textit{Flowers} de clasificación de imágenes de flores. Se puede ver que R-SHIELD ocluye partes de la imagen aleatorias, incluyendo partes de la flor a clasificar. Por otro lado X-SHIELD ocluye partes del fondo de la imagen que intuitivamente no parecen útiles para clasificar dicha flor. Imagen extraída de \cite{REVEL}.}
+\label{fig:rshield_vs_xshield}
+\end{figure}
+
 
 
 \newpage
