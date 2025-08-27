@@ -66,8 +66,6 @@ POR HACER
 
 \clearpage
 \chapter{Fundamentos teóricos} \label{cap:ft}
-\highlight{
-Finalmente tendría la sección más relevante para este TFM que sería la de . Primero haría una introducción más general basándome en este paper (https://www.sciencedirect.com/science/article/pii/S1566253523001148) y luego explicaría LIME para explicar bien lo que son las métricas REVEL y XSHIELD más adelante.} 
 
 
 \section{Aprendizaje automático}
@@ -286,9 +284,169 @@ Este tipo de capas no son más que una capa típica de MLP que conecta todos los
 
 \section{XAI}
 
-\subsection{LIME}
+Los modelos de ML se pueden dividir en dos tipos: los \textbf{modelos de caja negra (black-box models)} y \textbf{modelos de caja blanca (white-box models)} \cite{XAIWHATWEKNOW, XAINOTIONS}.
+
+ Los modelos de caja blanca producen resultados que pueden ser interpretados por los usuarios o expertos que utilizan el modelo, normalmente mirando sus parámetros. Los modelos primitivos de ML, como la regresión lineal, regresión logística o árboles de decisión, suelen ser de este tipo. 
+ 
+Por otro lado los modelos de caja negra son modelos difíciles de interpretar y explicar debido a que tiene estructuras complejas, con una gran cantidad de parámetros y no lineales. Los modelos más importantes pertenecientes a esta clase son las ANNs. 
+
+Algunos trabajos incluyen una categoría conocida como \textbf{modelos de caja gris (gray-box models)}, los cuales son modelos que se pueden interpretar, al menos parcialmente, si se diseñan adecuadamente.
+
+
+La \textbf{Inteligencia Artificial eXplicable (eXplainable Artificial Inteligence, XAI)} \cite{XAIManifesto, XAIWHATWEKNOW, XAINOTIONS, XAICONCEPTS} es un campo de estudio que pretende desarrollar métodos para construir modelos de ML que aumenten la interpretabilidad de estos sin que esto afecte demasiado a su rendimiento. Para ello hay caminos:
+
+\begin{itemize}
+\item Construir modelos de caja blanca o gris con rendimientos altos.
+\item Dotar a los modelos de caja negra de un mayor nivel de interpretabilidad.
+\end{itemize}
+
+En XAI, la \textbf{Interpretabilidad} se refiere a la capacidad de comprender cómo los modelos de IA toman sus decisiones. Por otro lado la \textbf{explicabiliad} se refiere a la capacidad de hacer interpretaciones y describir el funcionamiento interno de un sistema de IA en términos humanos. Estos dos son los dos principales criterios a la hora de evaluar métodos de XAI, además de ellos existen otros como \textbf{transparencia}, \textbf{justicia} (\textit{fairness}) y \textbf{robustez}. 
+
+En general el objetivo de la explicabilidad es hacer algún aspecto del modelo entendible para el usuario. Si lo que se intenta hacer expllicable es una salida del modelo para una instancia, se habla de \textbf{explicabilidad local}. En cambio si es el dataset entero se habla de \textbf{explicabilidad global}.
+
+Una distinción en los métodos de XAI es si el método es \textit{\textbf{ante-hoc}} o \textit{\textbf{post-hoc}}. Los métodos \textit{ante-hoc} son aquellos que entrenan un método explicable en primer lugar. Por otro lado los \textit{post-hoc} pretenden explicar un modelo de caja negra después de ser explicado. A su vez, los métodos \textit{post-hoc} se dividen en métodos \textbf{agnósticos al modelo} si funcionan para cualquier modelo, y métodos \textbf{específicos al modelo} si sólo funcionan para un tipo (o clase) de modelos.
+
+Por último está la siguiente distinción de métodos según la metodología que utilicen: \textbf{basados en retropropagación} y \textbf{basados en perturbaciones}. Los que se basan en retropropagación propagan una señal de la salida del modelo hacia la entrada. Los basados en perturbaciones modifican la entrada del modelo utilizando distintas técnicas para investigar el impacto de estas modificaciones en la salida del modelo.
+
+
+\subsection{Explicaciones lineales locales y LIME}
+
+Las \textbf{Explicaciones lineales locales} (\textit{Linear Local Explanation, LLE}) \cite{REVEL,LIME} son una clase de explicaciones para modelos de caja negra.
+
+ Sea $X \subset \mathbb{R}^F$ el datatset de entrada, siendo $F$ el número de características por ejemplo, y sea $f : \mathbb{R}^F \rightarrow \mathbb{R}^C$ la función que implementa un modelo de caja negra, dónde $C$ es el número de clases de un problema de clasificación al que se aplica. Sea $x\in X$ una entrada a ser explicada. Un explicador LLE de caja blanca es una función $g: \mathbb{R}^F \rightarrow \mathbb{R}^C$ definida como:
+ 
+\begin{equation}
+g(x) = Ax + B, \quad A \in \mathcal{M}_{F,C}, B \in \mathbb{R}^C
+\end{equation}
+
+Dónde $\mathcal{M}_{F,C}$ es el conjunto de todas las matrices con $F$ filas y $C$ columnas. Es decir, $g$ no es más que una función lineal que lleva una entrada del modelo al espacio de salida del modelo. Este modelo se puede interpretar pues intuitivamente para cada peso $a_{i,j}$ de $A$ denota la importancia que tiene la característica de entrada $i$ con la predicción de la salida $j$. Por otro lado cada valor $b_j$ del vector $B$ está conectado con la importancia en general de la salida $j$.
+
+Para obtener la función $g$ anterior los métodos LLE utilizan regresión lineal sobre una vecindad del ejemplo $x$. El error que minimizan es el siguiente:
+
+\begin{equation}
+\mathcal{L}(f,g,\pi_x) = \sum_{z \in N(x)} \pi_x(z)(f(z)-g(z))^2
+\end{equation} 
+
+Nótese que esto no es más que el error cuadrático medio ponderando cada vecino por una función $\pi_x$ que mide la proximidad a $x$ para cada vecino generado $z$, que dependerá del LLE utilizado.  Aquí $N(x)$ representa el vecindario de $x$ para el número de vecinos generados es un parámetro del LLE.
+
+
+El método de \textbf{explicaciones locales interpretables agnósticas al modelo} (\textit{Local Interpretable Model-agnostic Explanations, LIME}) \cite{REVEL,LIME} es una técnica LLE considerada como estado del arte. En LIME se realiza una regresión de cresta (\textit{Ridge regresion}) para obtener $g$, definiendo la $\pi_x(z)$ como sigue:
+
+\begin{equation}
+\pi_x(z) = e^{\frac{-d(x,y)^2}{\sigma^2}}
+\end{equation}
+
+dónde $d(\cdot,\cdot)$ es la distancia euclídea (en el caso de imágenes) y $\sigma$ es un factor de regularización.
+
+Para la generación de vecinos en $N(x)$ se muestrea un valor $v'$ de la distribución exponencial $Exp(\lambda)$ con $\lambda = \frac{1}{\sigma}$. Después se toma $v = \min\{\lfloor v' \rfloor, F\}$. El valor $v$ determina cuantas características de $x$ se van a ocluir. Estas se escogen de forma aleatoria (uniformemente).
+
+La elección de lo que es una característica depende del tipo de dato con el que se trate. En el caso de este TFM se trata con imágenes. Para las imágenes se puede tratar cada pixel individualmente como una característica. Sin embargo esto hace que haya muchas características lo que hace que generar este tipo de explicaciones sea caro. Además desde un punto de vista humano un pixel individual no suele tener un significado específico en una imagen, es más natural que un conjunto de pixeles tengan un significado. Por ello consideramos una división de la imagen en cuadrados del mismo tamaño y cada uno de ello conlleva una característica.
 
 \subsection{Métricas ReVEL}
+
+El framework \textbf{Evaluación robusta vectorizada de explicaciones-lineales-locales} (\textit{Robust Evaluation VEctorized Loca-linear-explanation, REVEL}) \cite{REVEL} ofrece un análisis robusto y consistente de explicaciones LLEs generadas para modelos de caja negra. En este se presentan cinco métricas que miden distintos aspectos cualitativos de la explicación. 
+
+Antes de introducir estás métricas introduzco algunas matrices antes. Nos situamos en un problema de clasificación en el que hemos entrenado un modelo de caja negra, sea $g$ una explicación generada por un LLE, tal que $g: F \rightarrow Y_l$ dónde $Y_l$ es el espacio \textit{logit}. Este espacio no es más que la salida del modelo de caja negra antes de aplicar la función \textit{softmax} que transforma la salida del modelo a probabilidades de cada clase. Recordar que $g(x) = Ax + B$. 
+
+Se define la \textbf{matriz de importancia con signo}, $A^l$ como la matriz derivada sobre el espacio \textit{logit}. Como es evidente al ser lineal $A^l = A$. Por otro lado, para la obtención del vector de probabilidades $p$ se necesita aplicar la función \textit{softmax} a $g(x)$ luego $p=softmax(g(x))=softmax(Ax+B)$. Se define la matriz $A^p = D(softmax(g(x)))(x)$ siendo $D(\cdot)$ el operador derivada. La función $softmax$ es la función que para clase $c$ se define como:
+
+\begin{equation}
+softmax(y_1,y_2,...,y_C)_c = \frac{e^{y_c}}{\sum_{i=1}^C e^{y_i}}
+\end{equation}
+ 
+La forma de interpretar estas dos matrices es teniendo en cuenta que el elemento en la fila $i$ y columna $j$ de cada matriz representa la importancia de la característica $i$ sobre la clase $j$ sobre los espacios \textit{logit} y \textit{probabilidad}. Por un lado $A^l$ da información sobre como afecta, positiva o negativamente dependiendo del signo, cada característica a los distintos \textit{logits} de las clases. Por otro lado, $A^P$ proporciona información sobre las clases en las que el ejemplo es más probable de ser clasificado.
+
+Como ambas matrices presentan información relevante se define la \textbf{matriz de importancia} como la matriz que combina la información de $A^l$ y $A^p$ como sigue:
+
+\begin{equation}
+A_{i,j} = sign(A^l_{i,j}) \sqrt{|A^l_{i,j}|\cdot|A^p_{i,j}|}
+\end{equation}
+
+A partir de esta matriz se define la \textbf{matriz de importancia normalizada} $A_r=\frac{A}{ max_{A_{i,j}}\{|A_{i,j}|\} }$ que lleva los valores de $A$ al rango $[-1,1]$ manteniendo su signo. Finalmente se define la \textbf{matriz de importancia absoluta} como la matriz $|A|$ que simplemente es la matriz $A_r$ con todos sus elementos en positivo. 
+
+\highlight{Leyendo tu artículo no me queda claro si la matriz de importancia absoluta es $|A_z|$ o $|A|$}
+
+Ya estamos en condiciones de introducir las cinco métricas introducidas en REVEL. De aquí en adelante $g(x)$ se toma en el espacio de probabilidades, no en el de \textit{logit}.
+
+\subsubsection*{Local concordance}
+
+Se define como:
+
+\begin{equation}
+Local\_Concordance(g) =  1 - \frac{||f(x)-g(x)||}{C'}
+\end{equation}
+
+Dónde $||\cdot||$ es una norma arbitraria (por ejemplo la norma euclídiana $||\cdot||_2$) y $C'$ es la distancia máxima posible entre dos vectores de probabilidad (por ejemplo en el caso de $||\cdot||_2$ se cumple que $C'=\sqrt{2}$). 
+
+Notemos que esta métrica está definida en el intervalo $[0,1]$ dónde el valor máximo se alcanza cuando $f(x) = g(x)$ y la mínima ocurre cuando ambas funciones clasifican $x$ en clases distintas con probabilidad 1.
+
+Esta métrica mide cómo de similar es la explicación al ejemplo original de la caja negra. Es importante que esté cercana a 1 ya que en otro caso la explicación propuesta no se corresponde con el ejemplo escogido.
+
+\subsubsection*{Local fidelity}
+
+Se define como:
+
+\begin{equation}
+ Local\_Fidelity(g) =  \frac{1}{|N(x)|} \sum_{z\in N(x)} 1 - \frac{||f(z)-g(z)||}{C'}
+\end{equation}
+
+Dónde $|N(x)|$ es el número de vecinos generados para la explicación. 
+
+Esta métrica se puede ver como la media de la métrica anterior sobre los vecinos de $x$, por lo tanto también está definida en el intervalo $[0,1]$. Esta métrica mide cómo de cercan están las probabilidades calculadas por el modelo de caja blanca de las que calcula el modelo de caja negra. Luego mide la similitud entre la explicación y el modelo $f$ en la vecindad de $x$. Al igual que pasaba con la \textit{local concordance}, debe ser cercano a 1 para obtener buenas explicaciones.
+
+\subsubsection*{Prescriptivity}
+Se define como:
+
+\begin{equation}
+Presciptivity(g) =  1 - \frac{||f(x+h)-g(x+h)||}{C'}
+\end{equation}
+
+Dónde $h$ es una perturbación sobre $x$ que quita la presencia de las características más importantes (de forma positiva) de la clase asignada por $g$ al ejemplo $x$. De esta forma, para encontrar $h$ se van quitando dichas características hasta que se cumpla que $argmax(g(x))\neq argmax(g(x+h))$.
+
+Notemos que esta métrica también está contenida en $[0,1]$ y obtiene el valor 1 cuando $f(x+h)=g(x+h)$ y obtiene el valor 0 cuando ambas funciones clasifican $x+h$ en clases distintas con probabilidad 1.
+
+Esta métrica pretende estudiar si la explicación $g$ es capaz de predecir correctamente los cambios necesarios en el ejemplo $x$ para cambiar la clase original. Para ello busca un valor lo suficientemente alejado del ejemplo para que la explicación cambie la clase predicha y mida cómo cambia la predicción respecto del modelo de caja negra. Al contrario que las dos métricas anteriores un valor cercano a 1, aunque buscado, no es necesario para obtener buenas explicaciones.
+
+\subsubsection*{Conciseness}
+Se define como:
+
+\highlight{Aquí he adaptado la fórmula de \href{tu artículo}{https://arxiv.org/abs/2211.06154} con la información de la documentación de tu código en github para que quede más claro (a mi me queda más claro).} 
+
+\begin{equation}
+Conciseness(g) =  \frac{1}{f'-1} \sum_{i=1}^{f'} 1-I_i \\
+\end{equation} 
+
+
+
+Dónde $f'$ es el número de filas de la matriz de importancia absoluta (equivalentemente, número de clases), sea $v_i$ el vector fila $i$ de la matriz $|A|$ entonces:
+\begin{equation}
+I_i = \frac{||v_i||}{max_{1\leq  j \leq f'}\{||v_j||\}}
+\end{equation}
+
+Observemos que $v_i$ es un vector en que cada elemento $j$ representa la importancia de la característica $i$ para la clase $j$ luego se puede interpretar que $I_i$ es la importancia de dicha característica (normalizada a $[0,1]$). Si analizamos la expresión de la métrica tenemos que esta está comprendida entre $[0,1]$ y alcanza 1 si una métrica tiene importancia 1 y el resto tiene importancia 0. Si todas las características tuvieran la misma importancia, por estar $I$ normalizada serían todas 1 y se obtendría el menor valor posible en 0.
+
+Esta métrica busca medir la brevedad de la explicación, es decir, cuantas menos características sean relevantes para la explicación, más concisa se considera la explicación. Luego mide la habilidad de la explicación de concentrarse en las características importantes. Al contrario que las métricas anteriores, dependiendo de la tarea se podría querer más o menos \textit{conciseness} ya que valores demasiados bajos podrían indicar que el modelo se centra en cosas irrelevantes (por ejemplo en imágenes que se centre en pocos píxeles podría ser malo).
+
+\subsubsection*{Robustness over explanations}
+
+Se define como:
+
+\begin{equation}
+Robustness(G) =  \mathbb{E}[similarity(g,g')]
+\end{equation}
+
+Dónde $G$ representa el conjunto de todas las explicaciones que podría generar el LLE, $\mathbb{E}$ es la esperanza y $similiarity$ es una función que mide cuanto difieren dos explicaciones distintas y se define como:
+
+\begin{equation}
+similarity(g,g') = \left(\frac{A_r\cdot A'_r}{||A_r|| ||A'_r||} \right)  \left(1-  \frac{|\quad  ||A_r||-||A'_r|| \quad |}{max\{||A_r||,||A'_r||\}}\right)
+\end{equation}
+
+Observemos que la componente de la derecha mide cómo de similares son las magnitudes de las las matrices de importancia absoluta normalizadas de las explicaciones mientras que el valor de la izquierda se corresponde con la similaridad coseno entre $A_r$ y $A_r'$ (matrices correspondientes con $g$ y $g'$ correspondientemente), esta mide como distan las direcciones de las explicaciones. El producto de matrices de esta función es el elemento a elemento. El mejor caso, cuando ambas explicaciones son iguales, se tiene que la similaridad es 1 y el peor caso ocurre son ``perpendiculares'' y la similaridad es 0. 
+
+En la práctica, para aproximar la \textit{Robustness} se hace la media de la similaridad generando muchas otra explicaciones $g'$ para $x$. Esto únicamente se puede hacer para LLEs que no son deterministas, pues en otro caso siempre se tendría la misma explicación y obtendrían siempre 1. Por ejemplo con LIME sí se puede calcular esta métrica pues tiene no determinismo en la generación de la vecindad.
+
+
+Esta no es una métrica sobre la explicación en específico sino sobre el método que las genera. Cuanta más cercana a 1 menos varían las explicaciones generadas por el método estudiado. Esta métrica al contrario que todas las anteriores puede obtener valores negativos, lo que indicaría explicaciones que se ``contradicen''.
 
 \subsection{Regularización X-Shield}
 
@@ -302,16 +460,12 @@ En esta sección hago búsquedas en Scopus para ver el estado del arte y analiza
 Por otro lado quizás debería buscar trabajos que traten la detección automática de cánceres de próstata o que apliquen explicabilidad a otras tareas médicas a ver que encuentro. Estoy interesado en ver cómo debería enfocar el estado del arte.
 
 \newpage
-\chapter{Métodos} \label{cap:met}
-En este capítulo introduciría qué son las métricas revel en profundidad (cálculo/interpretación) + La regularización X-SHIELD. Luego introduciría mis propuestas. Antes de introducir mis propuestas haría un introducción sobre EfficientNet (en particular efficientnet b2) e introduciría su arquitectura y por qué la he elegido.
+\chapter{Métodos propuestos} \label{cap:met}
+ Antes de introducir mis propuestas haría un introducción sobre EfficientNet (en particular efficientnet b2) e introduciría su arquitectura y por qué la he elegido.
 
-\section{Métricas ReVEL} \label{sec:FSCNet} 
-\section{X-Shield} 
-
+\subsection*{EfficientNet}
 
 \clearpage
-\section{Métodos propuestos} \label{sec:metodospropuestos}
-\subsection{EfficientNet}
 \subsection{FXShield}
 \subsection{FRShield}
 \subsection{HShield}
