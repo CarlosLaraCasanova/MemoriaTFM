@@ -1,7 +1,7 @@
 \newpage
 \chapter{Introducción}
 
-En 2020, el \textbf{cáncer de próstata, (Prostate Cancer, PCa)} fue el segundo tipo de cáncer más frecuente, y el quinto más mortal, en varones \cite{GlobalCancer}. Una \textbf{biopsia de próstata} es una prueba que consiste en la extracción de pequeños tejidos de la próstata para examinar posibles signos de cáncer (Ver Figura \ref{fig:biopsias_ejemplos}). El \textbf{Sistema de Puntuación de Gleason (Gleason Score)} es una calificación, en el rango de 2 a 10, que se da a biopsias de la próstata tras ser examinadas bajo un microscopio \cite{GleasonGov}. Valores más altos indican cánceres más agresivos y de crecimiento más rápido. En 2014 la \textbf{Sociedad Internacional de Patología Urológica (International Society of Urological Pathology, ISUP)} propuso un nuevo sistema basado en la Puntuación de Gleason, que propone cinco grupos ordenados (\textbf{Gleason Groups, GGs}) \cite{ISUP2014Disc}:
+En 2020, el \textbf{cáncer de próstata}, (\textit{Prostate Cancer, PCa}) fue el segundo tipo de cáncer más frecuente, y el quinto más mortal, en varones \cite{GlobalCancer}. Una \textbf{biopsia de próstata} es una prueba que consiste en la extracción de pequeños tejidos de la próstata para examinar posibles signos de cáncer (Ver Figura \ref{fig:biopsias_ejemplos}). El \textbf{Sistema de Puntuación de Gleason} (\textit{Gleason Score}) es una calificación, en el rango de 2 a 10, que se da a biopsias de la próstata tras ser examinadas bajo un microscopio \cite{GleasonGov}. Valores más altos indican cánceres más agresivos y de crecimiento más rápido. En 2014 la \textbf{Sociedad Internacional de Patología Urológica} (\textit{International Society of Urological Pathology, ISUP}) propuso un nuevo sistema basado en la Puntuación de Gleason, que propone cinco grupos ordenados (\textbf{Gleason Groups, GGs}) \cite{ISUP2014Disc}:
 \begin{itemize}
 \item \textbf{GG1: } Cáncer de grado bajo. Puntuación de gleason 6 o inferior.
 \item \textbf{GG2: } Cáncer de grado medio. Puntuación de gleason 7.
@@ -29,7 +29,7 @@ En 2020, el \textbf{cáncer de próstata, (Prostate Cancer, PCa)} fue el segundo
 \end{figure}
 
 
-En el campo de la \textbf{Inteligencia Artificial (IA)}, la necesidad de asegurar transparencia y confiabilidad a dado pie a acuñar el término de \textbf{Inteligencia Artificial eXplicable (eXplainable Artificial Inteligence, XAI)} \cite{XAIManifesto}. El uso de XAI es especiamente importantes en ámbitos donde la toma de decisiones repercute directamente en la vida de las personas, como es el caso de la medicina. La Unión Europea ha propuesto una \href{https://eur-lex.europa.eu/eli/reg/2024/1689/oj}{regulación} para el uso de IA asistida en estos aspectos, entre ellos, que estos sistemas sean capaces de explicar sus decisiones de forma clara y comprensible.
+En el campo de la \textbf{Inteligencia Artificial (IA)}, la necesidad de asegurar transparencia y confiabilidad a dado pie a acuñar el término de \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI}) \cite{XAIManifesto}. El uso de XAI es especiamente importantes en ámbitos donde la toma de decisiones repercute directamente en la vida de las personas, como es el caso de la medicina. La Unión Europea ha propuesto una \href{https://eur-lex.europa.eu/eli/reg/2024/1689/oj}{regulación} para el uso de IA asistida en estos aspectos, entre ellos, que estos sistemas sean capaces de explicar sus decisiones de forma clara y comprensible.
 
 Dentro del campo de la XAI, hay diferentes propuestas para la evaluación y la mejora de las explicaciones generadas. Por un lado, herramientas como \textbf{REVEL} \cite{REVEL} permiten analizar la calidad de las mismas de manera robusta. Por otro, enfoques como \textbf{X-SHIELD} \cite{XSHIELD} buscan mejorar las explicaciones mediante técnicas de regularización que aseguran el buen comportamiento de la generación de explicaciones. Aplicar estas técnicas en imagen médica puede ayudar a mejorar la interpretación de las personas profesionales de la salud de las decisiones de una IA que asista.
 
@@ -44,7 +44,7 @@ El TFM se estructura del siguiente modo. En primer lugar vamos a introducir los 
 El objetivo principal del TFM es la utilización (y propuesta) de técnicas de evaluación y mejora de explicaciones  para modelos de clasificación de imágenes para detección de tejidos cancerosos en biopsias de próstata. Para el desarrollo del TFM, se divide el objetivo en distintos subobjetivos:
 
 \begin{itemize}
-\item Revisión del estado del arte \highlight{Cuál?}.
+\item Revisión del estado del arte.
 \item Estudio del código que implementa \cite{REVEL, XSHIELD} para su correcto entendimiento.
 \item Proposición de nuevos métodos XAI para mejora de explicaciones para modelos de explicación.
 \item Modificación del código para implementar dichas propuestas.
@@ -284,16 +284,16 @@ Este tipo de capas no son más que una capa típica de MLP que conecta todos los
 
 \section{XAI}
 
-Los modelos de ML se pueden dividir en dos tipos: los \textbf{modelos de caja negra (black-box models)} y \textbf{modelos de caja blanca (white-box models)} \cite{XAIWHATWEKNOW, XAINOTIONS}.
+Los modelos de ML se pueden dividir en dos tipos: los \textbf{modelos de caja negra} (\textit{black-box models}) y \textbf{modelos de caja blanca} (\textit{white-box models}) \cite{XAIWHATWEKNOW, XAINOTIONS}.
 
  Los modelos de caja blanca producen resultados que pueden ser interpretados por los usuarios o expertos que utilizan el modelo, normalmente mirando sus parámetros. Los modelos primitivos de ML, como la regresión lineal, regresión logística o árboles de decisión, suelen ser de este tipo. 
  
 Por otro lado los modelos de caja negra son modelos difíciles de interpretar y explicar debido a que tiene estructuras complejas, con una gran cantidad de parámetros y no lineales. Los modelos más importantes pertenecientes a esta clase son las ANNs. 
 
-Algunos trabajos incluyen una categoría conocida como \textbf{modelos de caja gris (gray-box models)}, los cuales son modelos que se pueden interpretar, al menos parcialmente, si se diseñan adecuadamente.
+Algunos trabajos incluyen una categoría conocida como \textbf{modelos de caja gris} (\textit{gray-box models}), los cuales son modelos que se pueden interpretar, al menos parcialmente, si se diseñan adecuadamente.
 
 
-La \textbf{Inteligencia Artificial eXplicable (eXplainable Artificial Inteligence, XAI)} \cite{XAIManifesto, XAIWHATWEKNOW, XAINOTIONS, XAICONCEPTS} es un campo de estudio que pretende desarrollar métodos para construir modelos de ML que aumenten la interpretabilidad de estos sin que esto afecte demasiado a su rendimiento. Para ello hay caminos:
+La \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI}) \cite{XAIManifesto, XAIWHATWEKNOW, XAINOTIONS, XAICONCEPTS} es un campo de estudio que pretende desarrollar métodos para construir modelos de ML que aumenten la interpretabilidad de estos sin que esto afecte demasiado a su rendimiento. Para ello hay caminos:
 
 \begin{itemize}
 \item Construir modelos de caja blanca o gris con rendimientos altos.
@@ -309,7 +309,7 @@ Una distinción en los métodos de XAI es si el método es \textit{\textbf{ante-
 Por último está la siguiente distinción de métodos según la metodología que utilicen: \textbf{basados en retropropagación} y \textbf{basados en perturbaciones}. Los que se basan en retropropagación propagan una señal de la salida del modelo hacia la entrada. Los basados en perturbaciones modifican la entrada del modelo utilizando distintas técnicas para investigar el impacto de estas modificaciones en la salida del modelo.
 
 
-\subsection{Explicaciones lineales locales y LIME}
+\subsection{Explicaciones lineales locales y LIME} \label{subsec:LIME}
 
 Las \textbf{Explicaciones lineales locales} (\textit{Linear Local Explanation, LLE}) \cite{REVEL,LIME} son una clase de explicaciones para modelos de caja negra.
 
@@ -481,18 +481,6 @@ Dónde $KL(\cdot,\cdot)$ denota la distancia de Kullback-Leibler, que se trata d
 
 Se denomina \textbf{Random-SHIELD (R-SHIELD)} a la regularización de la familia T-SHIELD que para un parámetro $\lambda \in [0,100]$ define la transformación $T$ como aquella que esconde un $\lambda\%$ de las características de forma aleatoria (misma probabilidad para cada una).
 
-Se denomina \textbf{XAI-SHIELD (X-SHIELD)} a otra regularización de la familia T-SHIELD. Comparte el parámetro $\lambda$ de R-SHIELD pero en vez de ocultar el $\lambda\%$ de características aleatorias, va a ocultar las $\lambda\%$ menos importantes. Para ello, a cada característica le otorga la importancia $||v_i||$ donde $v_i$ es la fila $i$ de la matriz de importancia $A$ introducida en la subsección \ref{subsec:revel}, pero para el modelo que se está entrenando.
-
-De manera más formal se describe $T_{xai}(x;\lambda)$ como la transformación:
-
-\begin{equation}
-T_{xai}(x_1,...,x_F; \lambda) = (\underbrace{x_0,x_0...,x_0,x_0}_{0 \leq i\leq F : \quad \lambda < \frac{i}{n}\cdot 100\%},x_i,x_{i+1},....,x_F)
-\end{equation}
-
-Dónde se ha supuesto los atributos $x_i$ ordenados de menor a mayor por importancia y tenemos que $i$ es el primer valor tal que se ocluyen al menos el $\lambda \%$ de características.
-
-En la Figura \ref{fig:rshield_vs_xshield} se puede apreciar la diferencia entre los comportamientos de los dos tipos de regularización T-SHIELD vistos.
-
 \begin{figure}[h]
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.5]{images/rshield_vs_xshield}}
@@ -501,18 +489,171 @@ En la Figura \ref{fig:rshield_vs_xshield} se puede apreciar la diferencia entre 
 \end{figure}
 
 
+Se denomina \textbf{XAI-SHIELD (X-SHIELD)} a otra regularización de la familia T-SHIELD. Comparte el parámetro $\lambda$ de R-SHIELD pero en vez de ocultar el $\lambda\%$ de características aleatorias, va a ocultar las $\lambda\%$ menos importantes. Para ello, a cada característica le otorga la importancia $||v_i||$ donde $v_i$ es la fila $i$ de la matriz de importancia $A$ introducida en la subsección \ref{subsec:revel}, pero para el modelo que se está entrenando.
+
+De manera más formal se describe $T_{xai}(x;\lambda)$ como la transformación:
+
+\begin{equation}
+T_{xai}(x_1,...,x_F; \lambda) = (\underbrace{x_0,x_0...,x_0,x_0}_{0 \leq i\leq F : \quad \lambda < \frac{i}{n}\cdot 100\%},x_i,x_{i+1},....,x_F)
+\end{equation}
+
+
+
+Dónde se ha supuesto los atributos $x_i$ ordenados de menor a mayor por importancia y tenemos que $i$ es el primer valor tal que se ocluyen al menos el $\lambda \%$ de características.
+
+
+
+En la Figura \ref{fig:rshield_vs_xshield} se puede apreciar la diferencia entre los comportamientos de los dos tipos de regularización T-SHIELD vistos.
+
+
+
 
 \newpage
 \chapter{Estado del arte} \label{cap:eda}
+Este Trabajo de Fin de Máster trata de resolver el problema de construir un modelo de IA de clasificación para lesiones cancerosas en biposias de próstata y de la mejora en interpretabilidad del modelo mediante técnicas de XAI. Por lo tanto vamos a hacer una revisión del estado del arte para los cuatro siguientes puntos que son relevantes:
 
 
-En esta sección hago búsquedas en Scopus para ver el estado del arte y analizarlo. Para seros sinceros no tengo muy claro que debería buscar ya que dudo que encuentre artículos que apliquen explicabilidad a detección de cánceres de próstata (aunque está bien hacer la búsqueda para tenerlo claro). 
+\begin{itemize}
+\item Redes convolucionales para clasificación de imágenes.
+\item Métodos de XAI para producción de explicaciones, en particular, LLEs.
+\item Métodos de XAI de regularización para mejoras las explicaciones.
+\item Métricas de XAI de calidad de las explicaciones producidas para poder comparar los distintos métodos utilizados.
+\end{itemize}
 
-Por otro lado quizás debería buscar trabajos que traten la detección automática de cánceres de próstata o que apliquen explicabilidad a otras tareas médicas a ver que encuentro. Estoy interesado en ver cómo debería enfocar el estado del arte.
+\subsection*{Modelo de clasificación}
+
+\textbf{Efficientnet} \cite{efficientnet2019} es una red introducida en 2019 que se sigue considerando estado del arte en clasificación de imágenes cuando se mide eficiencia computacional, es decir, rendimiento obtenido número de parámetros. En la Figura \ref{fig:efficientnet_grafica} se puede apreciar como es más eficiente en cómputo respecto otros modelos de clasificación de imágenes ResNet \cite{resnet} o DenseNet \cite{densenet} para el dataset Imagenet. 
+
+Existen otros modelos más modernos como CoCa \cite{coca}, DaViT \cite{DaViT} o ConvNeXt V2 \cite{ConvNext}, que utilizan transformadores en el caso de Coca y DaViT, o autoencoders en el caso de ConvNeXt V2. Estos modelos alcanzan precisiones mayores que EfficientNet sin embargo aumentan demasiado el número de parámetros utilizado para que sea una propuesta viable para nuestro trabajo.
+
+Por ello hemos decidido utilizar el modelo EfficientNet en este trabajo ya que ofrece un balance muy bueno entre número de parámetros y precisión. En la Tabla \ref{tab:comparacion_modelos_efficientnet} se puede apreciar las diferencias entre el modelo que utilizaremos EfficientNet-B2 y las versiones más pequeñas de los modelos mentados. Se aprecia que EfficientNet es más eficiente en el número de parámetros.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Modelo} & \textbf{Arquitectura Base} & \textbf{Parámetros (M)} & \textbf{Precisión Top-1 (\%)} \\
+\hline
+EfficientNet-B2 & CNN & 9.1 & 80.1 \\
+DaViT-Small     & CNN + Transformer & 49.7 & 84.2 \\
+ConvNeXt V2-Tiny & CNN moderna (con Masked Autoencoder) & 28.6 & 85.1 \\
+CoCa-Base & Transformer & 383 & 91.0 \\
+\hline
+\end{tabular}
+\caption{Comparación de modelos en términos de precisión Top-1 en ImageNet y número de parámetros.}
+\label{tab:comparacion_modelos_efficientnet}
+\end{table}
+
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.75]{images/Efficientnet_grafica}}
+\caption{En esta gráfica se compara las distintas versiones de Efficientnet, B0-7, contra otros modelos de redes convolucionales. Se puede apreciar que es la más eficiente. Imagen extraída de \cite{efficientnet2019}.}
+\label{fig:efficientnet_grafica}
+\end{figure}
+
+
+
+\subsection*{Métodos de XAI para producción de explicaciones}
+
+Una revisión de todos los métodos de explicabilidad \textit{post-hoc}, que son los que se aplican a modelos de caja negra, está fuera de el alcance de este trabajo pues sería inabarcable. Sin embargo resumimos algunos métodos populares (esquema en la Tabla \ref{tab:xai_explicaciones}):
+
+\begin{itemize}
+    \item \textbf{LIME} \cite{LIME}: Modelo explicado con detalle en la subsección \ref{subsec:LIME}.
+    
+    \item \textbf{SHAP} (\textit{SHapley Additive exPlanation}) \cite{SHAP}: Basado en valores de Shapley de teoría de juegos. Atribuye importancia a cada variable de forma consistente; permite explicaciones locales y globales. 
+    
+    \item \textbf{LRP} (\textit{Layer-wise Relevance Propagation}) \cite{LRP}: Propaga hacia atrás la relevancia de la predicción a través de cada capa de la red. Muy usado en visión y señales neuronales. 
+    
+    \item \textbf{CRP} (\textit{Concept Relevance Propagation}) \cite{CRP}: Extiende LRP incorporando información contextual o conceptual. Promete explicaciones más interpretables en términos humanos. 
+    
+    \item \textbf{Grad-CAM} (\textit{Gradient-weighted Class Activation Mapping}) \cite{Gradcam}: Técnica visual para CNNs que genera mapas de calor mostrando qué regiones de una imagen influyen en la clasificación. 
+
+    \item \textbf{Integrated Gradients} \cite{IntGradients}: Método axiomatizado de atribución que compara la entrada con una baseline. Proporciona asignaciones más estables que gradientes simples. 
+    
+
+\end{itemize}
+
+
+\begin{longtable}{|p{3.5cm}|p{3.5cm}|p{3.5cm}|}
+\hline
+\textbf{Técnica} & \textbf{Tipo} & \textbf{Enfoque} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Técnica} & \textbf{Tipo} & \textbf{Enfoque} \\
+\hline
+\endhead
+
+\textbf{LIME} & Modelo-agnóstico & Local \\
+\hline
+
+\textbf{SHAP} & Modelo-agnóstico  & Local y Global  \\
+\hline
+
+\textbf{LRP} & Modelo-específico (DNN) & Local \\
+\hline
+
+\textbf{CRP / Concept R.P.} & Modelo-específico (DNN) & Local\\
+\hline
+
+\textbf{Grad-CAM (+ variantes)} & Modelo-específico (CNNs) & Visual  \\
+\hline
+
+\textbf{Integrated Gradients} & Modelo-específico (DNN) & Local (atribución) \\
+\hline
+
+\caption{En esta tabla se muestran algunas técnicas clave de XAI.}
+\label{tab:xai_explicaciones}
+\end{longtable}
+
+En este estudio nos hemos dejado muchos métodos como explicaciones por ejemplos (como generación de \textit{counterfactuals} \cite{counterfactuals}) o las muchas extensiones de los métodos mentados (por ejemplo para LIME en \cite{LIMESURVEY} hay una taxonomía de estos).
+
+
+\subsection*{Métricas para explicaciones}
+
+Debido a que hay muchos tipos de explicaciones en la literatura (LLEs, mapas de atribución, reglas...) no hay manera de comparar estas directamente. Debido a esto, se existen distintas métricas para medir de forma cuantitativa la calidad de las explicaciones.
+
+En \cite{metricasReglas} se proponen cuatro métricas para medir la calidad de explicaciones. Sin embargo estas son específicas para explicaciones basadas en reglas. Las métricas que representan son:
+\begin{itemize}
+\item $D$: la diferencia en rendimiento entre el modelo a explicar y la explicación basada en reglas. Cuantifica el cambio entre el modelo de caja negra y el mejor modelo de caja blanca observado.
+\item $R$: El número de reglas de la explicación. Busca cuantificar lo simple que es la explicación.
+\item $F$: El número de características que se han utilizado para construir la explicación. Es similar a $R$, cuanto menor es mejor se considera la explicación.
+\item $S$: La estabilidad de la explicación. Cuantifica la habilidad de la explicación de manejar robustamente perturbaciones pequeñas.
+\end{itemize} 
+
+En \cite{LEAF} se propone el framework \textit{LEAF}. En este se introducen 5 métricas para evaluar de forma clara las explicaciones de LLEs. Las métricas son las siguientes:
+
+\begin{itemize}
+\item \textit{Conciseness: }se interpreta como hasta qué punto el modelo es entendible por un humano. Se define como el número de pesos de la explicación (es una LLE) son no nulos.
+\item \textit{Local Fidelity: }mide el modelo de caja blanca $g$ (la explicación) aproxima el comportamiento del modelo de caja negra $f$ para un ejemplo $x$ y su vecindad $N(x)$. Este se calcula con el \textit{F1-score} sobre dicha vecindad y dependerá por lo tanto de cómo se muestree esta. 
+\item \textit{Local Concordance: }mide como $g$ aproxima a $f$ justo en el ejemplo $x$. Se mide como $max\{0, 1-|f(x)-g(x)|\}$.  
+\item \textit{Reiteration Similarity: }muchos métodos de LLEs utilizan aleatoriedad para generar sus explicaciones. Debido a esto aplicar muchas veces un algoritmo para generar una explicación para un mismo ejemplo $x$ puede generar explicaciones distintas cada vez. Se propone esta métrica para medir la similaridad del conjunto de explicaciones generadas. Esta se calcula como la similaridad de \textit{Jaccard} $J$ esperada entre dos explicaciones $g$ y $g'$. Es decir $\mathbb{E}[J(g,g')]$.
+\item \textit{Prescriptivity: }mide en qué medida una explicación local puede usarse para modificar una instancia y cambiar su clasificación. Se calcula proyectando $x$ sobre la frontera de decisión del modelo explicativo $g$, y evaluando qué tan cerca está esa proyección del límite. Sea $x'$ dicha proyección entonces se calcula como la pérdida \textit{hinge} normalizada de $f(x')-g(x')$.
+\end{itemize}
+
+Finalmente, en \cite{REVEL} se introducen las métricas REVEL, que ya hemos introducido en \ref{subsec:revel}. Este framework propone cinco métricas al igual que LEAF. REVEL está compuesto de las mismas 5 métricas, cambiando \textit{Reiteration Similarity} por \textit{Robustness} que busca medir lo mismo. Sin embargo REVEL cambia cómo se calcula cada una de las métricas introduciendo mejoras en todas ellas. Es por esto por lo vamos a utilizar en este trabajo estas métricas para medir la calidad de nuestras explicaciones.
+
+\highlight{¿Debería ir una por una explicando las mejoras de las métricas REVEL respecto a LEAF?}
+
+
+
+\subsection*{Métodos de regularización XAI}
+
+Los métodos de regularización en XAI \cite{XSHIELD, EstadoArteMetodos}, que añaden un término regularizador a la función de pérdida, plantean una manera sencilla para modificar el comportamiento del modelo, favoreciendo criterios buscados. Estos son por construcción agnósticos al modelo, aunque algunos requieren que  este sea diferenciable, y sencillos de implementar. Por ello son uno de los métodos más estudiados en la técnicas de XAI.
+
+En \cite{RRR} se introduce \textit{Right for the Right Reasons} (RRR) que busca optimizar el razonamiento del modelo. En este trabajo el conjunto de datos $X$, a parte es estar etiquetado, debe proveer una máscara en la que se indique si cada dimensión de la entrada debe ser relevante o irrelevante para la decisión. En este trabajo las explicaciones se hacen mediante el gradiente respecto el logaritmo de la salida del modelo. 
+
+En \cite{REGINPUTGRAD} se realiza un método similar al anterior, pero solucionan el problema de la anotación manual de los datos para determinar qué parte de las entradas son irrelevantes. En este se generan perturbaciones de la entrada y se calcula sus mapas de atribución. El componente regularizador penaliza cambios significativos en las explicaciones. Este método busca que las explicaciones sean más estables y robustas. 
+
+En \cite{simpleregularizacion} se introduce \textit{Contextual Decomposition Explanation Penalization} (CDEP). Este utiliza la diferencia absoluta entre la explicación producida y la explicación dada por un experto. Para ello, se emplea el método \textit{Contextual Decomposition} (CD) como técnica de atribución, que permite calcular explicaciones diferenciables durante el entrenamiento. De esta forma, se penaliza directamente en la función de pérdida cualquier discrepancia entre el razonamiento del modelo y el conocimiento previo.
+
+Finalmente, en \cite{XSHIELD} se introduce X-SHIELD el método del que partimos. Este método no tiene restricciones teóricas sobre la entrada, salida o tarea que realiza el modelo, sólo que el modelo sea diferenciable. Está probado que este mejora el rendimiento en las métricas REVEL, que son las utilizadas en este trabajo, lo que nos proporcionará un método base con el que comparar nuestras propuestas. XSHIELD también ha demostrado que es capaz de aumentar no sólo las métricas REVEL sino que también mejora en muchos casos el rendimiento en clasificación del modelo.
+
 
 \newpage
 \chapter{Métodos propuestos} \label{cap:met}
- Antes de introducir mis propuestas haría un introducción sobre EfficientNet (en particular efficientnet b2) e introduciría su arquitectura y por qué la he elegido.
+ Antes de introducir mis propuestas haría un introducción sobre EfficientNet (en particular efficientnet b2) e introduciría su arquitectura y por qué la he elegido. 
 
 \subsection*{EfficientNet}
 

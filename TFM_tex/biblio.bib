@@ -1,3 +1,243 @@
+@misc{LIMESURVEY,
+      title={Which LIME should I trust? Concepts, Challenges, and Solutions}, 
+      author={Patrick Knab and Sascha Marton and Udo Schlegel and Christian Bartelt},
+      year={2025},
+      eprint={2503.24365},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2503.24365}, 
+}
+
+@ARTICLE{counterfactuals,
+       author = {{Liu}, Shusen and {Kailkhura}, Bhavya and {Loveland}, Donald and {Han}, Yong},
+        title = "{Generative Counterfactual Introspection for Explainable Deep Learning}",
+      journal = {arXiv e-prints},
+     keywords = {Computer Science - Machine Learning, Computer Science - Artificial Intelligence, Computer Science - Computer Vision and Pattern Recognition, Statistics - Machine Learning},
+         year = 2019,
+        month = jul,
+          eid = {arXiv:1907.03077},
+        pages = {arXiv:1907.03077},
+          doi = {10.48550/arXiv.1907.03077},
+archivePrefix = {arXiv},
+       eprint = {1907.03077},
+ primaryClass = {cs.LG},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2019arXiv190703077L},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+
+@InProceedings{IntGradients,
+  title = 	 {Axiomatic Attribution for Deep Networks},
+  author =       {Mukund Sundararajan and Ankur Taly and Qiqi Yan},
+  booktitle = 	 {Proceedings of the 34th International Conference on Machine Learning},
+  pages = 	 {3319--3328},
+  year = 	 {2017},
+  editor = 	 {Precup, Doina and Teh, Yee Whye},
+  volume = 	 {70},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {06--11 Aug},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v70/sundararajan17a/sundararajan17a.pdf},
+  url = 	 {https://proceedings.mlr.press/v70/sundararajan17a.html},
+  abstract = 	 {We study the problem of attributing the prediction of a deep network to its input features, a problem previously studied by several other works. We identify two fundamental axioms—Sensitivity and Implementation Invariance that attribution methods ought to satisfy. We show that they are not satisfied by most known attribution methods, which we consider to be a fundamental weakness of those methods. We use the axioms to guide the design of a new attribution method called Integrated Gradients. Our method requires no modification to the original network and is extremely simple to implement; it just needs a few calls to the standard gradient operator. We apply this method to a couple of image models, a couple of text models and a chemistry model, demonstrating its ability to debug networks, to extract rules from a network, and to enable users to engage with models better.}
+}
+
+
+@InProceedings{Gradcam,
+author = {Selvaraju, Ramprasaath R. and Cogswell, Michael and Das, Abhishek and Vedantam, Ramakrishna and Parikh, Devi and Batra, Dhruv},
+title = {Grad-CAM: Visual Explanations From Deep Networks via Gradient-Based Localization},
+booktitle = {Proceedings of the IEEE International Conference on Computer Vision (ICCV)},
+month = {Oct},
+year = {2017}
+}
+
+@article{CRP,
+  title={From attribution maps to human-understandable explanations through Concept Relevance Propagation},
+  author={Achtibat, Reduan and Dreyer, Maximilian and Eisenbraun, Ilona and Bosse, Sebastian and Wiegand, Thomas and Samek, Wojciech and Lapuschkin, Sebastian},
+  journal={Nature Machine Intelligence},
+  volume={5},
+  number={9},
+  pages={1006–1019},
+  year={2023},
+  doi={10.1038/s42256-023-00711-8},
+  url={https://doi.org/10.1038/s42256-023-00711-8},
+  issn={2522-5839},
+  publisher={Nature Publishing Group UK London}
+}
+
+@inbook{LRP,
+author = {Montavon, Grégoire and Binder, Alexander and Lapuschkin, Sebastian and Samek, Wojciech and Müller, Klaus-Robert},
+year = {2019},
+month = {09},
+pages = {193-209},
+title = {Layer-Wise Relevance Propagation: An Overview},
+isbn = {978-3-030-28953-9},
+journal = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
+doi = {10.1007/978-3-030-28954-6_10}
+}
+
+@inproceedings{SHAP,
+author = {Lundberg, Scott M. and Lee, Su-In},
+title = {A unified approach to interpreting model predictions},
+year = {2017},
+isbn = {9781510860964},
+publisher = {Curran Associates Inc.},
+address = {Red Hook, NY, USA},
+abstract = {Understanding why a model makes a certain prediction can be as crucial as the prediction's accuracy in many applications. However, the highest accuracy for large modern datasets is often achieved by complex models that even experts struggle to interpret, such as ensemble or deep learning models, creating a tension between accuracy and interpretability. In response, various methods have recently been proposed to help users interpret the predictions of complex models, but it is often unclear how these methods are related and when one method is preferable over another. To address this problem, we present a unified framework for interpreting predictions, SHAP (SHapley Additive exPlanations). SHAP assigns each feature an importance value for a particular prediction. Its novel components include: (1) the identification of a new class of additive feature importance measures, and (2) theoretical results showing there is a unique solution in this class with a set of desirable properties. The new class unifies six existing methods, notable because several recent methods in the class lack the proposed desirable properties. Based on insights from this unification, we present new methods that show improved computational performance and/or better consistency with human intuition than previous approaches.},
+booktitle = {Proceedings of the 31st International Conference on Neural Information Processing Systems},
+pages = {4768–4777},
+numpages = {10},
+location = {Long Beach, California, USA},
+series = {NIPS'17}
+}
+
+@article{LEAF,
+  title={To trust or not to trust an explanation: using LEAF to evaluate local linear XAI methods},
+  author={Elvio Gilberto Amparore and Alan Perotti and Paolo Bajardi},
+  journal={PeerJ Computer Science},
+  year={2021},
+  volume={7},
+  url={https://api.semanticscholar.org/CorpusID:234359251}
+}
+
+@inproceedings{metricasReglas,
+author = {Rosenfeld, Avi},
+title = {Better Metrics for Evaluating Explainable Artificial Intelligence},
+year = {2021},
+isbn = {9781450383073},
+publisher = {International Foundation for Autonomous Agents and Multiagent Systems},
+address = {Richland, SC},
+abstract = {This paper presents objective metrics for how explainable artificial intelligence (XAI) can be quantified. Through an overview of current trends, we show that many explanations are generated post-hoc and independent of the agent's logical process, which in turn creates explanations with limited meaning as they lack transparency and fidelity. While user studies are a known basis for evaluating XAI, studies that do not consider objective metrics for evaluating XAI may have limited meaning and may suffer from confirmation bias, particularly if they use low fidelity explanations unnecessarily. To avoid this issue, this paper suggests a paradigm shift in evaluating XAI that focuses on metrics that quantify the explanation itself and its appropriateness given the XAI goal. We suggest four such metrics based on performance differences, D, between the explanation's logic and the agent's actual performance, the number of rules, R, outputted by the explanation, the number of features, F, used to generate that explanation, and the stability, S, of the explanation. We believe that user studies that focus on these metrics in their evaluations are inherently more valid and should be integrated in future XAI research.},
+booktitle = {Proceedings of the 20th International Conference on Autonomous Agents and MultiAgent Systems},
+pages = {45–50},
+numpages = {6},
+keywords = {explainable artificial intelligence, human-agent systems, interpretable machine learning, system evaluation},
+location = {Virtual Event, United Kingdom},
+series = {AAMAS '21}
+}
+
+@InProceedings{simpleregularizacion,
+  title = 	 {Interpretations are Useful: Penalizing Explanations to Align Neural Networks with Prior Knowledge},
+  author =       {Rieger, Laura and Singh, Chandan and Murdoch, William and Yu, Bin},
+  booktitle = 	 {Proceedings of the 37th International Conference on Machine Learning},
+  pages = 	 {8116--8126},
+  year = 	 {2020},
+  editor = 	 {III, Hal Daumé and Singh, Aarti},
+  volume = 	 {119},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {13--18 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v119/rieger20a/rieger20a.pdf},
+  url = 	 {https://proceedings.mlr.press/v119/rieger20a.html},
+  abstract = 	 {For an explanation of a deep learning model to be effective, it must provide both insight into a model and suggest a corresponding action in order to achieve some objective. Too often, the litany of proposed explainable deep learning methods stop at the first step, providing practitioners with insight into a model, but no way to act on it. In this paper, we propose contextual decomposition explanation penalization (CDEP), a method which enables practitioners to leverage existing explanation methods to increase the predictive accuracy of a deep learning model. In particular, when shown that a model has incorrectly assigned importance to some features, CDEP enables practitioners to correct these errors by inserting domain knowledge into the model via explanations. We demonstrate the ability of CDEP to increase performance on an array of toy and real datasets.}
+}
+
+
+@article{REGINPUTGRAD, title={Improving the Adversarial Robustness and Interpretability of Deep Neural Networks by Regularizing Their Input Gradients}, volume={32}, url={https://ojs.aaai.org/index.php/AAAI/article/view/11504}, DOI={10.1609/aaai.v32i1.11504}, abstractNote={ &lt;p&gt; Deep neural networks have proven remarkably effective at solving many classification problems, but have been criticized recently for two major weaknesses: the reasons behind their predictions are uninterpretable, and the predictions themselves can often be fooled by small adversarial perturbations. These problems pose major obstacles for the adoption of neural networks in domains that require security or transparency. In this work, we evaluate the effectiveness of defenses that differentiably penalize the degree to which small changes in inputs can alter model predictions. Across multiple attacks, architectures, defenses, and datasets, we find that neural networks trained with this input gradient regularization exhibit robustness to transferred adversarial examples generated to fool all of the other models. We also find that adversarial examples generated to fool gradient-regularized models fool all other models equally well, and actually lead to more &quot;legitimate,&quot; interpretable misclassifications as rated by people (which we confirm in a human subject experiment). Finally, we demonstrate that regularizing input gradients makes them more naturally interpretable as rationales for model predictions. We conclude by discussing this relationship between interpretability and robustness in deep neural networks. &lt;/p&gt; }, number={1}, journal={Proceedings of the AAAI Conference on Artificial Intelligence}, author={Ross, Andrew and Doshi-Velez, Finale}, year={2018}
+}
+
+@inproceedings{RRR,
+  author    = {Andrew Slavin Ross and Michael C. Hughes and Finale Doshi-Velez},
+  title     = {Right for the Right Reasons: Training Differentiable Models by Constraining their Explanations},
+  booktitle = {Proceedings of the Twenty-Sixth International Joint Conference on
+               Artificial Intelligence, {IJCAI-17}},
+  pages     = {2662--2670},
+  year      = {2017},
+  doi       = {10.24963/ijcai.2017/371},
+  url       = {https://doi.org/10.24963/ijcai.2017/371},
+}
+
+
+@article{EstadoArteMetodos,
+title = {Beyond explaining: Opportunities and challenges of XAI-based model improvement},
+journal = {Information Fusion},
+volume = {92},
+pages = {154-176},
+year = {2023},
+issn = {1566-2535},
+doi = {https://doi.org/10.1016/j.inffus.2022.11.013},
+url = {https://www.sciencedirect.com/science/article/pii/S1566253522002238},
+author = {Leander Weber and Sebastian Lapuschkin and Alexander Binder and Wojciech Samek},
+keywords = {Deep neural networks, Explainable artificial intelligence, Model improvement, Artificial intelligence}}
+
+
+@article{coca,
+title={CoCa: Contrastive Captioners are Image-Text Foundation Models},
+author={Jiahui Yu and Zirui Wang and Vijay Vasudevan and Legg Yeung and Mojtaba Seyedhosseini and Yonghui Wu},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2022},
+url={https://openreview.net/forum?id=Ee277P3AYC},
+note={}
+}
+
+@INPROCEEDINGS{ConvNext,
+  author={Woo, Sanghyun and Debnath, Shoubhik and Hu, Ronghang and Chen, Xinlei and Liu, Zhuang and Kweon, In So and Xie, Saining},
+  booktitle={2023 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 
+  title={ConvNeXt V2: Co-designing and Scaling ConvNets with Masked Autoencoders}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={16133-16142},
+  keywords={Representation learning;Image segmentation;Visualization;Supervised learning;Training data;Self-supervised learning;Computer architecture;Deep learning architectures and techniques},
+  doi={10.1109/CVPR52729.2023.01548}}
+
+
+
+@InProceedings{DaViT,
+author="Ding, Mingyu
+and Xiao, Bin
+and Codella, Noel
+and Luo, Ping
+and Wang, Jingdong
+and Yuan, Lu",
+editor="Avidan, Shai
+and Brostow, Gabriel
+and Ciss{\'e}, Moustapha
+and Farinella, Giovanni Maria
+and Hassner, Tal",
+title="DaViT: Dual Attention Vision Transformers",
+booktitle="Computer Vision -- ECCV 2022",
+year="2022",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="74--92"
+}
+
+
+
+@article{densenet,
+      title={Densely Connected Convolutional Networks}, 
+      author={Gao Huang and Zhuang Liu and Laurens van der Maaten and Kilian Q. Weinberger},
+      year={2018},
+      eprint={1608.06993},
+      journal={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/1608.06993}, 
+}
+
+@article{resnet,
+      title={Deep Residual Learning for Image Recognition}, 
+      author={Kaiming He and Xiangyu Zhang and Shaoqing Ren and Jian Sun},
+      year={2015},
+      eprint={1512.03385},
+      journal={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/1512.03385}, 
+}
+
+@article{efficientnet2019,
+      title={EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks}, 
+      author={Mingxing Tan and Quoc V. Le},
+      year={2019},
+      journal={International Conference on Machine Learning},
+      eprint={1905.11946},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/1905.11946}
+}
+
 @article{Regularization,
 author = {Moradi, Reza and Berangi, Reza and Minaei, Behrouz},
 title = {A survey of regularization strategies for deep models},
