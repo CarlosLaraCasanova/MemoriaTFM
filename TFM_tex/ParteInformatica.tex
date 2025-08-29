@@ -448,7 +448,7 @@ En la práctica, para aproximar la \textit{Robustness} se hace la media de la si
 
 Esta no es una métrica sobre la explicación en específico sino sobre el método que las genera. Cuanta más cercana a 1 menos varían las explicaciones generadas por el método estudiado. Esta métrica al contrario que todas las anteriores puede obtener valores negativos, lo que indicaría explicaciones que se ``contradicen''.
 
-\subsection{Regularización X-Shield}
+\subsection{Regularización X-Shield} \label{subsec:XSHIELD}
 
 La \textbf{regularización} \cite{XSHIELD, Regularization} es la modificación de la arquitectura del modelo, del proceso de aprendizaje o inferencia para imponer algún criterio sobre este. Por ejemplo, dropout, que ya se vió previamente, es una regularización. 
 
@@ -652,22 +652,189 @@ Finalmente, en \cite{XSHIELD} se introduce X-SHIELD el método del que partimos.
 
 
 \newpage
-\chapter{Métodos propuestos} \label{cap:met}
- Antes de introducir mis propuestas haría un introducción sobre EfficientNet (en particular efficientnet b2) e introduciría su arquitectura y por qué la he elegido. 
+\chapter{Métodos} \label{cap:met}
 
-\subsection*{EfficientNet}
+\section{EfficientNet}
 
-\clearpage
+El modelo de clasificación de imágenes que vamos a entrenar sobre nuestro conjunto de datos y sobre el que aplicaremos las distintas regularizaciones XAI se trata de \textbf{EfficientNet} \cite{efficientnet2019}. EfficientNet es una familia de CNNs muy eficiente en rendimiento, obteniendo buenos resultados en accuracy versus número de parámetros presentes en la red (Figura \ref{fig:efficientnet_grafica}). Esto hace que sea muy versátil y se adapte al poder de computo del que disponemos. Además la precisión final obtenida por la red, aunque es relevante, no es el objetivo central que ocupa este trabajo ya que también buscamos mejorar la interpretabilidad del modelo.
+
+De entre la familia de estas redes hemos elegido \textbf{EfficientNet-B2} para realizar nuestros experimentos pues es el que mejor se adapta a nuestra potencia de cómputo (en la Tabla \ref{tab:EfficientNet_Params} se pueden ver los detalles).
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{lcc}
+\hline
+\textbf{Modelo} & \textbf{Parámetros (M)} & \textbf{FLOPs (B)} \\
+\hline
+EfficientNet-B0 & 5.3  & 0.39 \\
+EfficientNet-B1 & 7.8  & 0.7 \\
+EfficientNet-B2 & 9.2  & 1 \\
+EfficientNet-B3 & 12   & 1.8 \\
+EfficientNet-B4 & 19   & 4.2 \\
+EfficientNet-B5 & 30   & 9.9 \\
+EfficientNet-B6 & 43   & 19 \\
+EfficientNet-B7 & 66   & 37 \\
+\hline
+\end{tabular}
+\caption{Modelos EfficientNet B0--B7 con número de parámetros y FLOPs (\textit{Floating Point OPerations per second}). Datos extraídos de \cite{efficientnet2019}}
+\label{tab:EfficientNet_Params}
+\end{table}
+
+En la Tabla \ref{tab:EfficientNetB2_arquitectura} muestro la arquitectura de EfficientNet-B2. Los bloques \textbf{MBConv1} y \textbf{MBconv6} son los bloques \textit{inverted bottleneck} introducidos en \cite{mobilenet} combinados con bloques \textit{Squeeze-and-excitation (SE)} introducidos en \cite{SE}.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{lcccc}
+\hline
+\textbf{Estapa} & \textbf{Operador} & \textbf{Resolución} & \textbf{\#Canales de entrada} & \textbf{\#Capas} \\
+\hline
+1 & Conv3x3                & 224 × 224 & 32   & 1 \\
+2 & MBConv1, k3x3          & 112 × 112 & 16   & 1 \\
+3 & MBConv6, k3x3          & 112 × 112 & 24   & 2 \\
+4 & MBConv6, k5x5          & 56 × 56   & 48   & 2 \\
+5 & MBConv6, k3x3          & 28 × 28   & 88   & 3 \\
+6 & MBConv6, k5x5          & 14 × 14   & 120  & 3 \\
+7 & MBConv6, k5x5          & 14 × 14   & 208  & 4 \\
+8 & MBConv6, k3x3          & 7 × 7     & 352  & 1 \\
+9 & Conv1x1 + Pooling + FC & 7 × 7     & 1408 & 1 \\
+\hline
+\end{tabular}
+\caption{Arquitectura de EfficientNet-B2 con entrada de 224 × 224.}
+\label{tab:EfficientNetB2_arquitectura}
+\end{table}
+
+\section{XSHIELD}
+
+\textbf{X-SHIELD} \cite{XSHIELD} es el método de regularización XAI con el que vamos a comparar los métodos propuestos a continuación. Además nuestros métodos están basados en los mismos principios que este método, esconder al modelo las características menos relevantes y penalizar la diferencia entre la predicción original del modelo y la predicción sin dichas características. Todos los detalles acera de XSHIELD están en la subsección \ref{subsec:XSHIELD}.
+
+
+
+\section{Mis métodos propuestos}
+En las siguientes tres subsecciones voy a introducir mis propuestas de métodos de regularización.
+
 \subsection{FXShield}
+
+En \textbf{FX-SHIELD} (\textit{Feature X-SHIELD}) proponemos una regularización que ocluye la distintas características extraídas por la parte de red convolucional del modelo. Sea $x \in \mathbb{R}^F$ un dato de entrada, luego $F$ es el número de características de la entrada. Sea $f:\mathbb{R}^F \rightarrow \mathbb{R}^C$ la función que implementa el modelo de caja negra siendo $C$ el número de clases del problema. En el caso de una red convolucional se tiene que $f(x) = l(c(x))$ dónde $c:\mathbb{R}^F \rightarrow \mathbb{R}^{F_c}$ es la función que implmentan las capas convolucionales de la red y $l:\mathbb{R}^{F_c} \rightarrow \mathbb{R}^C$ la función que implementan las capas no convolucionales (por ejemplo una o varias capas totalmente conectadas). En las expresiones anteriores $F_c$ representa el número de características que extrae la red convolucional de las entradas (ver Figura \ref{fig:fxshield_esquema}). Por ejemplo, en la Tabla \ref{tab:EfficientNetB2_arquitectura} podemos ver que para EfficientNet-B2 se tiene que $F_c=1408$. 
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.45]{images/fxshield_esquema}}
+\caption{Esquema de la red completa. En este se diferencian las características extraídas por las capas convolucionales de la red de las características de la entrada.}
+\label{fig:fxshield_esquema}
+\end{figure}
+
+
+Para X-SHIELD las características de las entradas, si son imágenes, dependen de como se quieran definir. Hay varias posibilidades como tomar que cada píxel se corresponda a una características, dividir la imagen en de entrada en cuadrados del mismo tamaño o utilizar métodos para dividir la imagen de entrada en superpíxeles. En FX-SHIELD la toma de esta decisión no es necesaria porque independientemente de la imagen de entrada (incluso para distintos tamaños de esta) siempre se va a obtener el mismo número $F_c$ de características extraídas por los bloques convolucionales. 
+
+Notemos como $z=c(x)$ las características intermedias. Ahora buscamos ocluir las características menos importantes de $z$. La importancia que se le da a las distintas características se puede definir con la matriz de importancia $\mathcal{A} = \frac{\delta f}{\delta Z}(x) = \frac{\delta l}{\delta Z}(z)$. Para cada características $i \in \{1,2,...,F_c\}$ vamos a definir la importancia de esta como:
+
+\begin{equation}
+I_i(z) =  \frac{||\mathcal{A}_i||_1}{C} = \frac{1}{C}\sum_{j=1}^C |\mathcal{A}_{i,j}| 
+\end{equation}
+
+Por lo tanto esta es la media aritmética de la suma absoluta de la derivada de cada valor de salida sobre dicha características. Volviendo al ejemplo de la arquitectura de EfficientNet-B2 \ref{tab:EfficientNetB2_arquitectura} tenemos que la cabeza de la red consta de una única capa totalmente conectada, es decir en este caso se tiene que:
+
+\begin{equation}
+l(z) = Az + B
+\end{equation}
+
+Dónde $A$ es una matriz real de dimensión $C\times F_c$ y $B$ es un vector de $C$ valores. Como $l$ es una aplicación lineal se sigue que $\mathcal{A}=A$ y la importancia no es más que la suma para cada característica de los valores de $A$ para esta.
+
+Sea $\lambda\in [0,100]$ un parámetro que determina que porcentaje de las características se va a ocultar, definimos la siguiente transformación $T_{fxshield}: \mathbb{R}^{F_c} \rightarrow \mathbb{R}^{F_c}$ que enmascara el $\lambda \%$ de elementos menos importantes. En la práctica se escoge el menor $m$ tal que $\lambda < \frac{m}{F_c} \cdot 100$ y se enmascaran las $m$ características menos importantes. En X-SHIELD, como se enmascaran características de la entrada que son imágenes, lo que se hace es sustituir estas por el color medio de la entrada. Para FX-SHIELD estamos en el espacio de features, dónde los valores que van de $-\infty$ a $\infty$. Por lo tanto hemos decidido sustituir dichos valores por $0$. Suponiendo, sin pérdida de generalidad, que las características en $z$ están ordenadas de menor importancia a mayor, se define $T_{fxshield}$ como:
+
+\begin{equation}
+z' = T_{fxshield}(z) = (0,0,...,0,z_{m+1},...,z_{F_c})
+\end{equation}
+
+Ahora podemos medir la predicción del modelo para este ejemplo modificado simplemente pasándolo por la cabeza de la red. 
+
+Ya estamos en condiciones de definir el factor de regularización que se utiliza en este método. Para un ejemplo $x$ y unos parámetros $\Theta$ del modelo específicos, sean $y=f_\Theta(x)=l(z)$ la predicción original del modelo y $y'=l(T_{fxshield}(c_\Theta(x))) = l_\Theta(z')$ la predicción para el ejemplo con las características intermedias modificadas, entonces se tiene que:
+
+\begin{equation}
+FX-SHIELD(x,\Theta) = KL(y,y') + KL(y',y)
+\end{equation}
+
+Dónde $KL$ es la divergencia de Kullback-Leibler que se utiliza para medir la distancia estadística entre las distribuciones de probabilidad entre los modelos.
+
+Es decir, FX-SHIELD utiliza este valor regularizador en el entrenamiento por lo que en este método se minimiza la siguiente función:
+
+\begin{equation}
+coste\_fxshield(\Theta,X,Y) = funcion\_perdida(f_\Theta(X),Y) + FX-SHIELD(X,\Theta)
+\end{equation}
+
+
+Una ventaja que presenta este método sobre X-SHIELD es que no necesita que el modelo de caja negra sea diferenciable, aunque sigue necesitando que la cabeza del modelo lo sea (para el cálculo de la importancia de las características). A cambio, FX-SHIELD no es totalmente agnóstico al modelo, pues es necesario poder extraer unas características intermedias.
+
+Otra ventaja es que es más rápido que X-SHIELD ya que para el cálculo de la regularización no hace falta pasar las características enmascaradas por toda la red sino por las capas posteriores a las convolucionales, que suelen ser mucho más rápidas y con menos parámetros.
+
+En X-SHIELD se esconden las características menos relevantes de la entrada a la red, que es una imagen, con la idea de eliminar partes de imagen que no son relevantes para la tarea de clasificación. En FX-SHIELD se esconden las características menos relevantes de las extraídas por las capas convolucionales. Esto puede ser interesante pues varios trabajos anteriores como \cite{NetDiss,tcav,distill} muestran que las capas intermedias en CNNs representan conceptos de alto nivel. Por lo tanto tiene sentido trabajar con estas características intermedias que codifican conceptos que tienen sentido para los humanos. Esto se puede ver como una ventaja de FXSHIELD sobre X-SHIELD (cuando se toman características de la imagen de entrada como una división de la imagen en cuadrados) ya que estas features intermedias pueden tener un mayor significado.
+
 \subsection{FRShield}
+
+\textbf{FRSHIELD} (\textit{Random FX-SHIELD}) es el mismo método que FX-SHIELD pero cambia en que las características que oculta se escogen de forma aleatoria sin tener en cuenta la importancia de estas. Este método nos permite comparar FX-SHIELD con un método no informado. Además el hecho de que se oculten las características de forma aleatoria puede ayudar al modelo a no depender únicamente de las características más importantes y que las explicaciones estén apoyadas en más características. Finalmente este método se parece a \textit{Dropout}, lo que también lleva a pensar que podría hacer que la red no sobreentrene.
+
 \subsection{HShield}
 
-\clearpage
+Finalmente introducimos \textbf{H-SHIELD} (\textit{Hybrid} X-SHIELD) un método que combina X-SHIELD con FX-SHIELD. Para ello modificamos el valor regulador para tener en cuenta ambos de la siguiente forma:
+
+\begin{align*}
+coste\_hshield(\Theta,X,Y) = &funcion\_perdida(f_\Theta(X),Y) + \\
+&\alpha_1 \cdot X-SHIELD(X,\Theta) +\\
+&\alpha_2 \cdot FX-SHIELD(X,\Theta)
+\end{align*}
+
+Dónde $\alpha_1, \alpha_2$ son dos parámetros positivos que utilizaremos para darle cambiar el peso que le damos a cada una de las regularizaciones por separado. 
+
+Con esta propuesta intentamos combinar las bondades de ambos métodos. El principal inconveniente de este método es su mayor coste computacional a los métodos por separado. La determinación de los parámetros $\alpha_1$ y $\alpha_2$ se hará empíricamente comparando los valores de regularización individuales que se obtienen para cada método por separado. El porcentaje de elementos que se ocultan por cada método, que denotabamos como $\lambda$, ahora son dos parámetros distintos $\lambda_1$ y $\lambda_2$, que serán dicho parámetro para X-SHIELD y FX-SHIELD respectivamente.
 
 \section{Implementación}
 
-Aquí explico de qué código he partido (+ GitHub), breve introducción de cómo está organizado el proyecto (en carpetas/archivos), los datos, cómo me he organizado el proyecto en conda (versión de python + modulos) finalmente pondría un link al proyecto en mi GitHub). Por cierto me interesa saber si prefieres que cree un fork de alguno de tus proyectos en github (Iván) o si me creo uno a parte en el mío (obviamente referenciando tu github como partida), a mi me da igual.
+Para la realización de este TFM se ha partido del \href{https://github.com/isega24/SHIELD/tree/X-SHIELD}{código} correspondiente al proyecto de X-SHIELD original \cite{XSHIELD}. Este está escrito en \textit{Python}. Se ha realizado un estudio de todo el código de el proyecto original para entender correctamente como funciona y así poder implementar los nuevos métodos que proponemos. Además se han escrito varios \textit{scripts} en \textit{bash} para la ejecución de los entrenamientos de los modelos aplicando los distintos métodos de regularización  en los servidores de GPUs de la UGR.
 
+A continuación hacemos un resumen de todos los módulos del proyecto que se han utilizado, sin contar los \textit{scripts} de \textit{bash} de , y mencionamos cuando se han modificado para el TFM:
+
+\begin{itemize}
+\item \textbf{SHIELD/shield.py:} este es el módulo más importante de todo. En él vienen las funciones para calcular las importancias de las características y las implementaciones de los distintos métodos. En particular se ha añadido a este archivo los métodos X-SHIELD y R-SHIELD.
+
+\item \textbf{procedures/cargar\_datos.py:} este módulo es completamente nuevo y es necesario para cargar los datos del TFM en un \textit{dataset} de \textit{pytorch}. Este módulo se basa en la manera en la que se cargan los \textit{datasets} utilizados en el trabajo original de X-SHIELD, cuya implmentación se puede ver en el \href{GitHub}{https://github.com/ari-dasci/S-ReVel} de las métricas REVEL.
+
+\item \textbf{procedures/procedures.py:} aquí vienen implementadas las funciones para cargar el modelo clasificador (\textit{EfficientNet} en nuestro caso) y las funciones que realizan un paso en entrenamiento y validación.
+
+\item \textbf{tests/test.py y tests/train.py:} scripts para el entrenamiento de la red con X-SHIELD y para obtención de \textit{accuracy} en test, respectivamente.
+
+\item \textbf{tests/mitrain.py, tests/mitest.py, tests/mitrain\_hibrido.py:} los dos primeros son scripts para el entrenamiento de la red con X-SHIELD o FX-SHIELD y para obtención de \textit{accuracy} en test, respectivamente. El tercero es una adaptación para entrenar H-SHIELD. Estos son muy parecidos a los anteriores pero están adaptados para utilizar nuestro conjunto de datos y los nuevos métodos.
+
+\item \textbf{tests/REVEL\_metrics.py y tests/mi\_REVEL\_metrics.py:} \textit{script} original para calcular las métricas REVEL para un modelo y la versión modificada para utilizar el conjunto de datos de este TFM.
+\end{itemize}
+
+Además durante la ejecución de los experimentos se disponía de una carpeta llamada \textbf{datosTFM} dónde había dos carpetas, \textbf{train} y \textbf{val} que contenían los datos de entrenamiento y test respectivamente.
+
+Para la gestión de paquetes de \textit{Python} se ha utilizado la herramienta \textit{Conda} que permite crearentornos con los paquetes de \textit{Python} necesarios para el proyecto. Se ha utilizado la versión de Conda 4.10.1 y se ha creado un entorno con Python 3.9.23. Se han instalado los siguiente paquetes paquetes de \textit{Python}:
+
+\begin{itemize}
+    \item torch (versión 2.0.1): con CUDA versión 11.7
+    \item torchvision
+    \item tensorboard
+    \item efficientnet\_pytorch
+    \item torchsummary
+    \item numpy
+    \item pandas
+    \item scipy
+    \item scikit-learn
+    \item scikit-image
+    \item matplotlib
+    \item seaborn
+    \item plotly
+    \item tqdm
+    \item opencv-python
+    \item ipywidgets
+    \item ipython
+    \item wget
+    \item captum
+    \item revel-xai: paquete con la implementación de las métricas REVEL.
+\end{itemize}
+
+Todo el código desarrollado para el TFM está disponible en el siguiente \href{https://github.com/CarlosLaraCasanova/Codigo_TFM/tree/main}{enlace}.
 
 
 \clearpage
