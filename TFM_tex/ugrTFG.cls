@@ -14,7 +14,7 @@
 
 % PRINT
 \DeclareOption{print}{
-  \PassOptionsToClass{fontsize=10pt, paper=a4, twoside=true, BCOR=5mm, DIV=10}{scrbook}
+  \PassOptionsToClass{fontsize=11pt, paper=a4, twoside=true, BCOR=5mm, DIV=10}{scrbook}
 }
 
 % TABLET

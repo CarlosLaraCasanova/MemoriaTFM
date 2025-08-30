@@ -499,7 +499,7 @@ T_{xai}(x_1,...,x_F; \lambda) = (\underbrace{x_0,x_0...,x_0,x_0}_{0 \leq i\leq F
 
 
 
-Dónde se ha supuesto los atributos $x_i$ ordenados de menor a mayor por importancia y tenemos que $i$ es el primer valor tal que se ocluyen al menos el $\lambda \%$ de características.
+Dónde se ha supuesto los atributos $x_i$ ordenados de menor a mayor por importancia y tenemos que $i$ es el menor valor tal que se ocluyen al menos el $\lambda \%$ de características.
 
 
 
@@ -844,24 +844,196 @@ Todo el código desarrollado para el TFM está disponible en el siguiente \href{
 \chapter{Experimentos} \label{cap:exp}
 
 
+
 \section{Datos empleados} \label{sec:datos}
-En esta sección explico el conjunto de datos del que parto. Explico como está organizado, cómo están balanceadas las clases, qué clases hay, qué significan, puedo mostrar algunos datos para mostrar ejemplos (si tengo permiso, claro). Me interesa saber de dónde provienen los datos también para ponerlo. En cuanto a estudio cualitativo de estos no creo que yo pueda aportar mucho así que no creo que haga (además de que hay demasiados datos).
+
+El conjunto de datos empleado está desarrollado por la iniciativa \textit{aI4HealthyAging}. En particular se creó para el paquete de trabajo 7: cribado y vigilancia activa en cánceres prevalente de la 3ª edad.
+
+\highlight{LA CITA BIBLIOGRÁFICA SIGUIENTE (\cite{datosObtencion} la he creado yo. Se corresponde al archivo que  me mandaste con información del dataset, pero no he podido encontrarlo online.} 
+
+\paragraph*{Metodología de obtención y etiquetado de imágenes}
+
+Para la obtención de las imágenes siguieron la metodología que se puede consultar en \cite{datosObtencion}. En esta siguen el procedimiento estándar de procesamiento hispatológico. Partían de muestras de prostatectomía radical (la extirpación completa de la próstata). A continuación la fijan en formalina. Tras esto un patólogo o residente de patología realiza un examen macróscopico para extraer muestras para estudiar con microscopio. Estas muestras de tejido se procesan deshidratándolos e impregnándolos en parafina. Luego se cortan secciones del tejido de entre 3 $\mu m$ y 5 $\mu m$. Después se colocan en láminas de vidrio y se tiñen con hemaxtoxilina-ecosina. Finalmente se cubren con otra lámina de vidrio para ser examinados con un microscopio.
+
+A continuación las muestras se escanearon en un escáner de láminas, lo que produjo imágenes en formato \textit{TIFF}. Dichas imágenes fueron segmentadas manualmente por patólogos profesionales del servicio de anatomía patológica del Hospital Miguel Servet de Zaragoza (ver Figura \ref{fig:datoSegmentado}). Los diferentes segmentos fueron anotados como pertenecientes a una de las 14 clases posibles, presentes en la Tabla \ref{tab:datasetClases}. Para llevar a cabo el etiquetado hicieron uso de la plataforma \textit{Cytomine}. 
+
+
+Finalmente las imágenes se fragmentan en parches de tamaño $224\times 224$ píxeles. Cuando cuando un parche contiene una proporción de píxeles perteneciente a una clase superando el umbral $h = 0.75$ este parche se anota con dicha clase, si esto no ocurre para ninguna clase se descarta el parche. 
+
+Esta es la versión del conjunto de datos con el que partimos nosotros, tenemos los parches que han sido anotados con una de las 14 clases.
+
+\begin{longtable}{|p{4cm}|p{8cm}|p{3cm}|}
+
+\hline
+\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} \\
+\hline
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuación}} \\
+\hline
+\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} \\
+\hline
+\endhead
+
+\hline \multicolumn{3}{r}{{Continúa en la siguiente página}} \\
+\endfoot
+
+\endlastfoot
+
+Tejido sano diferente a estroma (HT) & Tejido sano sin estructuras relevantes asociadas a malignidad & Tejido no maligno \\
+\hline
+Estroma sano (HS) & Estroma sin estructuras relevantes asociadas a malignidad & Tejido no maligno \\
+\hline
+Glándulas no neoplásicas (NG) & Glándulas con morfología no neoplásica & Tejido no maligno \\
+\hline
+Tejido inflamatorio (IT) & Tejido con signos de inflamación &  Tejido no maligno \\
+\hline
+Gleason 3 (G3) & Glándulas individuales, bien formadas, de tamaño variable, separadas por estroma &  Tejido maligno \\
+\hline
+Gleason 4, patrón cribiforme (G4c) & Glándulas compuestas por células tumorales dispuestas en trabéculas redondeadas o irregulares, cohesivas, con perforaciones o luces perforadas &  Tejido maligno \\
+\hline
+Gleason 4, patrón glándulas fusionadas (G4f) & Glándulas sin estroma entre ellas, con luz glandular conservada & Tejido maligno \\
+\hline
+Gleason 4, patrón glándulas pobremente formadas (G4p) & Glándulas pequeñas con luces desproporcionadas & Tejido maligno \\
+\hline
+Gleason 4, patrón glomeruloide (G4g) & Glándulas con un nido de células tumorales que ocupa la luz y está unida a la glándula por un polo &  Tejido maligno \\
+\hline
+Gleason 5, patrón comedonecrosis (G5c) & Nidos tumorales redondeados con necrosis central de tipo comedo & Tejido maligno \\
+\hline
+Gleason 5, patrón sin glándulas definidas (G5w) & Células tumorales sueltas, en hilera o trabéculas. Ausencia de diferenciación glandular &  Tejido maligno \\
+\hline
+Neoplasia intraepitelial prostática de alto grado (PIN) & Glándulas con capa basal y proliferación de células epiteliales con atipia y pérdida de mucosecreción; patrones micropapilar, cribiforme, plano, hiperplásico & Tejido maligno \\
+\hline
+Adenocarcinoma ductal (DA) & Glándulas cribiformes y estructuras papilares y/o complejas revestidas por células altas columnares pseudoestratificadas & Tejido maligno \\
+\hline
+Carcinoma intraductal (IC) & Grandes ductos con capa basal y luz dilatada, distendida y ocupada por proliferación de células epiteliales con marcada atipia y crecimiento papilar, cribiforme laxo o cribiforme denso &  Tejido maligno \\
+\hline
+
+\caption{En esta tabla se muestra la clasificación de los tejidos, una breve descripción de qué significan y si el tejido es maligno. Tabla extraída y adaptada de \cite{datosObtencion}.} \label{tab:datasetClases} 
+\end{longtable}
+
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.6]{images/datoSegmentado}}
+\caption{Imagen de tejido segmentado. Imagen extraída de \cite{datosObtencion}.}
+\label{fig:datoSegmentado}
+\end{figure}
+
+\paragraph*{Distribución de los datos}
+
+En total, el conjunto de datos contiene 126.109 imágenes anotadas. La distribución de estos entre las distintas clases se muestra en la Figura \ref{fig:distribucionDatos}. Se puede apreciar un claro desbalanceo en los datos. La clase menos frequente es Gleason 4 glomeruloide (G4p) con 243 datos ($~0.19\%$ de los datos), mientras que la más frecuente es Glándulas no neoplásticas (NG) con 35.894 datos ($~28.46\%$ de los datos). 
+
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.6]{images/distribucionDatos}}
+\caption{Distribución de las imágenes del conjunto de datos según su clase.}
+\label{fig:distribucionDatos}
+\end{figure}
+
+
+Además los datos están divididos en dos carpetas \textit{train} y \textit{val}. La carpeta \textit{train} contiene 113.491 imágenes ($~90\%$ de los datos) mientras que \textit{val} contiene las 12.618 imágenes restantes ($~10\%$ de los datos). Está partición de los datos se realizó para entrenamiento/test de los modelos y vamos a respetarla. Se puede comprobar que esta partición de los datos mantiene la proporción de las clases como se puede ver en la Figura \ref{fig:distribucionDatosTrainTest}.
+
+
+\begin{figure}[h!]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.6]{images/DatosProporcionTestTrain}}
+\caption{Distribución de las imágenes del conjunto de datos para entrenamiento y para test según su clase.}
+\label{fig:distribucionDatosTrainTest}
+\end{figure}
+
+
+
 \section{Experimentos realizados}
+
+Los experimentos han sido ejecutados en los servidores de cómputo Atenea y Hera, de los servidores NGPU de la Universidad de Granada. Las gráficas utilizadas son GTX Titan Xp con 128 Gb DDR4 y Titan RTX con 128 Gb DDR4, respectivamente.
 
 \subsection{Separación de datos}
 
-Cómo están divididos los datos. He utilizado un conjunto de validación ya que validación cruzada es demasiado costoso en tiempo.
+Cómo ya hemos comentado realizamos una división 90/10 de los datos totales entre entrenamiento/test. Los modelos se van a entrenar con el conjunto de entrenamiento y se evaluará con los datos del conjunto de test. Esta división de los datos se realiza para tener un conjunto,
+el de test, que no haya visto el modelo durante el entrenamiento para evaluar el rendimiento
+real del modelo para datos que aún no ha visto. Esta práctica es muy importante para evitar
+el sobreentrenamiento de la red. La división de 90/10 de los datos tiene sentido sobre otras típicas como 80/20 porque disponemos de una cantidad muy grande de datos (126.109 imágenes).
 
 \paragraph*{Validation}
 
+Teniendo en cuenta el tamaño de nuestro conjunto de datos y de los recursos computacionales de los que disponemos hemos decidido utilizar un conjunto de validación fijo sobre otros métodos como \textit{k-fold cross validation}. 
+
+
+Esta técnica consiste en separa un porcentaje del conjunto de entrenamiento para no entrenar con él. Sin embargo se va a utilizar para evaluar el modelo al final de cada época, calculando su función de error sobre este conjunto. Esta técnica es importante para el entrenamiento del modelo porque que cumple un rol distinto a los conjuntos de entrenamiento y test. Este nos ayudará a realizar un ajuste de hiperparámetros del modelo y ayuda a prevenir el sobreajuste, eligiendo el modelo que menor error tenga en validación, en vez de en entrenamiento. 
+
+Nosotros vamos a dividir el conjunto de entrenamiento en 90/10 para entrenamiento y para validación respectivamente. En la Figura \ref{fig:distribucionTrainTestVal} presentamos un esquema con la división del conjunto de datos seguida para los experimentos.
+
+
+\begin{figure}[h!]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.4]{images/divisionDatos}}
+\caption{Distribución de los datos en los conjuntos finales de entrenamiento, validación y test.}
+\label{fig:distribucionTrainTestVal}
+\end{figure}
+
+
 \paragraph*{Optimizador y elección de hiperparámetros}
 
+El \textbf{optimizador} elegido para entrenar el modelo es Adam \cite{adam}, que es una modificación de SGD. Se ha elegido este optimizador porque es el que se utilizó originalmente en el artículo de X-SHIELD \cite{XSHIELD} y porque está probado empíricamente que tiene mejor rendimiento que el resto de optimizadores para una gran variedad de tareas.
+
+Cómo \textbf{\textit{learning rate}} inicial Adam se ha escogido el valor $0.0004$. Un \textit{learning rate} inicial es muy importante porque dicta como converge el modelo. Para la elección de este parámetro se han hecho pruebas iniciales sobre los modelos y hemos determinado que este valor es el que mejor convergencia daba al modelo.
+
+El tamaño del \textbf{\textit{minibatch}} escogido ha sido 32. Está demostrado que tamaños grandes de \textit{minibatches} acelera el entrenamiento y estabiliza la convergencia del modelo. Por otro lado un tamaño pequeño puede mejorar la capaz de generalizar del modelo \cite{batchSize}. El tamaño suele escogerse como una potencia de $2$. Hemos escogido tamaño $32$ ya que para $64$ la gráfica dónde ejecutamos los experimentos se quedaba sin memoria y empíricamente se comprobó que $32$ daba mejores resultados que tamaños menores.
+
+Para el número de \textbf{épocas} hemos escogido un número no muy alto ya por los recursos computacionales de los que disponemos. Por ello se hicieron pruebas experimentales previas para buscar un valor que garantizaba la convergencia de estos pero no se excedía en tiempo de entrenamiento. El número de épocas es por lo tanto $24$. Con este número de épocas los modelos entrenados con la regularización X-SHIELD (la más costosa) tardan alrededor de 1 día (normalmente un poco más) en entrenarse.
+
+Cómo ya sabemos el modelo que vamos a utilizar en los experimentos es EfficientNet-B2 con entradas de tamaño $224 \times 224$. Este modelo lo cargamos de la librería de \textit{pytorch}. Además lo vamos a cargar con los pesos preentrenados de esta red sobre el conjunto de datos IMAGENET-1K lo que se conoce como \textit{transfer learning} y nos permite no tener que entrenar el modelo desde cero.
+
+En primer lugar vamos a entrenar el modelo EfficientNet-B2 base con los parámetros que hemos especificado. Después se entrenará esta red aplicando los distintos métodos de regularización explicados, estos son: el método original con el que comparamos los propuestos (X-SHIELD) y los métodos nuevos que proponemos en este trabajo (FX-SHIELD, FR-SHIELD y H-SHIELD).
+
+Los hiperparámetros a los que se va a probar a cambiar sus valores son los correspondientes a los métodos de regularización de XAI. Estos son:
+
+\begin{itemize}
+
+\item $\lambda$: En el caso de X-SHIELD, FX-SHIELD y FR-SHIELD este parámetro determina que porcentaje de las caracterísitcas (de las entrada en el caso de X-SHIELD y los intermedios en el caso de los nuestros) se van a ocultar para el cálculo de los valores de regularización. Para X-SHIELD se ha probado con los parámetros 3, 6, 9 y 12, ya que en \cite{XSHIELD} se demostró que funcionaba mejor para valores similares a estos. Para los métodos nuevos, como no tenemos esta información hemos probado con más variedad de valores. Para FX-SHIELD hemos probado con los parámetros a 3, 6, 9, 12, 25, 35, 45, 55, 65, 75 y 85, como funcionaba mejor para 75 también probamos con los valores vecinos 70, 73 y 77. Para FR-SHIELD hemos probado con 3, 45, 65, 75 y 77.
+
+\item $\alpha_1$ y $ \alpha_2$: Estos son los parámetros para H-SHIELD. Son los pesos que se aplican a la regularización X-SHIELD y FX-SHIELD respectivamente. Para los hiperparámetros $\lambda$ para cada uno de estos hemos escogido los que mejores resultados daban por individual que son 12 y 77 respectivamente. Para $(\alpha_1,\alpha_2)$ se han probado $(1,1)$, $(1,2)$ y $(1,3)$
+\end{itemize}
+
+Además para las características de X-SHIELD se divide la imagen de entrada en 64 cuadrados del mismo tamaño para cada imagen como se hace en \cite{XSHIELD}.
+
+De esta manera, el modelo se entrena aplicando cada método con la distintas elecciones de hiperparámetros. Para evitar el sobreentrenamiento, durante el entrenamiento de los modelos en cada época se calcula la función de pérdida sobre el conjunto de validación y el modelo final del entrenamiento es el que menor pérdida en validación haya obtenido, no necesariamente el que minimice el error en entrenamiento. 
+
+Para elegir los mejores hiperparámetros para cada método se escoge modelo entrenado que minimicen la \textit{accuracy} en validación para dichos hiperparámetros.
 
 
 \section{Métricas}
-Explico que he utilizado Accurcy, cross entropy error y recuerdo el uso de la métricas revel. También hablo de los test estadísticos que he utilizado y los parámetros escogidos.
+
+Para el entrenamiento del modelo se utiliza como función de pérdida el \textbf{error de entropía cruzada} que es la función de pérdida que se utiliza habitualmente para entrenar redes en clasificación.
+
+Para evaluar el rendimiento del modelo en la tarea de clasificación utilizamos la \textbf{\textit{accuracy}} que mide la proporción de ejemplos correctamente clasificados. Esta toma valores en $[0,1]$ y cuanto mayor es, mejor es el rendimiento del modelo. 
+
+Por otro lado para evaluar el rendimiento utilizamos la métricas \textbf{REVEL}. Estas fueron formalmente introducidas en \ref{subsec:revel}. Recordamos que estas son: \textit{local concordance}, \textit{local fidelity}, \textit{presciptivity}, \textit{conciseness} y \textit{robustness}. Para cada método de regularización las calcularemos únicamente para el modelo final que ha sido calculado para los mejores parámetros para dicho método.
+
+Para el cálculo de estas métricas se deben crear explicaciones con un LLE. Elegimos \textbf{LIME}. Utilizamos las mismas características que X-SHIELD para LIME, es decir 64 cuadrados del mismo tamaño sobre la imagen de entrada.  Para los cálculos de la explicación de un ejemplo generamos 1000 vecinos. El parámetro $\sigma$ (explicado en la subsección \ref{subsec:LIME}) lo ponemos a 12.
+
+Para cada ejemplo generamos 10 explicaciones para el cálculo de las cuatro primeras métricas y calculamos la media aritmética de cada una para obtener su valor final para ese ejemplo. En total utilizamos 100 ejemplos. Para el cálculo de la \textit{robustness} utilizan las 10 explicaciones generadas para las otras métricas para calcular esta métrica. Hemos elegido estos parámetros para calcular estas métricas por límites de coste computacional. El cálculo de estas métricas para un modelo ya entrenado tarda alrededor de 1 día.
+
+
 \paragraph*{Test estadísticos bayesianos}
 
+Una vez tenemos los 100 valores de las métricas REVEL para cada método utilizamos la librería de \textit{Python} \href{https://baycomp.readthedocs.io/en/latest/\#baycomp}{baycomp}. Esta biblioteca introduce los tests bayesianos para comparación de método. Estos tests permiten comparar dos métodos de manera probabilística, estimando directamente la probabilidad de que uno sea mejor que otro, o que la diferencia entre ellos sea insignificante.
+
+Los tests de baycomp se basan en la estimación de la distribución posterior de la diferencia de desempeño entre dos métodos. Se calculan las tres probabilidades siguientes:
+\begin{itemize}
+
+\item Método A es mejor que método B.
+\item Método B es mejor que método A.
+\item Diferencia es irrelevante (\textit{Region of Practical Equivalence}, ROPE)
+
+\end{itemize}
+
+ROPE define un umbral de diferencia prácticamente insignificante. En la página del propio método recomienda ROPE = 0.01 para métricas en el rango $[0,1]$ que es el caso de las métricas REVEL (excepto técnicamente \textit{robustness} que podría ser negativa, en la práctica suele estar en el rango).
+
+Diremos que un método es mejor que otro para una métrica cuando la probabilidad de que sea mejor es $>95\%$. Además de los test mostraremos las gráficas de violin para las distintas métricas y métodos. En particular compararemos: FX-SHIELD con X-SHIELD, porque X-SHIELD es un método probado que mejora el rendimiento de las métricas REVEL, FX-SHIELD con FR-SHIELD, para ver como influye ocluir características aleatorias y FX-SHIELD con HSHIELD, para ver como se comparan estos dos métodos nuevos.
 
 \section{Resultados}
 
