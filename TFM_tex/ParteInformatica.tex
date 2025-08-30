@@ -1031,11 +1031,16 @@ Los tests de baycomp se basan en la estimación de la distribución posterior de
 
 \end{itemize}
 
-ROPE define un umbral de diferencia prácticamente insignificante. En la página del propio método recomienda ROPE = 0.01 para métricas en el rango $[0,1]$ que es el caso de las métricas REVEL (excepto técnicamente \textit{robustness} que podría ser negativa, en la práctica suele estar en el rango).
+ROPE define un umbral de diferencia prácticamente insignificante. En la página del propio método recomienda ROPE = 0.01 para métricas en el rango $[0,1]$ que es el caso de las métricas REVEL (técnicamente \textit{robustness} podría ser negativa, en la práctica suele estar en el rango).
 
 Diremos que un método es mejor que otro para una métrica cuando la probabilidad de que sea mejor es $>95\%$. Además de los test mostraremos las gráficas de violin para las distintas métricas y métodos. En particular compararemos: FX-SHIELD con X-SHIELD, porque X-SHIELD es un método probado que mejora el rendimiento de las métricas REVEL, FX-SHIELD con FR-SHIELD, para ver como influye ocluir características aleatorias y FX-SHIELD con HSHIELD, para ver como se comparan estos dos métodos nuevos.
 
 \section{Resultados}
+
+\subsection{Entrenamiento y accuracy}
+
+Los resultados de todas las redes entrenadas con los distintos métodos y para todas las combinaciones de hiperparámetros se encuentran en la Tabla \ref{tab:resultadosTodo}. En esta se puede ver que hiperparámetros son los mejores para cada modelo, es decir, con qué parámetros han conseguido la mejor \textit{accuracy} en el conjunto de validación. Es destacable que para FX-SHIELD se obtiene el mejor resultado para $\lambda = 77$ mientras que para FR-SHIELD alcanza su mejor rendimiento con $\lambda = 3$. En H-SHIELD la mejor \textit{accuracy} se alcanza cuando se combinan X-SHIELD y FX-SHIELD con el mismo peso. Por otro lado X-SHIELD obtiene su mejor rendimiento con $\lambda = 12$ y es el que mejor \textit{accuracy} en validación obtiene de todos, aunque por un margen del $1\%$.
+
 
 
 \begin{table}[htbp]
@@ -1083,14 +1088,18 @@ H-SHIELD ($\alpha_1=1.0, \alpha_2=3.0$) & 0.953 & 0.004343 & 0.002547 & 0.948 & 
 \end{tabular}
 \caption{Resultados de entrenamiento y validación para diferentes métodos. Para cada método se muestran su error, valor de regularización y \textit{accuracy} en entrenamiento y validación. Para cada método se ha puesto en negrita el modelo que mejor \textit{accuracy} obtiene en validación que se considera el mejor modelo con dicho método.}
 \label{tab:resultadosTodo}
-
 \end{table}
+
+\newpage
+En la Tabla \ref{tab:resultadosMejoresTest} tenemos los valores obtenidos en test para los mejores modelos de cada método. Cómo esperábamos el método X-SHIELD mejora la \textit{accuracy} del modelo \textit{baseline}, en este caso en 0.07. Luego es una mejora significativa. Por otro lado el método híbrido H-SHIELD consigue capturar está mejoría, empeorando únicamente en un 0.01 su \textit{accuracy} respecto de X-SHIELD. Por otro lado los métodos FX-SHIELD y FR-SHIELD no han conseguido mejorar al modelo base, obteniendo ambas 0.949 de \textit{accuracy}, prácticamente la misma que el modelo base (un 0.01 de diferencia a favor del modelo base). Observemos también que H-SHIELD tiene con diferencia el mayor valor de su función de regularización en test a pesar de ser la suma de X-SHIELD y FX-SHIELD. Esto parece indicar que no es capaz de minimizar ambos valores de regularización al mismo tiempo.
 
 \begin{table}[htbp]
 \centering
+\arrayrulecolor{black} % color de las líneas
+\setlength{\arrayrulewidth}{0.8pt} % grosor de las líneas
 \begin{tabular}{|l|ccc|}
 \hline
-Modelo & Test/Acc & Test/Loss & Test/Reg \\
+\rowcolor{gray!50} Modelo & Test/Acc & Test/Loss & Test/Reg \\
 \hline
 Baseline & 0.950 & 0.005000 & 0.000 \\
 X-SHIELD ($\lambda = 12.0$) & 0.957 & 0.004000 & 0.001 \\
@@ -1102,6 +1111,10 @@ H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$) & 0.956 & 0.071610 & 0.015749 \\
 \caption{Resultados de los mejores modelos en test. Se muestra la \textit{accuracy}, la pérdida y el valor de regularización.}
 \label{tab:resultadosMejoresTest}
 \end{table}
+
+
+En la Figura \ref{fig:metrics_xshield} se encuentran las curvas de aprendizaje de X-SHIELD para sus distintos parámetros. Se observa un comportamiento natural de convergencia de la red, podría parecer que podría incluso mejorar un poco más viendo la gráfica del error en entrenamiento, aunque la de validación si parece que ha convergido. Es interesante ver que aunque en validación los valores de regularización siguen un orden y parecen converger a valores distintos (mayor cuanto mayor es el $\lambda$) lo cual es esperable, en entrenamiento estos convergen a valores muy cercanos.
+
 
 % === Figura: xshield ===
 \begin{figure}[H]
@@ -1143,6 +1156,11 @@ H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$) & 0.956 & 0.071610 & 0.015749 \\
     \caption{Evolución de métricas para el modelo \texttt{X-SHIELD}}
     \label{fig:metrics_xshield}
 \end{figure}
+
+Por otro lado en las curvas de aprendizaje de FX-SHIELD (Figura \ref{fig:metrics_fxshield}) se observa un comportamiento normal. Al igual que ocurría con X-SHIELD sus valores de regularización convergen todos a valores muy cercanos en entrenamiento. Por otro lado, y esto es más sorprendente, esto también ocurre con sus valores de regularización. Podemos ver que la función de pérdida en entrenamiento converge correctamente y en validación este método necesita menos épocas para aprender ya que el valor en validación de la pérdida empieza a aumentar ligeramente (aunque la accuracy en validación sigue mejorando). Esto no afecta a nuestros resultados porque el modelo final es el que mejor pérdida obtuvo en validación, no el de la última época.
+
+Para FR-SHIELD (Figura \ref{fig:metrics_frshield}) ocurre lo mismo para la función de pérdida que para FX-SHIELD. Lo más sorprendente es que no es capaz de minimizar la regularización en entrenamiento y validación, especialmente para valores altos de $\lambda$. Esto podría ser causado por la naturaleza aleatoria de esta regularización.
+
 
 % === Figura: fxshield ===
 \begin{figure}[H]
@@ -1226,6 +1244,8 @@ H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$) & 0.956 & 0.071610 & 0.015749 \\
     \label{fig:metrics_frshield}
 \end{figure}
 
+Finalmente para H-SHIELD (Figura \ref{fig:metrics_hshield}) se obtienen resultados parecidos a X-SHIELD. Observando su gráfica de pérdida en entrenamiento y en validación se que este método también podría beneficiarse de entrenar durante más épocas.
+
 % === Figura: hshield ===
 \begin{figure}[H]
     \centering
@@ -1268,51 +1288,70 @@ H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$) & 0.956 & 0.071610 & 0.015749 \\
 \end{figure}
 
 % === Figura: mejores modelos ===
+%\begin{figure}[H]
+%    \centering
+%     Fila 1: Train
+%    \begin{subfigure}[b]{0.3\textwidth}
+%        \includegraphics[width=\linewidth]{images/Train_Loss_comparacion.png}
+%        \caption{Mejores modelos - Train Loss}
+%    \end{subfigure}
+%    \hfill
+%    \begin{subfigure}[b]{0.3\textwidth}
+%        \includegraphics[width=\linewidth]{images/Train_Regularization_comparacion.png}
+%        \caption{Mejores modelos - Train Reg.}
+%    \end{subfigure}
+%    \hfill
+%    \begin{subfigure}[b]{0.3\textwidth}
+%        \includegraphics[width=\linewidth]{images/Train_Accuracy_comparacion.png}
+%        \caption{Mejores modelos - Train Acc.}
+%    \end{subfigure}
+%
+%    \vspace{0.5em}
+%
+%    % Fila 2: Val
+%    \begin{subfigure}[b]{0.3\textwidth}
+%        \includegraphics[width=\linewidth]{images/Val_Loss_comparacion.png}
+%        \caption{Mejores modelos - Val Loss}
+%    \end{subfigure}
+%    \hfill
+%    \begin{subfigure}[b]{0.3\textwidth}
+%        \includegraphics[width=\linewidth]{images/Val_Regularization_comparacion.png}
+%        \caption{Mejores modelos - Val Reg.}
+%    \end{subfigure}
+%    \hfill
+%    \begin{subfigure}[b]{0.3\textwidth}
+%        \includegraphics[width=\linewidth]{images/Val_Accuracy_comparacion.png}
+%        \caption{Mejores modelos - Val Acc.}
+%    \end{subfigure}
+%
+%    \caption{Evolución de métricas para los mejores modelos.}
+%    \label{fig:metrics_mejores}
+%\end{figure}
+
+\subsection{Métricas REVEL}
+
+Vemos en la Figura \ref{fig:violinplots} como se distribuyen las 100 medidas por métrica REVEL para cada método. Los métodos FX-SHIELD, X-SHIELD y H-SHIELD tienen distribuciones casi idénticas para la \textit{local concordance} y para la \textit{local fidelity}. Tienen distribuciones muy concentradas al valor máximo. Por otro lado FR-SHIELD tiene un distribución parecida pero menos concentrada, con mayor varianza. 
+
+X-SHIELD y H-SHIELD tienen un distribución de la \textit{Robustness} parecida, con H-SHIELD un poco mayor. Para FX-SHIELD esta es claramente más baja. FR-SHIELD presenta la peor distribución de los cuatro métodos con mayor varianza.
+
+De los \textit{violin plots} de la \textit{conciseness} no se puede discernir nada con una inspección visual excepto que la distribución para FR-SHIELD es muy distinta a la de los otros métodos.
+
+Por último, para la \textit{prescriptivity} se tienen dos distribuciones parecidas para X-SHIELD y H-SHIELD, estando la de X-SHIELD desplazada hacia arriba. Por otro lado se tienen la de FX-SHIELD y FR-SHIELD que son parecidas también. A simple vista no es fácil ver cual de las dos podría ser mejor.
+
+
 \begin{figure}[H]
     \centering
-    % Fila 1: Train
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\linewidth]{images/Train_Loss_comparacion.png}
-        \caption{Mejores modelos - Train Loss}
+    
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{images/boxplot_local_concordance.png}
+        \caption{Local Concordance}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\linewidth]{images/Train_Regularization_comparacion.png}
-        \caption{Mejores modelos - Train Reg.}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\linewidth]{images/Train_Accuracy_comparacion.png}
-        \caption{Mejores modelos - Train Acc.}
-    \end{subfigure}
-
-    \vspace{0.5em}
-
-    % Fila 2: Val
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\linewidth]{images/Val_Loss_comparacion.png}
-        \caption{Mejores modelos - Val Loss}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\linewidth]{images/Val_Regularization_comparacion.png}
-        \caption{Mejores modelos - Val Reg.}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\linewidth]{images/Val_Accuracy_comparacion.png}
-        \caption{Mejores modelos - Val Acc.}
-    \end{subfigure}
-
-    \caption{Evolución de métricas para los mejores modelos.}
-    \label{fig:metrics_mejores}
-\end{figure}
-
-
-
-\begin{figure}[H]
-    \centering
-    % Fila 1
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{images/boxplot_local_fidelity.png}
+        \caption{Local Fidelity}
+    \end{subfigure}    
+    
     \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=\linewidth]{images/boxplot_robustness.png}
         \caption{Robustness}
@@ -1323,18 +1362,6 @@ H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$) & 0.956 & 0.071610 & 0.015749 \\
         \caption{Conciseness}
     \end{subfigure}
 
-    % Fila 2
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{images/boxplot_local_concordance.png}
-        \caption{Local Concordance}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{images/boxplot_local_fidelity.png}
-        \caption{Local Fidelity}
-    \end{subfigure}
-
-    % Fila 3
     \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=\linewidth]{images/boxplot_prescriptivity.png}
         \caption{Prescriptivity}
@@ -1344,9 +1371,16 @@ H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$) & 0.956 & 0.071610 & 0.015749 \\
         \vspace{0.01\textheight} % Espacio vacío para mantener la alineación
     \end{subfigure}
 
-    \caption{Boxplots para las métricas de evaluación de explicaciones.}
-    \label{fig:boxplots_metricas}
+    \caption{\textit{Violin plots} para las métricas de evaluación de explicaciones REVEL obtenidas para los modelos entrenados con las regularizaciones X-SHIELD, FX-SHIELD, FR-SHIELD y H-SHIELD.}
+    \label{fig:violinplots}
 \end{figure}
+
+Los últimos resultados obtenidos vienen de los test bayesianos que hemos realizado sobre estas métricas. En la Tabla \ref{tab:bay-X-FX} se tiene que para la \textit{local concordance} y la \textit{local fidelity} de ambos métodos (X-SHIELD y FX-SHIELD) son iguales. Además FX-SHIELD mejora la \textit{prescriptivity} y la \textit{conciseness}, aunque esta última sin una diferencia estadísticamente significativa. De la misma forma, X-SHIELD presenta una mejor \textit{robustness}.
+
+Para las comparaciones entre FX-SHIELD y FR-SHIELD (Tabla \ref{tab:bay-FX-FR}) tenemos que una vez más la \textit{local concordance} y la \textit{local fidelity} de ambos métodos coinciden completamente. FX-SHIELD mejora la \textit{conciseness} y \textit{prescriptivity} de FR-SHIELD, aunque únicamente con diferencia estadísticamente significativa en la primera. Por último ambas coinciden en su rendimiento en \textit{robustness}.
+
+El último test realizado es entre FX-SHIELD y H-SHIELD (Tabla \ref{tab:bay-FX-H}). Otra vez ocurre que para la \textit{local concordance} y la \textit{local fidelity} de ambos métodos son iguales. FX-SHIELD mejora la \textit{prescriptivity} y la \textit{conciseness}, aunque esta última sin una diferencia estadísticamente significativa (pero muy alta igualmente). H-SHIELD mejora en \textit{robustness} de manera significativa a FX-SHIELD.
+
 
 
 \begin{table}[ht]
@@ -1355,14 +1389,15 @@ H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$) & 0.956 & 0.071610 & 0.015749 \\
 \toprule
 \textbf{Métrica} & \textbf{P(XShield $>$ FXShield)} & \textbf{P($=$)} & \textbf{P(FXShield $>$ XShield)} \\
 \midrule
-Conciseness       & 29.34\% & 0.00\%  & 70.66\%  \\
 Local Fidelity    & 0.00\%  & 100.00\% & 0.00\%  \\
 Local Concordance & 0.00\%  & 100.00\% & 0.00\%  \\
+Conciseness       & 29.34\% & 0.00\%  & 70.66\%  \\
 Prescriptivity    & 1.23\%  & 0.00\%  & 98.77\%  \\
 Robustness        & 68.33\% & 31.67\% & 0.00\% \\
 \bottomrule
 \end{tabular}
-\caption{Comparación bayesiana entre XShield y FXShield.}
+\caption{Resultados de los tests bayesianos entre XShield y FXShield.}
+\label{tab:bay-X-FX}
 \end{table}
 
 \begin{table}[ht]
@@ -1371,14 +1406,15 @@ Robustness        & 68.33\% & 31.67\% & 0.00\% \\
 \toprule
 \textbf{Métrica} & \textbf{P(FXShield $>$ FRShield)} & \textbf{P($=$)} & \textbf{P(FRShield $>$ FXShield)} \\
 \midrule
-Conciseness       & 98.31\% & 0.00\%  & 1.69\%  \\
 Local Fidelity    & 0.00\%  & 100.00\% & 0.00\%  \\
 Local Concordance & 0.00\%  & 100.00\% & 0.00\%  \\
+Conciseness       & 98.31\% & 0.00\%  & 1.69\%  \\
 Prescriptivity    & 77.69\% & 0.00\%  & 22.31\%  \\
 Robustness        & 12.28\% & 87.72\% & 0.00\% \\
 \bottomrule
 \end{tabular}
-\caption{Comparación bayesiana entre FXShield y FRShield.}
+\caption{Resultados de los tests bayesianos entre FXShield y FRShield.}
+\label{tab:bay-FX-FR}
 \end{table}
 
 
@@ -1388,21 +1424,33 @@ Robustness        & 12.28\% & 87.72\% & 0.00\% \\
 \toprule
 \textbf{Métrica} & \textbf{P(FXShield $>$ HShield)} & \textbf{P($=$)} & \textbf{P(HShield $>$ FXShield)} \\
 \midrule
-Conciseness       & 83.28\% & 0.00\%  & 16.72\%  \\
 Local Fidelity    & 0.00\%  & 100.00\% & 0.00\%  \\
 Local Concordance & 0.00\%  & 100.00\% & 0.00\%  \\
+Conciseness       & 83.28\% & 0.00\%  & 16.72\%  \\
 Prescriptivity    & 99.99\% & 0.00\%  & 0.01\%  \\
 Robustness        & 0.00\% & 1.29\% & 98.71\% \\
 \bottomrule
 \end{tabular}
-\caption{Comparación bayesiana entre FXShield y HShield.}
-\label{tab:fxshieldvshshield}
+\caption{Resultados de los tests bayesianos entre FXShield y HShield.}
+\label{tab:bay-FX-H}
 \end{table}
 
 
 \section{Discusión} \label{sec:discusion}
-Aquí es donde discuto mis resultados obtenidos.
 
+Respecto al entrenamiento de los modelos el punto principal es que tanto X-SHIELD como H-SHIELD se podrían beneficiar de un mayor número de épocas.
+
+Por otro lado hemos visto que X-SHIELD y H-SHIELD son regularizaciones centradas en mejorar la interpretabilidad del modelo que además consiguen una mejora en el rendimiento en clasificación. Sin embargo los métodos FX-SHIELD y FR-SHIELD mantienen prácticamente intacto este aspecto del modelo, aunque esto de por sí se puede considerar un aspecto positivo de estos ya que muchos métodos utilizados en XAI empeoran tienen un coste en el rendimiento a cambio de mejora de la interpretabilidad.
+
+En cuanto a las métricas de interpretabilidad, recordemos el significado de estas. La \textit{local concordance} y la \textit{local fidelity} miden la similitud de la explicación al modelo de caja negra en el ejemplo y en su vecindario, respectivamente. Estas métricas deben ser muy cercanas a 1 para que la explicación se pueda considerar aceptable. Observemos en la Figura \ref{fig:violinplots} que este es el caso para todos nuestros métodos, y además en los tests bayesianos todos son equivalentes luego esto garantiza que nuestras explicaciones tengan un nivel bueno.
+
+Por otro lado la \textit{prescriptivity} media si la explicación podía predecir correctamente los cambios necesarios en el ejemplo que hacen que cambie de clase. En este caso, nuestro método propuesto FX-SHIELD mejora de forma estadísticamente significativa al método X-SHIELD (también a H-SHIELD) y mejora de manera no significativa a FR-SHIELD. 
+
+\textit{Conciseness} mide cómo de breves son las explicaciones. En esta métrica, una vez más FX-SHIELD es el ganador. Mejorando de manera significativa a FR-SHIELD y de manera no significativa a FX-SHIELD y H-SHIELD (aunque con probabilidad mayor al $70\%$ a ambas). Esto indica que las explicaciones producidas con FX-SHIELD son más fáciles de interpretar.
+
+Cómo última métrica \textit{robustness} nos dice cómo de robusto es el modelo, en el sentido de cuanto varían las explicaciones generadas para el modelo de caja negra. En este caso X-SHIELD y H-SHIELD se presentan como las mejores opciones sobre FX-SHIELD. A su vez FR-SHIELD tiene tiene un rendimiento equivalente a FX-SHIELD en este sentido. 
+
+En resumen el método propuesto FX-SHIELD es una versión mejor de FR-SHIELD (otro método propuesto) lo cual era de esperar porque FR-SHIELD es una versión aleatoria (menos informada) que FX-SHIELD. Por otro lado FX-SHIELD produce explicaciones más interpretables que X-SHIELD, aunque menos robustas. Por otro lado X-SHIELD mejora el rendimiento del modelo en la tarea de clasificación, mejorando la \textit{accuracy} en test. Nuestro último método propuesto H-SHIELD, que combina los métodos X-SHIELD y FX-SHIELD consigue capturar las ventajas de X-SHIELD (mejor \textit{accurcy} y mayor \textit{robustness}) pero no es capaz de mejorar a FX-SHIELD en el resto de métricas REVEL, sin embargo, es capaz de mejorar la robustez de las explicaciones respecto al método X-SHIELD. Además todos los métodos con los que hemos experimentado aseguran un mínimo de calidad en sus explicaciones al tener las métricas de \textit{local fidelity} y \textit{local concordance} prácticamente perfecta, con distribuciones muy concentradas alrededor del máximo.
 
 \clearpage
 \chapter{Conclusiones} \label{cap:conc}
