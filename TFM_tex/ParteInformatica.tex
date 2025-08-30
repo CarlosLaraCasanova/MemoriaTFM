@@ -957,7 +957,7 @@ el de test, que no haya visto el modelo durante el entrenamiento para evaluar el
 real del modelo para datos que aún no ha visto. Esta práctica es muy importante para evitar
 el sobreentrenamiento de la red. La división de 90/10 de los datos tiene sentido sobre otras típicas como 80/20 porque disponemos de una cantidad muy grande de datos (126.109 imágenes).
 
-\paragraph*{Validation}
+\paragraph*{Validacion}
 
 Teniendo en cuenta el tamaño de nuestro conjunto de datos y de los recursos computacionales de los que disponemos hemos decidido utilizar un conjunto de validación fijo sobre otros métodos como \textit{k-fold cross validation}. 
 
@@ -974,8 +974,8 @@ Nosotros vamos a dividir el conjunto de entrenamiento en 90/10 para entrenamient
 \label{fig:distribucionTrainTestVal}
 \end{figure}
 
+\subsection{Elección de hiperparámetros}
 
-\paragraph*{Optimizador y elección de hiperparámetros}
 
 El \textbf{optimizador} elegido para entrenar el modelo es Adam \cite{adam}, que es una modificación de SGD. Se ha elegido este optimizador porque es el que se utilizó originalmente en el artículo de X-SHIELD \cite{XSHIELD} y porque está probado empíricamente que tiene mejor rendimiento que el resto de optimizadores para una gran variedad de tareas.
 
@@ -1037,7 +1037,368 @@ Diremos que un método es mejor que otro para una métrica cuando la probabilida
 
 \section{Resultados}
 
-Aquí muestro mis resultados + curvas de aprendizaje y comento brevemente estos.
+
+\begin{table}[htbp]
+\centering
+\arrayrulecolor{black} % color de las líneas
+\setlength{\arrayrulewidth}{0.8pt} % grosor de las líneas
+\begin{tabular}{|l|cccccc|}
+\hline
+\rowcolor{gray!50} Modelo & Train/Acc & Train/Loss & Train/Reg & Val/Acc & Val/Loss & Val/Reg \\
+\hline
+\textbf{Baseline} & \textbf{0.994} & \textbf{0.000600} & \textbf{0.0000} & \textbf{0.957} & \textbf{0.006017} & \textbf{0.0000} \\
+\hline
+\rowcolor{gray!10} X-SHIELD ($\lambda = 3.0$) & 0.985 & 0.001359 & 0.001278 & 0.958 & 0.004424 & 0.000167 \\
+\rowcolor{gray!10} X-SHIELD ($\lambda = 6.0$) & 0.983 & 0.001570 & 0.001400 & 0.956 & 0.004638 & 0.000549 \\
+\rowcolor{gray!10} X-SHIELD ($\lambda = 9.0$) & 0.980 & 0.001834 & 0.001541 & 0.954 & 0.004533 & 0.000660 \\
+\rowcolor{gray!10} \textbf{X-SHIELD ($\lambda = 12.0$)} & \textbf{0.981} & \textbf{0.001751} & \textbf{0.001533} & \textbf{0.959} & \textbf{0.004191} & \textbf{0.001043} \\
+\hline
+\textbf{FR-SHIELD ($\lambda = 3.0$)} & \textbf{0.994} & \textbf{0.000572} & \textbf{0.000637} & \textbf{0.957} & \textbf{0.006000} & \textbf{0.000042} \\
+FR-SHIELD ($\lambda = 45.0$) & 0.993 & 0.000636 & 0.004487 & 0.956 & 0.006579 & 0.002367 \\
+FR-SHIELD ($\lambda = 65.0$) & 0.993 & 0.000682 & 0.018442 & 0.953 & 0.007386 & 0.011644 \\
+FR-SHIELD ($\lambda = 75.0$) & 0.992 & 0.000754 & 0.046440 & 0.956 & 0.006569 & 0.030981 \\
+FR-SHIELD ($\lambda = 77.0$) & 0.930 & 0.026030 & 0.011845 & 0.933 & 0.025997 & 0.011897 \\
+\hline
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 3.0$) & 0.994 & 0.000592 & 0.000187 & 0.956 & 0.006643 & 0.000005 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 6.0$) & 0.994 & 0.000570 & 0.000192 & 0.952 & 0.007051 & 0.000007 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 9.0$) & 0.995 & 0.000531 & 0.000188 & 0.956 & 0.006387 & 0.000010 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 12.0$) & 0.994 & 0.000599 & 0.000207 & 0.956 & 0.006427 & 0.000014 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 25.0$) & 0.994 & 0.000594 & 0.000212 & 0.953 & 0.006608 & 0.000018 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 35.0$) & 0.993 & 0.000608 & 0.000213 & 0.955 & 0.006220 & 0.000021 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 45.0$) & 0.993 & 0.000687 & 0.000237 & 0.954 & 0.006806 & 0.000029 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 55.0$) & 0.992 & 0.000718 & 0.000250 & 0.954 & 0.006480 & 0.000027 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 65.0$) & 0.992 & 0.000759 & 0.000268 & 0.953 & 0.006728 & 0.000028 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 70.0$) & 0.992 & 0.000784 & 0.000278 & 0.954 & 0.006237 & 0.000029 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 73.0$) & 0.992 & 0.000741 & 0.000272 & 0.952 & 0.006556 & 0.000032 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 75.0$) & 0.992 & 0.000786 & 0.000272 & 0.956 & 0.006146 & 0.000024 \\
+\rowcolor{gray!10} \textbf{FX-SHIELD ($\lambda = 77.0$)} & \textbf{0.991} & \textbf{0.000833} & \textbf{0.000302} & \textbf{0.958} & \textbf{0.006351} & \textbf{0.000025} \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 85.0$) & 0.991 & 0.000883 & 0.000339 & 0.954 & 0.006527 & 0.000033 \\
+\hline
+\textbf{H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$)} & \textbf{0.973} & \textbf{0.002492} & \textbf{0.001862} & \textbf{0.954} & \textbf{0.072262} & \textbf{0.015705} \\
+H-SHIELD ($\alpha_1=1.0, \alpha_2=2.0$) & 0.965 & 0.003278 & 0.002162 & 0.948 & 0.083916 & 0.015020 \\
+H-SHIELD ($\alpha_1=1.0, \alpha_2=3.0$) & 0.953 & 0.004343 & 0.002547 & 0.948 & 0.083336 & 0.018308 \\
+\hline
+
+
+\end{tabular}
+\caption{Resultados de entrenamiento y validación para diferentes métodos. Para cada método se muestran su error, valor de regularización y \textit{accuracy} en entrenamiento y validación. Para cada método se ha puesto en negrita el modelo que mejor \textit{accuracy} obtiene en validación que se considera el mejor modelo con dicho método.}
+\label{tab:resultadosTodo}
+
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|ccc|}
+\hline
+Modelo & Test/Acc & Test/Loss & Test/Reg \\
+\hline
+Baseline & 0.950 & 0.005000 & 0.000 \\
+X-SHIELD ($\lambda = 12.0$) & 0.957 & 0.004000 & 0.001 \\
+FR-SHIELD ($\lambda = 3.0$) & 0.949 & 0.005000 & 0.000 \\
+FX-SHIELD ($\lambda = 77.0$) & 0.949 & 0.005295 & 0.000064 \\
+H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$) & 0.956 & 0.071610 & 0.015749 \\
+\hline
+\end{tabular}
+\caption{Resultados de los mejores modelos en test. Se muestra la \textit{accuracy}, la pérdida y el valor de regularización.}
+\label{tab:resultadosMejoresTest}
+\end{table}
+
+% === Figura: xshield ===
+\begin{figure}[H]
+    \centering
+    % Fila 1: Train (3 columnas)
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Loss_evolucion_xshield.png}
+        \caption{X-SHIELD - Train Loss}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Regularization_evolucion_xshield.png}
+        \caption{X-SHIELD - Train Reg.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Accuracy_evolucion_xshield.png}
+        \caption{X-SHIELD - Train Acc.}
+    \end{subfigure}
+
+    \vspace{0.5em}
+
+    % Fila 2: Val (3 columnas)
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Loss_evolucion_xshield.png}
+        \caption{X-SHIELD - Val Loss}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Regularization_evolucion_xshield.png}
+        \caption{X-SHIELD - Val Reg.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Accuracy_evolucion_xshield.png}
+        \caption{X-SHIELD - Val Acc.}
+    \end{subfigure}
+
+    \caption{Evolución de métricas para el modelo \texttt{X-SHIELD}}
+    \label{fig:metrics_xshield}
+\end{figure}
+
+% === Figura: fxshield ===
+\begin{figure}[H]
+    \centering
+    % Fila 1: Train
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Loss_evolucion_fxshield.png}
+        \caption{FX-SHIELD - Train Loss}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Regularization_evolucion_fxshield.png}
+        \caption{FX-SHIELD - Train Reg.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Accuracy_evolucion_fxshield.png}
+        \caption{FX-SHIELD - Train Acc.}
+    \end{subfigure}
+
+    \vspace{0.5em}
+
+    % Fila 2: Val
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Loss_evolucion_fxshield.png}
+        \caption{FX-SHIELD - Val Loss}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Regularization_evolucion_fxshield.png}
+        \caption{FX-SHIELD - Val Reg.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Accuracy_evolucion_fxshield.png}
+        \caption{FX-SHIELD - Val Acc.}
+    \end{subfigure}
+
+    \caption{Evolución de métricas para el modelo \texttt{FX-SHIELD}}
+    \label{fig:metrics_fxshield}
+\end{figure}
+
+% === Figura: frshield ===
+\begin{figure}[H]
+    \centering
+    % Fila 1: Train
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Loss_evolucion_frshield.png}
+        \caption{FRSHIELD - Train Loss}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Regularization_evolucion_frshield.png}
+        \caption{FRSHIELD - Train Reg.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Accuracy_evolucion_frshield.png}
+        \caption{FRSHIELD - Train Acc.}
+    \end{subfigure}
+
+    \vspace{0.5em}
+
+    % Fila 2: Val
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Loss_evolucion_frshield.png}
+        \caption{FRSHIELD - Val Loss}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Regularization_evolucion_frshield.png}
+        \caption{FRSHIELD - Val Reg.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Accuracy_evolucion_frshield.png}
+        \caption{FRSHIELD - Val Acc.}
+    \end{subfigure}
+
+    \caption{Evolución de métricas para el modelo \texttt{FRSHIELD}}
+    \label{fig:metrics_frshield}
+\end{figure}
+
+% === Figura: hshield ===
+\begin{figure}[H]
+    \centering
+    % Fila 1: Train
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Loss_evolucion_hshield.png}
+        \caption{HSHIELD - Train Loss}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Regularization_evolucion_hshield.png}
+        \caption{HSHIELD - Train Reg.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Accuracy_evolucion_hshield.png}
+        \caption{HSHIELD - Train Acc.}
+    \end{subfigure}
+
+    \vspace{0.5em}
+
+    % Fila 2: Val
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Loss_evolucion_hshield.png}
+        \caption{HSHIELD - Val Loss}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Regularization_evolucion_hshield.png}
+        \caption{HSHIELD - Val Reg.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Accuracy_evolucion_hshield.png}
+        \caption{HSHIELD - Val Acc.}
+    \end{subfigure}
+
+    \caption{Evolución de métricas para el modelo \texttt{HSHIELD}}
+    \label{fig:metrics_hshield}
+\end{figure}
+
+% === Figura: mejores modelos ===
+\begin{figure}[H]
+    \centering
+    % Fila 1: Train
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Loss_comparacion.png}
+        \caption{Mejores modelos - Train Loss}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Regularization_comparacion.png}
+        \caption{Mejores modelos - Train Reg.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Train_Accuracy_comparacion.png}
+        \caption{Mejores modelos - Train Acc.}
+    \end{subfigure}
+
+    \vspace{0.5em}
+
+    % Fila 2: Val
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Loss_comparacion.png}
+        \caption{Mejores modelos - Val Loss}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Regularization_comparacion.png}
+        \caption{Mejores modelos - Val Reg.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\linewidth]{images/Val_Accuracy_comparacion.png}
+        \caption{Mejores modelos - Val Acc.}
+    \end{subfigure}
+
+    \caption{Evolución de métricas para los mejores modelos.}
+    \label{fig:metrics_mejores}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \centering
+    % Fila 1
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{images/boxplot_robustness.png}
+        \caption{Robustness}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{images/boxplot_conciseness.png}
+        \caption{Conciseness}
+    \end{subfigure}
+
+    % Fila 2
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{images/boxplot_local_concordance.png}
+        \caption{Local Concordance}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{images/boxplot_local_fidelity.png}
+        \caption{Local Fidelity}
+    \end{subfigure}
+
+    % Fila 3
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{images/boxplot_prescriptivity.png}
+        \caption{Prescriptivity}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \vspace{0.01\textheight} % Espacio vacío para mantener la alineación
+    \end{subfigure}
+
+    \caption{Boxplots para las métricas de evaluación de explicaciones.}
+    \label{fig:boxplots_metricas}
+\end{figure}
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Métrica} & \textbf{P(XShield $>$ FXShield)} & \textbf{P($=$)} & \textbf{P(FXShield $>$ XShield)} \\
+\midrule
+Conciseness       & 29.34\% & 0.00\%  & 70.66\%  \\
+Local Fidelity    & 0.00\%  & 100.00\% & 0.00\%  \\
+Local Concordance & 0.00\%  & 100.00\% & 0.00\%  \\
+Prescriptivity    & 1.23\%  & 0.00\%  & 98.77\%  \\
+Robustness        & 68.33\% & 31.67\% & 0.00\% \\
+\bottomrule
+\end{tabular}
+\caption{Comparación bayesiana entre XShield y FXShield.}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Métrica} & \textbf{P(FXShield $>$ FRShield)} & \textbf{P($=$)} & \textbf{P(FRShield $>$ FXShield)} \\
+\midrule
+Conciseness       & 98.31\% & 0.00\%  & 1.69\%  \\
+Local Fidelity    & 0.00\%  & 100.00\% & 0.00\%  \\
+Local Concordance & 0.00\%  & 100.00\% & 0.00\%  \\
+Prescriptivity    & 77.69\% & 0.00\%  & 22.31\%  \\
+Robustness        & 12.28\% & 87.72\% & 0.00\% \\
+\bottomrule
+\end{tabular}
+\caption{Comparación bayesiana entre FXShield y FRShield.}
+\end{table}
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Métrica} & \textbf{P(FXShield $>$ HShield)} & \textbf{P($=$)} & \textbf{P(HShield $>$ FXShield)} \\
+\midrule
+Conciseness       & 83.28\% & 0.00\%  & 16.72\%  \\
+Local Fidelity    & 0.00\%  & 100.00\% & 0.00\%  \\
+Local Concordance & 0.00\%  & 100.00\% & 0.00\%  \\
+Prescriptivity    & 99.99\% & 0.00\%  & 0.01\%  \\
+Robustness        & 0.00\% & 1.29\% & 98.71\% \\
+\bottomrule
+\end{tabular}
+\caption{Comparación bayesiana entre FXShield y HShield.}
+\label{tab:fxshieldvshshield}
+\end{table}
+
 
 \section{Discusión} \label{sec:discusion}
 Aquí es donde discuto mis resultados obtenidos.
