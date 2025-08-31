@@ -1436,6 +1436,7 @@ Robustness        & 0.00\% & 1.29\% & 98.71\% \\
 \end{table}
 
 
+
 \section{Discusión} \label{sec:discusion}
 
 Respecto al entrenamiento de los modelos el punto principal es que tanto X-SHIELD como H-SHIELD se podrían beneficiar de un mayor número de épocas.
@@ -1458,12 +1459,15 @@ En resumen el método propuesto FX-SHIELD es una versión mejor de FR-SHIELD (ot
 En este trabajo nos hemos centrado en el problema de mejorar la interpretabilidad de modelos de clasificación de lesiones cancerosas en biopsias de próstata utilizando ténicas de IA explicable. Para el desarrollo de este, lo dividimos en objetivos más pequeños que hemos cumplido a lo largo del trabajo. En primer lugar realizamos una revisión del estado del arte de los distintos métodos necesarios para abordar el problema principal: modelos de clasificación, de métodos de XAI para producción de explicaciones, métodos de XAI de mejora de explicaciones y métricas XAI que sirvan para medir cuantitativamente los distintos métodos propuestos. A continuación realizamos un estudio del código de la regularización X-SHIELD \cite{XSHIELD}, método del que parten los que proponemos nosotros, y las métricas REVEL \cite{REVEL} que son las que utilizamos para comparar los distintos métodos. Después propusimos y presentamos en detalle nuestros métodos originales: FX-SHIELD, FR-SHIELD y H-SHIELD. Tras esto los implementamos y diseñamos los distintos experimentos: el modelo clasificación utilizado, detalles de los hiperparámetros utilizados, explicación del conjunto de datos utilizado y cómo lo hemos divido, y métricas y test estadísticos utilizados para comparar los distintos métodos. Finalmente implementamos estos, evaluamos los resultados obtenidos y discutimos su significado.
 
 
+Nuestro método FX-SHIELD mejora al método del estado del arte X-SHIELD en dos de las cinco métricas REVEL, consigue el mismo rendimiento en otras dos de métricas y empeora levemente la \textit{robustness}. Además FX-SHIELD mantiene la \textit{accuracy} obtenida por el modelo base. Podemos afirmar que FX-SHIELD método produce mejores explicaciones que X-SHIELD. Por otro lado también hemos demostrado que FX-SHIELD en estrictamente mejor que FR-SHIELD pues para cada métrica REVEL lo mejora o es igual, destacando lo importante que es que la características enmascaradas por FX-SHIELD sean las de menor importancia. Nuestro último método H-SHIELD que combina FX-SHIELD y H-SHIELD tiene un rendimiento parecido a X-SHIELD en las métricas REVEL y como en \textit{accuracy}. 
 
-\highlight{Aquí va un párrafo hablando brevemente de los resultados obtenidos y de como eso implica que hemos conseguido adecuadamente afrontar el problema planteado del trabajo.}
+Por todo lo expuesto anteriormente podemos afirmar que se ha conseguido el objetivo final del TFM pues hemos presentado un método de regularización XAI novel que mejora las explicaciones obtenidas en las métricas REVEL respecto al método del estado del arte y lo hemos aplicado a un modelo de clasificación de lesiones cancerosas en biopsias de próstata para mejorar su interpretabilidad.
 
+Para el desarrollo de este TFM, se ha utilizado principalmente conocimientos adquiridos durante el Máster Universitario en Ciencia de Datos e Ingeniería de Computadores. También se ha aprendido a utilizar en más profundidad la librería fundamental para aprendizaje profundo \textit{Pytorch} y el gestor de paquetes \textit{Conda}.
 
 \section{Trabajos futuros}
 
-Aquí comento trabajos futuros. Cómo probar con otros datsets o lo que comentamos de sacar las métricas REVEL sobre features (en nuestra primera charla).
+Destacamos a continuación los posibles trabajos futuros que consideramos más relevantes y prometedores. En primer lugar sería interesante probar FX-SHIELD y X-SHIELD con distintos conjuntos de datos, elecciones de modelos y LLEs para aportar más pruebas a la superioridad de las explicaciones producidas por nuestro método. En segundo lugar estudiar otras formas más sofisticadas de combinar FX-SHIELD y X-SHIELD al método propuesto para intentar conseguir que las bondades que presentan ambos se combinen. Por ejemplo un método que calcula la importancia de las características de la entrada e intermedias, tras lo que hace un paso por la red del dato perturbado y ocultando también las características intermedias. Finalmente proponemos buscar mecanismos que aumenten la generalización del modelo cuando se entrenen con FX-SHIELD para expandir este y que mejore interpretabilidad y poder de clasificación simultáneamente.
+
 
 
