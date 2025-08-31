@@ -57,11 +57,35 @@ Aquí introduciría el objetivo principal del TFM y lo dividiría en algunos sub
 
 \section{Planificación}
 
-\highlight{
-En esta sección hablo de cómo me he planificado el proyecto según estudio del problema/diseño de mis modelos/implementación/experimentación (haría una tabla). Luego haría una comparación de mi planificación vs cómo se ha repartido finalmente y haría una estimación final de cuántas horas me ha llevado el TFM y en cuánto se estima el coste del proyecto final.
 
-POR HACER
-}
+Para la planificación del TFM se ha tenido en cuenta este son 12 créditos y que un crédito se corresponden con 25 horas de trabajo individual. Por lo tanto se estiman unas 225 horas de trabajo. Teniendo en cuenta que el estudiante se ha dedicado completamente, alrededor de 8 horas al día, el TFM pues empezó en Junio, esto se corresponden con unos dos meses de trabajo. Contando que se no se trabajan los fines de semana el trabajo total se queda en 7 semanas y media. Como no se pudieron dedicar las 8 horas todos los días, el trabajo finalmente se dividió en unas 10 semanas. 
+
+Para el desarrollo de software empleamos una metodología en cascada pues se trata de un
+proyecto con unos requisitos claros y que va a ser desarrollado únicamente por el alumno.
+
+
+El trabajo requerido para realizar esta parte del TFG se ha dividido en cuatro fases:
+\begin{itemize}
+
+\item \textbf{Estudio del problema}: esta fase se corresponde con el estudio del problema que se intenta resolver en el trabajo así como del análisis del código del método del que partimos.
+\item \textbf{Diseño de métodos}: en esta fase se idean los distintos métodos con los que se intentará resolver el problema.
+\item \textbf{Implementación}: tiempo dedicado a la implementación en el código de los modelos.
+\item \textbf{Experimentación}: fase en la que se piensan y realizan los distintos experimentos sobre
+los modelos ideados.
+\end{itemize}
+
+
+\begin{table}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.5]{images/tablaPlanificacion}}
+\caption{Planificación del proyecto.}
+\label{tab:tablaPlanificacion}
+\end{table}
+
+En la Tabla \ref{tab:tablaPlanificacion} observamos la planificación inicial del trabajo del TFM, que fué la seguida para la realización del mismo. 
+
+Finalmente han hecho falta alrededor de 300 horas para la realización del TFM. Suponiendo que el sueldo de un investigador en una empresa de base tecnológica es de 20 euros por hora entonces se obtiene que el proyecto tiene un coste de 6000 euros de coste total.
+
 
 
 \clearpage
@@ -177,7 +201,7 @@ Las MLP son el modelo fundamental del \textit{Deep Learning}. Estas están compu
 \begin{figure}[h]
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.5]{images/MLP}}
-\caption{ Ejemplo de ANN con una única capa oculta y con dos salidas. Imagen extraída de \cite{Haykin}.}
+\caption{ Ejemplo de ANN con una única capa oculta y con dos salidas. Imagen extraída de \protect\cite{Haykin}.}
 \label{fig:red_neuronal_ff}
 \end{figure}
 
@@ -244,7 +268,7 @@ Este operador no es más que la adaptación de la convolución al caso en el que
 \begin{figure}[h]
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.5]{images/ejemplo_convolucion}}
-\caption{En esta imagen se puede ver un ejemplo de una convolución aplicada a una entrada de dimensiones $3\times 4$ por un kernel de dimensiones $2\times 2$. Se puede ver que la salida tiene tamaño $2\times 3$. Notablemente se puede ver que al contrario que en la definición de la operación de convolución dada, aquí no se le da la vuelta al kernel, como suele ocurrir en la práctica. Imagen extraída de \cite{Goodfellow-et-al-2016}.}
+\caption{En esta imagen se puede ver un ejemplo de una convolución aplicada a una entrada de dimensiones $3\times 4$ por un kernel de dimensiones $2\times 2$. Se puede ver que la salida tiene tamaño $2\times 3$. Notablemente se puede ver que al contrario que en la definición de la operación de convolución dada, aquí no se le da la vuelta al kernel, como suele ocurrir en la práctica. Imagen extraída de \protect\cite{Goodfellow-et-al-2016}.}
 \label{fig:ejemplo_convolucion}
 \end{figure}
 
@@ -475,7 +499,7 @@ Dónde $KL(\cdot,\cdot)$ denota la distancia de Kullback-Leibler, que se trata d
 \begin{figure}[h]
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.5]{images/tshield_flow}}
-\caption{ En esta figura se puede ver cómo funciona en general la familia de regularizaciones T-SHIELD durante el entrenamiento. En gris se puede ver el flujo normal de la imagen en el modelo. En azul se encontraría la forma en la que la regularización decide qué características ocluir. Finalmente en rojo se encontraría el flujo de la imagen con las características ya ocluidas y cómo se calcula la función de regularización. Imagen extraída de \cite{REVEL}.}
+\caption{ En esta figura se puede ver cómo funciona en general la familia de regularizaciones T-SHIELD durante el entrenamiento. En gris se puede ver el flujo normal de la imagen en el modelo. En azul se encontraría la forma en la que la regularización decide qué características ocluir. Finalmente en rojo se encontraría el flujo de la imagen con las características ya ocluidas y cómo se calcula la función de regularización. Imagen extraída de \protect\cite{REVEL}.}
 \label{fig:tshield_flow}
 \end{figure}
 
@@ -484,7 +508,7 @@ Se denomina \textbf{Random-SHIELD (R-SHIELD)} a la regularización de la familia
 \begin{figure}[h]
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.5]{images/rshield_vs_xshield}}
-\caption{ Comparación entre el comportamiento de $T$ en R-SHIELD y X-SHIELD. La imagen está sacada del dataset \textit{Flowers} de clasificación de imágenes de flores. Se puede ver que R-SHIELD ocluye partes de la imagen aleatorias, incluyendo partes de la flor a clasificar. Por otro lado X-SHIELD ocluye partes del fondo de la imagen que intuitivamente no parecen útiles para clasificar dicha flor. Imagen extraída de \cite{REVEL}.}
+\caption{ Comparación entre el comportamiento de $T$ en R-SHIELD y X-SHIELD. La imagen está sacada del dataset \textit{Flowers} de clasificación de imágenes de flores. Se puede ver que R-SHIELD ocluye partes de la imagen aleatorias, incluyendo partes de la flor a clasificar. Por otro lado X-SHIELD ocluye partes del fondo de la imagen que intuitivamente no parecen útiles para clasificar dicha flor. Imagen extraída de \protect\cite{REVEL}.}
 \label{fig:rshield_vs_xshield}
 \end{figure}
 
@@ -548,7 +572,7 @@ CoCa-Base & Transformer & 383 & 91.0 \\
 \begin{figure}[h]
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.75]{images/Efficientnet_grafica}}
-\caption{En esta gráfica se compara las distintas versiones de Efficientnet, B0-7, contra otros modelos de redes convolucionales. Se puede apreciar que es la más eficiente. Imagen extraída de \cite{efficientnet2019}.}
+\caption{En esta gráfica se compara las distintas versiones de Efficientnet, B0-7, contra otros modelos de redes convolucionales. Se puede apreciar que es la más eficiente. Imagen extraída de \protect\cite{efficientnet2019}.}
 \label{fig:efficientnet_grafica}
 \end{figure}
 
@@ -676,7 +700,7 @@ EfficientNet-B6 & 43   & 19 \\
 EfficientNet-B7 & 66   & 37 \\
 \hline
 \end{tabular}
-\caption{Modelos EfficientNet B0--B7 con número de parámetros y FLOPs (\textit{Floating Point OPerations per second}). Datos extraídos de \cite{efficientnet2019}}
+\caption{Modelos EfficientNet B0--B7 con número de parámetros y FLOPs (\textit{Floating Point OPerations per second}). Datos extraídos de \protect\cite{efficientnet2019}}
 \label{tab:EfficientNet_Params}
 \end{table}
 
@@ -910,14 +934,14 @@ Adenocarcinoma ductal (DA) & Glándulas cribiformes y estructuras papilares y/o 
 Carcinoma intraductal (IC) & Grandes ductos con capa basal y luz dilatada, distendida y ocupada por proliferación de células epiteliales con marcada atipia y crecimiento papilar, cribiforme laxo o cribiforme denso &  Tejido maligno \\
 \hline
 
-\caption{En esta tabla se muestra la clasificación de los tejidos, una breve descripción de qué significan y si el tejido es maligno. Tabla extraída y adaptada de \cite{datosObtencion}.} \label{tab:datasetClases} 
+\caption{En esta tabla se muestra la clasificación de los tejidos, una breve descripción de qué significan y si el tejido es maligno. Tabla extraída y adaptada de \protect\cite{datosObtencion}.} \label{tab:datasetClases} 
 \end{longtable}
 
 
 \begin{figure}[h]
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.6]{images/datoSegmentado}}
-\caption{Imagen de tejido segmentado. Imagen extraída de \cite{datosObtencion}.}
+\caption{Imagen de tejido segmentado. Imagen extraída de \protect\cite{datosObtencion}.}
 \label{fig:datoSegmentado}
 \end{figure}
 
@@ -1049,39 +1073,39 @@ Los resultados de todas las redes entrenadas con los distintos métodos y para t
 \setlength{\arrayrulewidth}{0.8pt} % grosor de las líneas
 \begin{tabular}{|l|cccccc|}
 \hline
-\rowcolor{gray!50} Modelo & Train/Acc & Train/Loss & Train/Reg & Val/Acc & Val/Loss & Val/Reg \\
+\rowcolor{gray!50} Modelo & Tr/Ac & Tr/Los & Tr/Re & Val/Ac & Val/Los & Val/Re \\
 \hline
-\textbf{Baseline} & \textbf{0.994} & \textbf{0.000600} & \textbf{0.0000} & \textbf{0.957} & \textbf{0.006017} & \textbf{0.0000} \\
+\textbf{Baseline} & \textbf{0.994} & \textbf{0.00060} & \textbf{0.0000} & \textbf{0.957} & \textbf{0.00601} & \textbf{0.0000} \\
 \hline
-\rowcolor{gray!10} X-SHIELD ($\lambda = 3.0$) & 0.985 & 0.001359 & 0.001278 & 0.958 & 0.004424 & 0.000167 \\
-\rowcolor{gray!10} X-SHIELD ($\lambda = 6.0$) & 0.983 & 0.001570 & 0.001400 & 0.956 & 0.004638 & 0.000549 \\
-\rowcolor{gray!10} X-SHIELD ($\lambda = 9.0$) & 0.980 & 0.001834 & 0.001541 & 0.954 & 0.004533 & 0.000660 \\
-\rowcolor{gray!10} \textbf{X-SHIELD ($\lambda = 12.0$)} & \textbf{0.981} & \textbf{0.001751} & \textbf{0.001533} & \textbf{0.959} & \textbf{0.004191} & \textbf{0.001043} \\
+\rowcolor{gray!10} X-SHIELD ($\lambda = 3.0$) & 0.985 & 0.00136 & 0.001278 & 0.958 & 0.00442 & 0.000167 \\
+\rowcolor{gray!10} X-SHIELD ($\lambda = 6.0$) & 0.983 & 0.00157 & 0.001400 & 0.956 & 0.00464 & 0.000549 \\
+\rowcolor{gray!10} X-SHIELD ($\lambda = 9.0$) & 0.980 & 0.00183 & 0.001541 & 0.954 & 0.00453 & 0.000660 \\
+\rowcolor{gray!10} \textbf{X-SHIELD ($\lambda = 12.0$)} & \textbf{0.981} & \textbf{0.00175} & \textbf{0.001533} & \textbf{0.959} & \textbf{0.00419} & \textbf{0.001043} \\
 \hline
-\textbf{FR-SHIELD ($\lambda = 3.0$)} & \textbf{0.994} & \textbf{0.000572} & \textbf{0.000637} & \textbf{0.957} & \textbf{0.006000} & \textbf{0.000042} \\
-FR-SHIELD ($\lambda = 45.0$) & 0.993 & 0.000636 & 0.004487 & 0.956 & 0.006579 & 0.002367 \\
-FR-SHIELD ($\lambda = 65.0$) & 0.993 & 0.000682 & 0.018442 & 0.953 & 0.007386 & 0.011644 \\
-FR-SHIELD ($\lambda = 75.0$) & 0.992 & 0.000754 & 0.046440 & 0.956 & 0.006569 & 0.030981 \\
-FR-SHIELD ($\lambda = 77.0$) & 0.930 & 0.026030 & 0.011845 & 0.933 & 0.025997 & 0.011897 \\
+\textbf{FR-SHIELD ($\lambda = 3.0$)} & \textbf{0.994} & \textbf{0.00057} & \textbf{0.000637} & \textbf{0.957} & \textbf{0.00600} & \textbf{0.000042} \\
+FR-SHIELD ($\lambda = 45.0$) & 0.993 & 0.00064 & 0.004487 & 0.956 & 0.00658 & 0.002367 \\
+FR-SHIELD ($\lambda = 65.0$) & 0.993 & 0.00068 & 0.018442 & 0.953 & 0.00739 & 0.011644 \\
+FR-SHIELD ($\lambda = 75.0$) & 0.992 & 0.00075 & 0.046440 & 0.956 & 0.00657 & 0.030981 \\
+FR-SHIELD ($\lambda = 77.0$) & 0.930 & 0.02603 & 0.011845 & 0.933 & 0.02600 & 0.011897 \\
 \hline
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 3.0$) & 0.994 & 0.000592 & 0.000187 & 0.956 & 0.006643 & 0.000005 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 6.0$) & 0.994 & 0.000570 & 0.000192 & 0.952 & 0.007051 & 0.000007 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 9.0$) & 0.995 & 0.000531 & 0.000188 & 0.956 & 0.006387 & 0.000010 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 12.0$) & 0.994 & 0.000599 & 0.000207 & 0.956 & 0.006427 & 0.000014 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 25.0$) & 0.994 & 0.000594 & 0.000212 & 0.953 & 0.006608 & 0.000018 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 35.0$) & 0.993 & 0.000608 & 0.000213 & 0.955 & 0.006220 & 0.000021 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 45.0$) & 0.993 & 0.000687 & 0.000237 & 0.954 & 0.006806 & 0.000029 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 55.0$) & 0.992 & 0.000718 & 0.000250 & 0.954 & 0.006480 & 0.000027 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 65.0$) & 0.992 & 0.000759 & 0.000268 & 0.953 & 0.006728 & 0.000028 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 70.0$) & 0.992 & 0.000784 & 0.000278 & 0.954 & 0.006237 & 0.000029 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 73.0$) & 0.992 & 0.000741 & 0.000272 & 0.952 & 0.006556 & 0.000032 \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 75.0$) & 0.992 & 0.000786 & 0.000272 & 0.956 & 0.006146 & 0.000024 \\
-\rowcolor{gray!10} \textbf{FX-SHIELD ($\lambda = 77.0$)} & \textbf{0.991} & \textbf{0.000833} & \textbf{0.000302} & \textbf{0.958} & \textbf{0.006351} & \textbf{0.000025} \\
-\rowcolor{gray!10} FX-SHIELD ($\lambda = 85.0$) & 0.991 & 0.000883 & 0.000339 & 0.954 & 0.006527 & 0.000033 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 3.0$) & 0.994 & 0.00059 & 0.000187 & 0.956 & 0.00664 & 0.000005 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 6.0$) & 0.994 & 0.00057 & 0.000192 & 0.952 & 0.00705 & 0.000007 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 9.0$) & 0.995 & 0.00053 & 0.000188 & 0.956 & 0.00639 & 0.000010 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 12.0$) & 0.994 & 0.00060 & 0.000207 & 0.956 & 0.00643 & 0.000014 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 25.0$) & 0.994 & 0.00060 & 0.000212 & 0.953 & 0.00661 & 0.000018 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 35.0$) & 0.993 & 0.00060 & 0.000213 & 0.955 & 0.00622 & 0.000021 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 45.0$) & 0.993 & 0.00069 & 0.000237 & 0.954 & 0.00681 & 0.000029 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 55.0$) & 0.992 & 0.00072 & 0.000250 & 0.954 & 0.00648 & 0.000027 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 65.0$) & 0.992 & 0.00076 & 0.000268 & 0.953 & 0.00673 & 0.000028 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 70.0$) & 0.992 & 0.00078 & 0.000278 & 0.954 & 0.00624 & 0.000029 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 73.0$) & 0.992 & 0.00074 & 0.000272 & 0.952 & 0.00656 & 0.000032 \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 75.0$) & 0.992 & 0.00079 & 0.000272 & 0.956 & 0.00615 & 0.000024 \\
+\rowcolor{gray!10} \textbf{FX-SHIELD ($\lambda = 77.0$)} & \textbf{0.991} & \textbf{0.00083} & \textbf{0.000302} & \textbf{0.958} & \textbf{0.00635} & \textbf{0.000025} \\
+\rowcolor{gray!10} FX-SHIELD ($\lambda = 85.0$) & 0.991 & 0.00088 & 0.000339 & 0.954 & 0.00653 & 0.000033 \\
 \hline
-\textbf{H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$)} & \textbf{0.973} & \textbf{0.002492} & \textbf{0.001862} & \textbf{0.954} & \textbf{0.072262} & \textbf{0.015705} \\
-H-SHIELD ($\alpha_1=1.0, \alpha_2=2.0$) & 0.965 & 0.003278 & 0.002162 & 0.948 & 0.083916 & 0.015020 \\
-H-SHIELD ($\alpha_1=1.0, \alpha_2=3.0$) & 0.953 & 0.004343 & 0.002547 & 0.948 & 0.083336 & 0.018308 \\
+\textbf{H-SHIELD ($\alpha_1=1, \alpha_2=1$)} & \textbf{0.973} & \textbf{0.00249} & \textbf{0.001862} & \textbf{0.954} & \textbf{0.07226} & \textbf{0.015705} \\
+H-SHIELD ($\alpha_1=1, \alpha_2=2$) & 0.965 & 0.00328 & 0.002162 & 0.948 & 0.08392 & 0.015020 \\
+H-SHIELD ($\alpha_1=1, \alpha_2=3$) & 0.953 & 0.00434 & 0.002547 & 0.948 & 0.08334 & 0.018308 \\
 \hline
 
 
