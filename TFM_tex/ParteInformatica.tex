@@ -1,14 +1,7 @@
 \newpage
 \chapter{Introducción}
 
-En 2020, el \textbf{cáncer de próstata}, (\textit{Prostate Cancer, PCa}) fue el segundo tipo de cáncer más frecuente, y el quinto más mortal, en varones a nivel mundial \cite{GlobalCancer}. Un diagnóstico temprano de este es crucial para reducir la mortalidad del mismo. A día de hoy, el diagnóstico del PCa se basa en la realización de una \textbf{biopsia de próstata} en caso de sospecha, tras la evaluación inicial mediante pruebas como la medición del antígeno prostático específico o el examen rectal digital. Una biopsia de próstata es una prueba que consiste en la extracción de pequeños tejidos de la próstata para examinar posibles signos de cáncer (Ver Figura \ref{fig:biopsias_ejemplos}). El \textbf{Sistema de Puntuación de Gleason} (\textit{Gleason Score}) es una calificación, en el rango de 2 a 10, que se da a biopsias de la próstata tras ser examinadas bajo un microscopio \cite{GleasonGov}. Valores más altos indican cánceres más agresivos y de crecimiento más rápido. En 2014 la \textbf{Sociedad Internacional de Patología Urológica} (\textit{International Society of Urological Pathology, ISUP}) propuso un nuevo sistema basado en la Puntuación de Gleason, que propone cinco grupos ordenados (\textbf{Gleason Groups, GGs}) \cite{ISUP2014Disc}:
-\begin{itemize}
-\item \textbf{GG1: } Cáncer de grado bajo. Puntuación de gleason 6 o inferior.
-\item \textbf{GG2: } Cáncer de grado medio. Puntuación de gleason 7.
-\item \textbf{GG3: } Cáncer de grado medio pero más agresivo que GG2. Puntuación de gleason 7 pero percibido más agresivo.
-\item \textbf{GG4: } Cáncer de grado alto. Puntuación de gleason 8.
-\item \textbf{GG5: } Cáncer de grado alto. Puntuación de gleason 9 o 10.
-\end{itemize}
+En 2020, el \textbf{cáncer de próstata}, (\textit{Prostate Cancer}) fue el segundo tipo de cáncer más frecuente, y el quinto más mortal, en varones a nivel mundial \cite{GlobalCancer}. Un diagnóstico temprano de este es crucial para reducir la mortalidad del mismo. A día de hoy, el diagnóstico del cáncer de próstata se basa en la realización de una biopsia de próstata en caso de sospecha, tras la evaluación inicial mediante pruebas como la medición del antígeno prostático específico o el examen rectal digital. Una biopsia de próstata es una prueba que consiste en la extracción de pequeños tejidos de la próstata para examinar posibles signos de cáncer (Ver Figura \ref{fig:biopsias_ejemplos}). El \textbf{Sistema de Puntuación de Gleason} es una calificación, en el rango de 2 a 10, que se da a biopsias de la próstata tras ser examinadas bajo un microscopio \cite{GleasonGov}. Valores más altos indican cánceres más agresivos y de crecimiento más rápido. En 2014 la \textbf{Sociedad Internacional de Patología Urológica} (\textit{International Society of Urological Pathology, ISUP}) propuso un nuevo sistema basado en la Puntuación de Gleason, que propone cinco grupos ordenados \cite{ISUP2014Disc}. Los grupos de Gleason (GG) clasifican el cáncer de próstata en función de su agresividad de manera incremental. El GG1 corresponde a tumores de bajo grado (Gleason $\leq$ 6). El GG2 y el GG3 abarcan los de grado intermedio, ambos con Gleason 7, aunque el GG3 se considera más agresivo que el GG2. El GG4 incluye tumores de alto grado con Gleason 8, mientras que el GG5 representa la forma más agresiva, con puntuaciones Gleason de 9 o 10.
 
 \begin{figure}[H]
     \centering
@@ -28,11 +21,19 @@ En 2020, el \textbf{cáncer de próstata}, (\textit{Prostate Cancer, PCa}) fue e
     \label{fig:biopsias_ejemplos}
 \end{figure}
 
-En los últimos años, el creciente uso de técnicas de \textbf{Inteligencia Artificial (IA)} en el campo de la salud ha conllevado mejoras significativas en el diagnóstico de PCa \cite{Rabaan2022}. En el campo de la IA, la necesidad de asegurar transparencia y confiabilidad ha dado pie a acuñar el término de \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI}) \cite{XAIManifesto}, que es un campo que busca mejorar la interpretabiliad de los modelos de \textbf{Machine Learning (ML)}. El uso de XAI es especialmente importante en ámbitos donde la toma de decisiones repercute directamente en la vida de las personas, como es el caso de la medicina. La Unión Europea ha propuesto una \href{https://eur-lex.europa.eu/eli/reg/2024/1689/oj}{regulación} para el uso de IA asistida en estos aspectos, entre ellos, que estos sistemas sean capaces de explicar sus decisiones de forma clara y comprensible.
+
+El sistema de Gleason se ha consolidado como un factor determinante en el diagnóstico del cáncer de próstata \cite{Rabaan2022}. La clasificación en grupos de Gleason permite estimar la agresividad de la enfermedad y estimar el riesgo de los tumores, lo que resulta esencial para elegir el tratamiento más adecuado. Pese a esto, el puntuar el grupo de Gleason consume mucho tiempo y, además, se basa en una gradación subjetiva, lo que genera una considerable variación en los resultados \cite{Ikromjanov2021MultiClass}. Por ello, el desarrollo de herramientas de apoyo a la decisión asistidas por computadora resulta fundamental para optimizar el tiempo y mejorar la precisión en el trabajo de los patólogos. 
+
+Además, un enfoque más cuantitativo, acompañado de la identificación de patrones más específicos, puede contribuir a diferenciar con mayor precisión entre distintas situaciones clínicas y, de esta manera, adaptar el diagnóstico, el plan de tratamiento y las condiciones de vigilancia \cite{datosObtencion}. Por eso utilizaremos la distinción presentada en la Tabla \ref{tab:datasetClases}.
+ 
+ 
+Debido al éxito de los métodos de \textbf{Aprendizaje Automático} (\textit{Machine Learning, ML}) en el campo de la medicina, la Patología Computacional se ha convertido en los últimos años en uno de los temas de aplicación de la \textbf{Inteligencia Artificial (IA)} utilizando imágenes histológicas \cite{datosObtencion}. Algunos estudios han demostrado que la clasificación de Gleason con IA se traduce en un mejor pronóstico \cite{Wulczyn2021AIProstate}. 
+
+En el campo de la IA, la necesidad de asegurar transparencia y confiabilidad ha dado pie a acuñar el término de \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI}) \cite{XAIManifesto}, que es un campo que busca mejorar la interpretabiliad de los modelos de AA. El uso de XAI es especialmente importante en ámbitos donde la toma de decisiones repercute directamente en la vida de las personas, como es el caso de la medicina. La Unión Europea ha propuesto una \href{https://eur-lex.europa.eu/eli/reg/2024/1689/oj}{regulación} para el uso de IA asistida en estos aspectos, entre ellos, que estos sistemas sean capaces de explicar sus decisiones de forma clara y comprensible.
 
 Dentro del campo de la XAI, hay diferentes propuestas para la evaluación y la mejora de las explicaciones generadas. Por un lado, herramientas como \textbf{REVEL} \cite{REVEL} permiten analizar la calidad de las mismas de manera robusta. Por otro, enfoques como \textbf{X-SHIELD} \cite{XSHIELD} buscan mejorar las explicaciones mediante técnicas de regularización que aseguran el buen comportamiento de la generación de explicaciones. Aplicar estas técnicas en imagen médica puede ayudar a mejorar la interpretación de las personas profesionales de la salud de las decisiones de una IA que asista.
 
-En este contexto este Trabajo de Fin de Máster trata de resolver el problema de \textbf{construir un modelo de IA de clasificación para lesiones cancerosas en biposias de próstata} y de la \textbf{mejora en interpretabilidad del modelo mediante técnicas de XAI}, ver la Figura \ref{fig:IntroduccionTFMFigura}. Para esto se vamos a utilizar las herramientas REVEL y XSHIELD, y propondremos posibles mejoras de XSHIELD.
+En este contexto este Trabajo de Fin de Máster trata de abarcar el problema de \textbf{construir un modelo de IA de clasificación para lesiones cancerosas en biposias de próstata} y de la \textbf{mejora en interpretabilidad del modelo mediante técnicas de XAI}, ver la Figura \ref{fig:IntroduccionTFMFigura}. Para esto se vamos a utilizar las herramientas REVEL y XSHIELD, y propondremos posibles mejoras de XSHIELD.
 
 \begin{figure}[H]
     \centering
@@ -49,7 +50,7 @@ El TFM se estructura del siguiente modo. En primer lugar vamos a introducir los 
 
 \section{Objetivos}
 
-El objetivo principal del TFM es la utilización (y propuesta) de técnicas de evaluación y mejora de explicaciones  para modelos de clasificación de imágenes para detección de tejidos cancerosos en biopsias de próstata. Para el desarrollo del TFM, se divide el objetivo en distintos subobjetivos:
+El objetivo principal del TFM es el uso y la propuesta de técnicas de evaluación y mejora de explicaciones de modelos de clasificación de imágenes para detección de tejidos cancerosos en biopsias de próstata. Para el desarrollo del TFM, se divide el objetivo en distintos subobjetivos:
 
 \begin{itemize}
 \item Revisión del estado del arte.
@@ -60,7 +61,6 @@ El objetivo principal del TFM es la utilización (y propuesta) de técnicas de e
 \item Evaluación de los resultados y subsecuente discusión.
 \end{itemize}
 
-Aquí introduciría el objetivo principal del TFM y lo dividiría en algunos sub-objetivos (revisión del estado del arte, estudio de las implementaciones de las métricas ReVEL/regularización X-Shield, proposición de mis regularizaciones, implementación de estas, experimentación y finalmente evaluación/discusión de estos). 
 
 
 \section{Planificación}
@@ -72,7 +72,7 @@ Para el desarrollo de software empleamos una metodología en cascada pues se tra
 proyecto con unos requisitos claros y que va a ser desarrollado únicamente por el alumno.
 
 
-El trabajo requerido para realizar esta parte del TFG se ha dividido en cuatro fases:
+El trabajo requerido para realizar esta parte del TFM se ha dividido en cuatro fases:
 \begin{itemize}
 
 \item \textbf{Estudio del problema}: esta fase se corresponde con el estudio del problema que se intenta resolver en el trabajo así como del análisis del código del método del que partimos.
@@ -99,38 +99,33 @@ Finalmente han hecho falta alrededor de 300 horas para la realización del TFM. 
 \clearpage
 \chapter{Fundamentos teóricos} \label{cap:ft}
 
+En este capítulo haremos un repaso de los fundamentos teóricos necesarios para poder entender el trabajo. En primer lugar presentamos el concepto de aprendizaje automático. A continuación hablaremos de qué es el deep learning y de redes neuronales. En particular destacamos las redes convolucionales que juegan un papel crucial en la clasificación de imágenes. Finalmente introducimos la inteligencia artificial explicable, el problema que tratan de resolver y algunos métodos XAI que utilizamos a lo largo del trabajo.
 
 \section{Aprendizaje automático}
 
-El \textbf{aprendizaje automático} (AA) o \textbf{machine learning} (ML) es una rama de la \textbf{inteligencia artificial} que se encarga del desarrollo de algoritmos que aprendan de datos o experiencias con el fin de mejorar su rendimiento en ciertas tareas \cite{alpaydin_introduction_2010-1, Mostafa2012, PatternRecogLibro, pml1Book}. Estos algoritmos disponen de un \textbf{modelo} definido por ciertos parámetros y dichos parámetros serán los que se aprendan a través del \textbf{entrenamiento} o \textbf{aprendizaje}.
+El \textbf{aprendizaje automático} (AA) o \textbf{machine learning} (ML) es una rama de la IA que se encarga del desarrollo de algoritmos que aprendan de datos o experiencias con el fin de mejorar su rendimiento en ciertas tareas \cite{alpaydin_introduction_2010-1, Mostafa2012, PatternRecogLibro, pml1Book}. Estos algoritmos disponen de un \textbf{modelo} definido por ciertos parámetros, los cuales serán los que se aprendan a través del \textbf{entrenamiento} o \textbf{aprendizaje}.
 
 Para saber a qué nos referimos cuando se habla de que el algoritmo \textit{``aprende''} conviene destacar la siguiente definición proveniente de \cite{mitchell_machine_1997}: \textit{``Un programa se dice que aprende de una experiencia E con respecto a una clase de tareas T y a una medida de rendimiento T, si su rendimiento en las tareas en T, medido por P, mejora con la experiencia E."}
 
-El AA se utiliza habitualmente para resolver problemas complejos que no se pueden o se saben resolver con algoritmos tradicionales diseñados por humanos. Además se requiere tener datos de los que poder aprender. Algunos de los campos donde se utilizan el AA para resolver este tipo de problemas son el procesamiento de lenguaje natural, el reconocimiento del habla o la visión por computador, entre muchos otros.
+El AA se utiliza habitualmente para abarcar problemas complejos que no se pueden o se saben resolver con algoritmos tradicionales diseñados por humanos. Además, se requiere tener datos de los que poder aprender, normalmente en grandes volúmenes. Algunos de los campos donde se utilizan el AA para resolver este tipo de problemas son el procesamiento de lenguaje natural, el reconocimiento del habla o la visión por computador, entre muchos otros.
 
-Los algoritmos de AA se clasifican en distintos paradigmas dependiendo de los datos o experiencia de la que se disponga. Existen tres paradigmas principales: el \textbf{aprendizaje supervisado}, el \textbf{aprendizaje no supervisado} y el \textbf{aprendizaje por refuerzo} \cite{Mostafa2012,Goodfellow-et-al-2016}.
+Los algoritmos de AA se clasifican en distintos paradigmas dependiendo de los datos o experiencia de la que se disponga. En este trabajo introducimos dos de los paradigmas principales, aunque existen otros paradigmas no relevantes para este trabajo: el \textbf{aprendizaje supervisado} y el \textbf{aprendizaje no supervisado} \cite{Mostafa2012,Goodfellow-et-al-2016}.
 
-El aprendizaje supervisado hace referencia a los algoritmos de AA en los que se tiene un conjunto de datos agrupados en pares dato-\textbf{etiqueta}. La etiqueta se corresponde con la salida que se requiere del algoritmo de AA cuando tenga de entrada dicho dato. Un ejemplo típico de conjunto de datos de este tipo sería un conjunto de imágenes de números escritos a mano y para cada imagen el número que está escrito en dicha imagen.
+El aprendizaje supervisado hace referencia a los algoritmos de AA en los que se tiene un conjunto de datos agrupados en pares dato-\textbf{etiqueta}.  La etiqueta se corresponde con la salida que se requiere del algoritmo de AA cuando tenga de entrada dicho dato. El término supervisado proviene de este último hecho, la etiqueta supervisa la salida del algoritmo para un dato. Un ejemplo típico de conjunto de datos de este tipo sería MNIST \cite{mnist}, un conjunto de imágenes de números escritos a mano y para cada imagen el número que está escrito en dicha imagen.
 
-El aprendizaje no supervisado hace referencia a los algoritmos de AA en los que se disponen de datos que no están etiquetados. En este tipo de algoritmos no se quiere aprender algo específico de los datos sino más bien encontrar patrones o estructurar los datos de entrada. Por ejemplo se dispone de distinta información relativa a libros (autor, título, número de páginas, etc) y el algoritmo categoriza los libros en distintas categorías, aunque no se sepa a qué se corresponde cada categoría.
+El aprendizaje no supervisado se refiere a los algoritmos de AA en los que se disponen de datos que no están etiquetados. En este tipo de algoritmos no se quiere aprender algo específico de los datos sino más bien encontrar patrones o estructurar los datos de entrada. Por ejemplo se dispone de distinta información relativa a libros (autor, título, número de páginas, etc) y el algoritmo categoriza los libros en distintas categorías, aunque no se sepa a qué se corresponde cada categoría.
 
-En el aprendizaje por refuerzo no se disponen de datos de entrada, sino de una entrada y una \textit{recompensa} correspondiente a cada salida posible para dicha entrada. Este tipo de AA es especialmente útil para aprendizaje de juegos o tareas relacionadas con la teoría de control.
 
-Para este TFG es relevante el aprendizaje supervisado. En particular serán relevantes los dos siguientes problemas típicos de aprendizaje supervisado.
+Para este TFM el enfoque utilizado es el del aprendizaje supervisado dado que disponemos de datos etiquetados. En particular serán relevantes los dos siguientes problemas típicos de aprendizaje supervisado.
 
 \subsection{Problema de clasificación}
 Este problema trata de clasificar las entradas de un tipo concreto en un número de clases $k$. Es decir, para una entrada el programa deberá clasificar dicha entrada en una de las $k$ clases. Por lo tanto el algoritmo produce una función $f:\mathbb{R}^n \rightarrow \{1,...,k\}$ que a cada entrada $\bx$ le asocie una clase $y = f(\bx)$. Dicha función tratará de aproximar una función objetivo $g$ que clasifique perfectamente todas las entradas.
 
 Para este problema se disponen de una serie de datos de entrada $\{\bx_1,...,\bx_N\}$ con $\bx_i\in\mathbb{R}^n$ y sus clases correspondientes $\{y_1,...,y_N\}$ con $y_i \in \{1,...,k\}$. 
 
-Algunas formas de resolver estos problemas son mediante árboles de clasificación, máquinas de vectores-soporte o mediante redes neuronales.
-
-Un caso particular de este problema que es más relevante para este trabajo es el caso en el que hay dos clases. Este problema se denomina \textbf{problema de clasificación binaria}. En este TFG se tratará de determinar visibilidad de puntos de la cara de una persona en una imagen luego las dos clases se corresponden con visible o no visible.
 
 \subsection{Problema de regresión}
 Este problema es similar al de clasificación, pero la función que aprende el algoritmo es de la forma $f:\mathbb{R}^n \rightarrow\mathbb{R}^m$. Por lo tanto ahora el programa debe predecir un valor numérico (o varios si $m > 1$) para una entrada concreta. Al igual que ocurría en el problema de clasificación se disponen de una serie de datos de entrada y el resultado que se espera del programa para dichas entradas, es decir $\{\bx_1,...,\bx_N\}$ con $\bx_i\in\mathbb{R}^n$ y  $\{\by_1,...,\by_N\}$ con $\by_i \in \mathbb{R}^m$. 
-
-Algunas formas de resolver este tipo de problemas son mediante la regresión lineal, máquinas de vectores-soporte o redes neuronales.
 
 \subsection{Optimización} \label{optimización}
 
@@ -144,7 +139,7 @@ ECM = \frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y_i})^2
 
 Donde $\hat{y_i}$ es la predicción de nuestro modelo para un dato $x_i$ y $y_i$ es el valor correcto de salida para esa entrada.
 
-El método principal en el AA para minimizar dicha función es el \textbf{gradiente descendente}. Este método iterativo se basa en que, para una función multivariable dos veces diferenciable, el gradiente de dicha función en ese punto (que es un vector) apunta en la dirección contraria al ascenso más empinado. Por lo tanto tomando pasos en la dirección contraria al gradiente, debería disminuir la función de coste y por lo tanto dar un mejor rendimiento.
+Para la minimización de la función de coste, se suelen optimizar los parámetros del modelo utilizado el método del \textbf{gradiente descendente}. Este método iterativo se basa en que, para una función multivariable dos veces diferenciable, el gradiente de dicha función en ese punto apunta en la dirección contraria de mayor ascenso. Por lo tanto tomando pasos en la dirección contraria al gradiente, debería disminuir la función de coste y por lo tanto dar un mejor rendimiento.
 
 
 Se recuerda que el gradiente de una función $E:\mathbb{R}^n \rightarrow \mathbb{R}$ en un punto no es más que le vector compuesto de las derivadas parciales respecto a cada variable en dicho punto:
@@ -154,14 +149,14 @@ Se recuerda que el gradiente de una función $E:\mathbb{R}^n \rightarrow \mathbb
 \end{align*}
 
 
-Normalmente, el método utilizado para resolver el problema de AA hace que las funciones que se pueden representar en la solución estén parametrizadas por un vector de parámetros o \textbf{pesos} $\bw$. Por ejemplo, en un problema de regresión con función objetivo $f:\mathbb{R}^n \rightarrow \mathbb{R}$ que se plantea resolver mediante regresión lineal se tiene que la función que se aprende toma la forma: 
+Usualmente, un método utilizado para resolver el problema de AA hace que las funciones que se pueden representar en la solución estén parametrizadas por un vector de \textbf{pesos} $\bw$. Por ejemplo, en un problema de regresión con función objetivo $f:\mathbb{R}^n \rightarrow \mathbb{R}$ que se plantea resolver mediante regresión lineal se tiene que la función que se aprende toma la forma: 
 \begin{align*}
 f_\bw(\bx) = \bw^\top \bx \quad \quad , \bx \in \mathbb{R}^n, \bw \in \mathbb{R}^n
 \end{align*}
  
-Donde el vector $\bw$ son los parámetros que se pueden cambiar a la función para mejorar su rendimiento.
+Donde el vector $\bw$ son los parámetros que se pueden cambiar a la función para mejorar su rendimiento. Otros ejemplos más complejos como son el caso de redes neuronales también se pueden ver como funciones parametrizadas.
 
-La función de coste dependerá de dichos parámetros. Luego el gradiente descendiente cambiará el valor de los parámetros en cada paso buscando minimizar la función de coste. Estos cambiarán según la siguiente regla:
+La función de coste dependerá de dichos parámetros. Luego el gradiente descendente cambiará el valor de los parámetros en cada paso buscando minimizar la función de coste. Estos cambiarán según la siguiente regla:
 \begin{align*}
 \bw_n = \bw - \eta \nabla E(\bw)
 \end{align*} 
@@ -169,13 +164,13 @@ Donde $\bw_n\in\mathbb{R}^l$ son los nuevos parámetros, $\bw\in\mathbb{R}^l$ so
 
 El lr determina el tamaño de los pasos tomados por el algoritmo en cada iteración. Un valor del lr alto puede hacer que	el algoritmo converja más rápido pero también puede hacer que el algoritmo no llegue a converger o se salte soluciones. Por otro lado un valor bajo del lr hace que el algoritmo converja demasiado lento a un mínimo de la función. En la práctica se suelen utilizar métodos que hacen que el lr varíe a lo largo del entrenamiento, normalmente de mayor a menor.
 
-El algoritmo del gradiente descendente inicia los pesos $\bw$ a un valor aleatorio y empieza a iterar con la regla anteriormente descrita buscando reducir el error en cada paso durante un número de \textbf{épocas} (cada época itera sobre todos los datos de entrenamiento), aunque hay otros criterios de parada del algoritmo. En caso de ser satisfactorio el algoritmo para en un mínimo local (o global idealmente) del error de pérdida. 
+El algoritmo del gradiente descendente inicia los pesos $\bw$ a un valor aleatorio y empieza a iterar con la regla del descenso buscando reducir el error en cada paso durante un número de \textbf{épocas} (cada época itera sobre todos los datos de entrenamiento). En caso de converger, el algoritmo se detiene en un mínimo local del error de pérdida. Se suele buscar que la función de pérdida sea una función convexa para asegurar además que este mínimo sea global. 
 
 El cálculo del gradiente del error conlleva utilizar todos los datos de entrenamiento lo que en la práctica resulta muy costoso. Por ello se suele utilizar el \textbf{descenso de gradiente estocástico} (SGD), que en cada paso calcula una estimación del gradiente real a partir de un subconjunto aleatorio de los datos de entrenamiento denominado \textbf{minibatch}. Destacar que los datos de entrenamiento no se deben repetir entre \textit{minibatches} hasta que se hayan utilizado todos los de entrenamiento entre cada repetición.
 
-\subsection*{Sobreentrenamiento}
+\subsection{Sobreentrenamiento}
 
-Cuando se optimiza un modelo, puede ocurrir que el modelo se ajuste muy bien para los datos de entrada con los que se ha entrenado, pero tenga mal rendimiento para datos con los que no se ha entrenado y por lo tanto no generaliza bien lo aprendido de los datos de entrenamiento al problema. Cuando esto ocurre se dice que el modelo se ha \textbf{sobreentrenado} o \textbf{sobreajustado}. Una forma de identificar este problema es guardándonos un número de datos con los que no se va a entrenar el modelo y comparar el error del modelo a lo largo del entrenamiento de los datos de entrenamiento con los que nos se han guardado. El sobreentrenamiento se puede observar cuando el error en los datos con los que no se entrena empieza a aumentar a medida que se sigue entrenando el modelo como se puede ver en la Figura \ref{fig:sobreentrenamiento}.
+Cuando se optimiza un modelo de IA, puede ocurrir que el modelo se ajuste muy bien para los datos de entrada con los que se ha entrenado, pero tenga mal rendimiento para datos que no se hayan visto anteriormente y por lo tanto no generaliza bien lo aprendido de los datos de entrenamiento al problema. Cuando esto ocurre, se dice que el modelo se ha \textbf{sobreentrenado} o \textbf{sobreajustado}. Una forma de identificar el sobreajuste es reservando un porcentaje de datos con los que no se va a entrenar el modelo y comparar el error del modelo a lo largo del entrenamiento de los datos de entrenamiento con los que no se han guardado. El sobreentrenamiento se puede observar cuando el error en los datos con los que no se entrena empieza a aumentar a medida que se sigue entrenando el modelo como se puede ver en la Figura \ref{fig:sobreentrenamiento}.
 
 
 \begin{figure}[h]
@@ -186,34 +181,34 @@ Cuando se optimiza un modelo, puede ocurrir que el modelo se ajuste muy bien par
 \end{figure}
 
 \section{Deep Learning}
-\textbf{Deep learning}(DL) \cite{DeepLearningFoundationsConcepts, Goodfellow-et-al-2016, LeCun-Yann-Bengio, UnderstandingDeepLearning, Schmidhuber_2015} es un subcampo del AA determinado por los métodos con los que aprende y tipo de datos con los que trata. Los algoritmos de DL pueden tratar datos poco estructurados como pueden ser imágenes o textos. Este tipo de algoritmos automatizan la extracción de características, es decir, determinan qué información de los datos es relevante para la resolución del problema. Esto elimina mucha de la intervención necesaria por los humanos a la hora de crear el algoritmo.
+\textbf{Deep learning}(DL) o \textbf{aprendizaje profundo}, (AP) \cite{DeepLearningFoundationsConcepts, Goodfellow-et-al-2016, LeCun-Yann-Bengio, UnderstandingDeepLearning, Schmidhuber_2015} es un subcampo del AA determinado por los métodos con los que aprende y el tipo de datos con los que trata. Los algoritmos de AP pueden tratar datos poco estructurados como pueden ser imágenes o textos. Este tipo de algoritmos automatizan la extracción de características, es decir, determinan qué información de los datos es relevante para la resolución del problema. Esto elimina parte de la intervención humana necesaria a la hora de crear el algoritmo.
 
-El DL en los últimos años ha supuesto un avance significativo en muchos campos en los que apenas se avanzaba con otras técnicas de IA como el reconocimiento del habla o el procesamiento de lenguaje natural.
+El AP en los últimos años ha supuesto un avance significativo en muchos campos en los que apenas se avanzaba con otras técnicas de IA como el reconocimiento del habla o el procesamiento de lenguaje natural.
 
-\subsection*{Redes neuronales}
-Una \textbf{red neuronal} (\textit{artificial neural network}, ANN) \cite{NNPatternRecogLibro,Haykin,NNTricks} es un modelo de AA que consiste en una red conectada de \textbf{nodos} o \textbf{neuronas}. Cada neurona recibe una serie de números reales (señales) de las neuronas conectadas a esta, hace una operación con dichos números que resulta en otro número real y lo manda a los nodos conectados a esta. 
+\subsection{Redes neuronales artificiales}
+Una \textbf{red neuronal artificial} (RNA) \cite{NNPatternRecogLibro,Haykin,NNTricks} es un modelo de AA que consiste en una red conectada de \textbf{nodos} o \textbf{neuronas}. Cada neurona recibe una serie de números reales (entradas) de las neuronas conectadas a esta, realiza una operación con dichos números que resulta en una salida y la manda a los nodos conectados a esta. 
 
 La operación que realiza una neurona con $n\in\mathbb{N}$ entradas es la siguiente:
 
 \begin{align} \label{eq:salida_neurona}
-y = \sum_{i=1}^{n}\sigma({w_i x_i} + w_0) \quad \quad , w_i,x_i \in \mathbb{R}
+y = \sigma(\sum_{i=1}^{n}{w_i x_i} + w_0) \quad \quad , w_i,x_i \in \mathbb{R}
 \end{align}
 
-Dónde $x_i$ son las entradas de la neurona, $w_i$ son los \textbf{pesos} de la neurona, en particular a $w_0$ se le denomina sesgo, y $\sigma$ es una función de los números reales a los números reales y se le denomina \textbf{función de activación} \cite{article_func_activacion}. Al conjunto de los pesos de todas las neuronas de una red se les denomina, naturalmente, \textbf{pesos de la red}. A través de la modificación de dichos pesos es como se entrenará a una red para realizar una tarea concreta.
+Donde $x_i$ son las entradas de la neurona, $w_i$ son los \textbf{pesos} de la neurona, en particular a $w_0$ se le denomina \textit{bias}, y $\sigma$ es una función de los números reales a los números reales y se le denomina \textbf{función de activación} \cite{article_func_activacion}. Al conjunto de los pesos de todas las neuronas de una red se les denomina, naturalmente, \textbf{pesos de la red}. A través de la modificación de dichos pesos es como se entrenará a una red para realizar una tarea concreta.
 
-Existen dos tipos de ANN según el flujo de la información dentro de la red. Nos centramos en el caso en el que este flujo es una única dirección, en cuyo caso se tiene una \textbf{red neuronal hacia delante} (\textit{feedforward neural network} o \textit{multilayer perceptron}, MLP).
+Existen dos tipos de RNA según el flujo de la información dentro de la red. Nos centramos en el caso en el que este flujo es una única dirección, en cuyo caso se tiene una \textbf{red neuronal hacia delante} (\textit{feedforward neural network} o \textit{multilayer perceptron}, MLP).
 
-Las MLP son el modelo fundamental del \textit{Deep Learning}. Estas están compuestas por distintas \textbf{capas}, cada una compuesta de varias neuronas en paralelo. La primera capa es la \textbf{capa de entrada} que recibe la entrada a la red y la propaga a la siguiente capa. Luego puede haber una o más \textbf{capas ocultas}, donde cada una de estas están compuestas de neuronas que reciben las señales de la capas anterior y propagan su salida a las neuronas de la siguiente capa. Por último está la \textbf{capa de salida} que está compuesta por uno o varias neuronas cuya salida se considera la salida de la red. El número de capas ocultas determina la \textbf{profundidad} de la red. Se puede ver un ejemplo de un modelo de este tipo en la figura \ref{fig:red_neuronal_ff}.
+Las MLP son el modelo fundamental del AP. Estas están compuestas por distintas \textbf{capas}, cada una compuesta de varias neuronas en paralelo. La primera capa es la \textbf{capa de entrada} que recibe la entrada a la red y la propaga a la siguiente capa. Luego puede haber una o más \textbf{capas ocultas}, donde cada una de estas están compuestas de neuronas que reciben las señales de la capas anterior y propagan su salida a las neuronas de la siguiente capa. Por último está la \textbf{capa de salida} que está compuesta por uno o varias neuronas cuya salida se considera la salida de la red. El número de capas ocultas determina la \textbf{profundidad} de la red. Se puede ver un ejemplo de un modelo de este tipo en la figura \ref{fig:red_neuronal_ff}.
 
 
 \begin{figure}[h]
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.5]{images/MLP}}
-\caption{ Ejemplo de ANN con una única capa oculta y con dos salidas. Imagen extraída de \protect\cite{Haykin}.}
+\caption{ Ejemplo de RNA con una única capa oculta y con dos salidas. Imagen extraída de \protect\cite{Haykin}.}
 \label{fig:red_neuronal_ff}
 \end{figure}
 
-Si se considera ahora la función $f$ que implementa un red MLP, se tiene que esta depende de los pesos de la red. Una vez se tengan unos datos con los que entrenar la red y una función de coste que evalúe el rendimiento de la red, se puede aplicar el gradiente descendente estocástico para entrenar la red modificando los pesos de esta. Sin embargo, el cálculo del gradiente de la función de error en un red puede resultar muy costoso, especialmente para el cálculo de las derivadas parciales del error respecto de los pesos de las neuronas en las capas menos profundas. Es por esto que se suele utilizar un algoritmo, denominado \textbf{backpropagation}, para el cálculo del gradiente. 
+Si se considera ahora la función $f$ que implementa una red MLP, se tiene que esta depende de los pesos de la red. Una vez se tengan unos datos con los que entrenar la red y una función de coste que evalúe el rendimiento de la red, se puede aplicar el gradiente descendente estocástico para entrenar la red modificando los pesos de la misma. Sin embargo, el cálculo del gradiente de la función de error en una red puede resultar muy costoso, especialmente para el cálculo de las derivadas parciales del error respecto de los pesos de las neuronas en las capas más cercanas a la salida. Es por esto que se suele utilizar un algoritmo, denominado \textbf{backpropagation}, para el cálculo del gradiente. 
 
 Este algoritmo está basado en la aplicación de la regla de la cadena que dicta que si se tiene una función $f$ que depende de otra función $g$ que a su vez depende de otra función $h$, entonces se cumple que:
 \begin{align*}
@@ -250,14 +245,14 @@ La función de activación sigmoidal se suele utilizar en la capa de salida en l
 
 \subsection*{Batch normalization}
 
-\textbf{Batch normalization} \cite{ioffe2015batch} es una método consistente en normalizar los datos de entrada de cada capa. De esta manera se consigue independizar la distribución de los datos de entrada de cada capa de la red, con los parámetros aprendidos por la red. Está probado que este método hace que el entrenamiento de la red sea más estable y más rápido. Además también se sabe que tiene un efecto regularizador en la red, lo que disminuye la probabilidad de que la red sobreentrene.
+\textbf{Batch normalization} \cite{ioffe2015batch} es un método consistente en normalizar los datos de entrada de cada capa. De esta manera se consigue hacer independiente la distribución de los datos de entrada de cada capa de la red, de los parámetros aprendidos por la red. Está probado que este método hace que el entrenamiento de la red sea más estable y más rápido. Además también se sabe que tiene un efecto regularizador en la red, lo que disminuye la probabilidad de que la red sobreentrene.
 
 \subsection*{Dropout}
 
 \textbf{Dropout} \cite{hinton2012improving} se refiere a la técnica utilizada en redes neuronales consistente en ignorar algunas neuronas de forma aleatoria durante el periodo de entrenamiento. Usualmente se le da a cada neurona una probabilidad $p$ de ser ignorado, y en cada paso del algoritmo de entrenamiento se desconecta cada neurona de la red con dicha probabilidad. De esta forma se busca que ninguna neurona sea muy dependiente de la salida de otra neurona específica. Esta técnica regulariza la red lo que hace que la red sea menos propensa a sobreentrenar.
 
-\subsection{Redes convolucionales}
-La \textbf{redes convolucionales} (\textit{Convolutional neural networks}, CNN) \cite{9451544} son un tipo de red neuronal feedforward diseñadas para procesar datos en forma de múltiples arrays. En nuestro caso nos centraremos en el caso en el que la entrada son imágenes, que son arrays en 2 dimensiones (matrices) que contienen tres \textbf{canales}, uno por cada color.  La estructura las CNNs es una capa de entrada, seguida de varias capas ocultas y una capa de salida. Las capas ocultas suelen estar compuestas por una o varias \textbf{capas convolucionales} seguidas de una \textbf{capa de pooling}, esto repetido varias veces. Además al final de la red se suelen colocar una o varias \textbf{capas totalmente conectadas} hasta la capa de salida.
+\subsection{Redes neuronales convolucionales}
+Las \textbf{redes neuronales convolucionales} (\textit{Convolutional neural networks}, CNN) \cite{9451544} son un tipo de red neuronal feedforward diseñadas para procesar datos en forma de múltiples arrays. En nuestro caso nos centraremos en el caso en el que la entrada son imágenes, que son arrays en 2 dimensiones (matrices) que contienen tres \textbf{canales}, uno por cada color primario (RGB).  La estructura de las CNNs es una capa de entrada, seguida de varias capas ocultas y una capa de salida. Las capas ocultas suelen estar compuestas por una o varias \textbf{capas convolucionales} seguidas de una \textbf{capa de pooling}, esto repetido varias veces. Además al final de la red se suelen colocar una o varias \textbf{capas totalmente conectadas} hasta la capa de salida.
 
 \subsection*{Capas convolucionales}
 Una \textbf{convolución} es un operador matemático que recibe dos funciones $f,g:\mathbb{R}\rightarrow \mathbb{R}$ y la transforma en otra función $f\ast g$ definida como sigue:
@@ -270,7 +265,7 @@ Basado en este operador, existe la \textbf{convolución discreta} en 2 dimension
 (f\star g)[i,j] = \sum_{m=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}f(m,n)g(i-m,j-n)
 \end{align*}
 
-Este operador no es más que la adaptación de la convolución al caso en el que $f$ y $g$ sean funciones discretas, es decir, definidas sobre los números enteros, $\mathbb{Z}$. Este es el operador que aplican las capas convolucionales a sus entradas. En el caso de las convoluciones aplicadas en una CNN $f$ se corresponde con la entrada de la capa convolucional y $g$ con el \textbf{núcleo}, \textbf{kernel} o \textbf{filtro}. de la convolución. El \textit{kernel} no es más que una matriz de dimensiones $n\times m$ de valores reales. Véase la Figura \ref{fig:ejemplo_convolucion} para ver un ejemplo de una convolución.
+Este operador no es más que la adaptación de la convolución al caso en el que $f$ y $g$ sean funciones discretas, es decir, definidas sobre los números enteros, $\mathbb{Z}$. Este es el operador que aplican las capas convolucionales a sus entradas. En el caso de las convoluciones aplicadas en una CNN $f$ se corresponde con la entrada de la capa convolucional y $g$ con el \textbf{núcleo}, \textbf{kernel} o \textbf{filtro} de la convolución. El \textit{kernel} no es más que una matriz de dimensiones $n\times m$ de valores reales. Véase la Figura \ref{fig:ejemplo_convolucion} para ver un ejemplo de una convolución.
 
  
 \begin{figure}[h]
@@ -280,7 +275,7 @@ Este operador no es más que la adaptación de la convolución al caso en el que
 \label{fig:ejemplo_convolucion}
 \end{figure}
 
-Usualmente la entrada de las capas convolucionales tienen más de un canal (por ejemplo la capa inicial suele tener 3 canales, uno por cada color primario), en tal caso, el \textit{kernel} tiene tantos canales como la entrada y aplica cada uno a su canal correspondiente, sumando la salida. Para un ejemplo ver la Figura \ref{fig:ejemplo_convolucion_3canales}. A la salida de una convolución se le llama \textbf{mapa de características}. 
+Usualmente, la entrada de las capas convolucionales tiene más de un canal (por ejemplo la capa inicial suele tener 3 canales, uno por cada color primario), en tal caso, el \textit{kernel} tiene tantos canales como la entrada y aplica cada uno a su canal correspondiente, sumando las salidas. Para un ejemplo ver la Figura \ref{fig:ejemplo_convolucion_3canales}. A la salida de una convolución se le llama \textbf{mapa de características}. 
 
 Por lo visto hasta ahora, el filtro se aplica posición a posición de izquierda a derecha y de arriba hacia abajo. Se denomina \textbf{stride} al parámetro que determina cada cuantas posiciones se aplica el filtro. Por ejemplo un stride de 1 aplica el filtro de forma normal. Otro parámetro que se utiliza es el \textbf{padding} que indica si se debe expandir la imagen por los bordes y con qué valores expandirla en caso de hacerlo. Por ejemplo, en la figura \ref{fig:ejemplo_convolucion} no se utiliza \textit{padding} y por lo tanto la salida tiene una fila y una columna menos.
 
@@ -299,59 +294,58 @@ El objetivo de las capas convolucionales es la detección de características lo
 
 Las capas de \textit{pooling} se encargan de reducir las dimensiones espaciales de la entrada manteniendo el número de canales. Esto es, disminuyen el número de filas y columnas. Para ello dividen cada mapa de características en ventanas disjuntas que cubren todas las filas y columnas, y ``\textit{resumen}''  todos los valores en una ventana a uno sólo. Esto disminuye el coste computacional de la red. Este tipo de capas también busca juntar valores que son similares en uno sólo.
 
-Los dos tipo típicos de \textit{pooling} son el \textbf{max pooling} que toma el máximo de los valores de la ventana y el \textbf{average pooling} que toma la media aritmética de los valores de la ventana. Se cree que \textit{max pooling} tiene mejor rendimiento y, de hecho, en la parte matemática de este TFG se pueden ver argumentos de por qué podría ser cierto. En la Figura \ref{fig:ejemplo_pooling} se puede ver un ejemplo de ambos tipos de \textit{pooling}.
+Los dos tipos típicos de \textit{pooling} son el \textbf{max pooling} que toma el máximo de los valores de la ventana y el \textbf{average pooling} que toma la media aritmética de los valores de la ventana. Se cree que \textit{max pooling} tiene mejor rendimiento y, de hecho, en la parte matemática de este TFM se pueden ver argumentos de por qué podría ser cierto. En la Figura \ref{fig:ejemplo_pooling} se puede ver un ejemplo de ambos tipos de \textit{pooling}.
 
 
 
 \begin{figure}[h]
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.3]{images/ejemplo_pooling}}
-\caption{En la figura se ver cómo se aplica \textit{max pooling} y \textit{average pooling} a una entrada. Como las ventanas tienen tamaño $2\times 2$ se dice que se aplica \textit{pooling} $2\times 2$. Imagen extraída de \url{https://saturncloud.io/blog/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way/}.}
+\caption{En la figura se ve cómo se aplica \textit{max pooling} y \textit{average pooling} a una entrada. Como las ventanas tienen tamaño $2\times 2$ se dice que se aplica \textit{pooling} $2\times 2$. Imagen extraída de \url{https://saturncloud.io/blog/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way/}.}
 \label{fig:ejemplo_pooling}
 \end{figure}
 
 \subsection*{Capas totalmente conectadas}
-Este tipo de capas no son más que una capa típica de MLP que conecta todos los valores de las neuronas de la capa anterior con todas las neuronas de esta capa. Se colocan después de todas las capas convolucionales de \textit{pooling}. Por ejemplo, si se quisiera resolver un problema de clasificación de imágenes en cinco clases, se tendría una última capa totalmente conectada con cinco neuronas.
+Este tipo de capas no son más que una capa típica de MLP que conecta todos los valores de las neuronas de la capa anterior con todas las neuronas de esta capa. Se colocan después de todas las capas convolucionales y de \textit{pooling}. Por ejemplo, si se quisiera resolver un problema de clasificación de imágenes en cinco clases, se tendría una última capa totalmente conectada con cinco neuronas.
 
 
 \section{XAI}
 
-Los modelos de ML se pueden dividir en dos tipos: los \textbf{modelos de caja negra} (\textit{black-box models}) y \textbf{modelos de caja blanca} (\textit{white-box models}) \cite{XAIWHATWEKNOW, XAINOTIONS}.
+Los modelos de AA se pueden dividir en dos tipos: los \textbf{modelos de caja negra} (\textit{black-box models}) y \textbf{modelos de caja blanca} (\textit{white-box models}) \cite{XAIWHATWEKNOW, XAINOTIONS}.
 
- Los modelos de caja blanca producen resultados que pueden ser interpretados por los usuarios o expertos que utilizan el modelo, normalmente mirando sus parámetros. Los modelos primitivos de ML, como la regresión lineal, regresión logística o árboles de decisión, suelen ser de este tipo. 
+ Los modelos de caja blanca producen resultados que pueden ser interpretados por los usuarios o expertos que utilizan el modelo, normalmente mirando sus parámetros. Los modelos primitivos de AA, como la regresión lineal, regresión logística o árboles de decisión, suelen ser de este tipo. 
  
-Por otro lado los modelos de caja negra son modelos difíciles de interpretar y explicar debido a que tiene estructuras complejas, con una gran cantidad de parámetros y no lineales. Los modelos más importantes pertenecientes a esta clase son las ANNs. 
+Por otro lado los modelos de caja negra son modelos difíciles de interpretar y explicar debido a que tienen estructuras complejas, con una gran cantidad de parámetros y comportamiento no lineal. Los modelos más importantes pertenecientes a esta clase son las RNAs. 
 
 Algunos trabajos incluyen una categoría conocida como \textbf{modelos de caja gris} (\textit{gray-box models}), los cuales son modelos que se pueden interpretar, al menos parcialmente, si se diseñan adecuadamente.
 
 
-La \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI}) \cite{XAIManifesto, XAIWHATWEKNOW, XAINOTIONS, XAICONCEPTS} es un campo de estudio que pretende desarrollar métodos para construir modelos de ML que aumenten la interpretabilidad de estos sin que esto afecte demasiado a su rendimiento. Para ello hay caminos:
+La \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI}) \cite{XAIManifesto, XAIWHATWEKNOW, XAINOTIONS, XAICONCEPTS} es un campo de estudio que pretende desarrollar métodos para construir modelos de AA que aumenten la interpretabilidad de estos sin que esto afecte demasiado a su rendimiento. Para existen dos enfoques principales: contruir modelos de caja blanca o gris con rendimientos altos y dotar a los modelos de caja negra de un mayor nivel de interpretabilidad.
 
-\begin{itemize}
-\item Construir modelos de caja blanca o gris con rendimientos altos.
-\item Dotar a los modelos de caja negra de un mayor nivel de interpretabilidad.
-\end{itemize}
+Por un lado, construir modelos de caja blanca o gris con rendimientos altos implica desarrollar algoritmos basados en técnicas transparentes, como árboles de decisión, regresiones lineales o modelos basados en reglas, que logren resultados competitivos. Estos modelos permiten a los usuarios entender con facilidad los factores que influyen en las predicciones.
 
-En XAI, la \textbf{Interpretabilidad} se refiere a la capacidad de comprender cómo los modelos de IA toman sus decisiones. Por otro lado la \textbf{explicabiliad} se refiere a la capacidad de hacer interpretaciones y describir el funcionamiento interno de un sistema de IA en términos humanos. Estos dos son los dos principales criterios a la hora de evaluar métodos de XAI, además de ellos existen otros como \textbf{transparencia}, \textbf{justicia} (\textit{fairness}) y \textbf{robustez}. 
+Por otro lado, dotar a los modelos de caja negra de un mayor nivel de interpretabilidad busca aprovechar la potencia predictiva de algoritmos complejos, como RNAs o CNNs, con técnicas que faciliten su entendimiento. En este enfoque se ecuentran herramientas como métodos de atribución de características, visualizaciones locales de importancia o aproximaciones mediante modelos simplificados.
 
-En general el objetivo de la explicabilidad es hacer algún aspecto del modelo entendible para el usuario. Si lo que se intenta hacer expllicable es una salida del modelo para una instancia, se habla de \textbf{explicabilidad local}. En cambio si es el dataset entero se habla de \textbf{explicabilidad global}.
+En XAI, la \textbf{Interpretabilidad} se refiere a la capacidad de comprender cómo los modelos de IA toman sus decisiones. Por otro lado, la \textbf{explicabilidad} se refiere a la capacidad de hacer inferencias y describir el funcionamiento interno de un sistema de IA en términos humanos. Estos dos son los dos principales criterios a la hora de evaluar métodos de XAI, además de ellos existen otros como \textbf{transparencia}, \textbf{justicia} (\textit{fairness}) y \textbf{robustez}. 
 
-Una distinción en los métodos de XAI es si el método es \textit{\textbf{ante-hoc}} o \textit{\textbf{post-hoc}}. Los métodos \textit{ante-hoc} son aquellos que entrenan un método explicable en primer lugar. Por otro lado los \textit{post-hoc} pretenden explicar un modelo de caja negra después de ser explicado. A su vez, los métodos \textit{post-hoc} se dividen en métodos \textbf{agnósticos al modelo} si funcionan para cualquier modelo, y métodos \textbf{específicos al modelo} si sólo funcionan para un tipo (o clase) de modelos.
+En general, el objetivo de la explicabilidad es hacer algún aspecto del modelo entendible para el usuario. Si lo que se intenta hacer explicable es una salida del modelo para una instancia concreta, se habla de \textbf{explicabilidad local}. Si esa explicación además es capaz de explicar el comportamiento completo se habla de \textbf{explicabilidad global}.
 
-Por último está la siguiente distinción de métodos según la metodología que utilicen: \textbf{basados en retropropagación} y \textbf{basados en perturbaciones}. Los que se basan en retropropagación propagan una señal de la salida del modelo hacia la entrada. Los basados en perturbaciones modifican la entrada del modelo utilizando distintas técnicas para investigar el impacto de estas modificaciones en la salida del modelo.
+Una distinción en los métodos de XAI es si el método es \textit{\textbf{ante-hoc}} o \textit{\textbf{post-hoc}}. Los métodos \textit{ante-hoc} son aquellos que entrenan un modelo con el objetivo de la explicabilidad impuesto de antemano. Un ejemplo de ello son los árboles de decisión, ya que siguiendo los nodos de sus ramas se puede extraer el razonamiento intrínseco del modelo. Por otro lado los \textit{post-hoc} pretenden explicar un modelo de caja negra después de haber sido entrenado. Un ejemplo son las redes neuronales, las cuales no están pensadas para extraer un razonamiento humano de manera directa. 
+
+A su vez, los métodos \textit{post-hoc} se dividen en métodos \textbf{agnósticos al modelo} si funcionan para cualquier modelo, y métodos \textbf{específicos al modelo} si sólo funcionan para un tipo (o clase) de modelos. Los métodos \textbf{agnósticos al modelo} son aquellos que pueden aplicarse a cualquier modelo, independientemente de su arquitectura. Un ejemplo de ello son LIME o SHAP, los cuales estiman la contribución de cada característica a la predicción sin necesidad de conocer la estructura interna del modelo. Por otro lado, los métodos \textbf{específicos al modelo} aprovechan particularidades de un tipo de modelo concreto para extraer las explicaciones. Por ejemplo, en las redes neuronales convolucionales se pueden usar mapas de activación para visualizar qué regiones de una imagen influyen más en la predicción.
 
 
 \subsection{Explicaciones lineales locales y LIME} \label{subsec:LIME}
 
 Las \textbf{Explicaciones lineales locales} (\textit{Linear Local Explanation, LLE}) \cite{REVEL,LIME} son una clase de explicaciones para modelos de caja negra.
 
- Sea $X \subset \mathbb{R}^F$ el datatset de entrada, siendo $F$ el número de características por ejemplo, y sea $f : \mathbb{R}^F \rightarrow \mathbb{R}^C$ la función que implementa un modelo de caja negra, dónde $C$ es el número de clases de un problema de clasificación al que se aplica. Sea $x\in X$ una entrada a ser explicada. Un explicador LLE de caja blanca es una función $g: \mathbb{R}^F \rightarrow \mathbb{R}^C$ definida como:
+ Sea $X \subset \mathbb{R}^F$ el \textit{dataset} de entrada, siendo $F$ el número de características por ejemplo, y sea $f : \mathbb{R}^F \rightarrow \mathbb{R}^C$ la función que implementa un modelo de caja negra, donde $C$ es el número de clases de un problema de clasificación al que se aplica. Sea $x\in X$ una entrada a ser explicada. Un explicador LLE de caja blanca es una función $g: \mathbb{R}^F \rightarrow \mathbb{R}^C$ definida como:
  
 \begin{equation}
 g(x) = Ax + B, \quad A \in \mathcal{M}_{F,C}, B \in \mathbb{R}^C
 \end{equation}
 
-Dónde $\mathcal{M}_{F,C}$ es el conjunto de todas las matrices con $F$ filas y $C$ columnas. Es decir, $g$ no es más que una función lineal que lleva una entrada del modelo al espacio de salida del modelo. Este modelo se puede interpretar pues intuitivamente para cada peso $a_{i,j}$ de $A$ denota la importancia que tiene la característica de entrada $i$ con la predicción de la salida $j$. Por otro lado cada valor $b_j$ del vector $B$ está conectado con la importancia en general de la salida $j$.
+Donde $\mathcal{M}_{F,C}$ es el conjunto de todas las matrices con $F$ filas y $C$ columnas. Es decir, $g$ no es más que una función lineal que lleva una entrada del modelo al espacio de salida del modelo. Este modelo se puede interpretar pues intuitivamente para cada peso $a_{i,j}$ de $A$ denota la importancia que tiene la característica de entrada $i$ para la predicción de la salida $j$. Por otro lado cada valor $b_j$ del vector $B$ está conectado con la importancia en general de la salida $j$.
 
 Para obtener la función $g$ anterior los métodos LLE utilizan regresión lineal sobre una vecindad del ejemplo $x$. El error que minimizan es el siguiente:
 
@@ -482,7 +476,7 @@ Esta no es una métrica sobre la explicación en específico sino sobre el méto
 
 \subsection{Regularización X-Shield} \label{subsec:XSHIELD}
 
-La \textbf{regularización} \cite{XSHIELD, Regularization} es la modificación de la arquitectura del modelo, del proceso de aprendizaje o inferencia para imponer algún criterio sobre este. Por ejemplo, dropout, que ya se vió previamente, es una regularización. 
+La \textbf{regularización} \cite{XSHIELD, Regularization} es la modificación de la arquitectura del modelo, del proceso de entrenamiento o inferencia para imponer algún criterio sobre este. Por ejemplo, dropout, que ya se vió previamente, es una regularización. 
 
 En particular nos interesan las regularizaciones que implican añadir a la función de coste un nuevo término que indica el criterio que queremos minimizar en el modelo. Algunos ejemplos típicos son la regularización L1 o L2. En general se tiene que una regularización de este tipo se expresa como:
 
@@ -542,34 +536,34 @@ En la Figura \ref{fig:rshield_vs_xshield} se puede apreciar la diferencia entre 
 
 \newpage
 \chapter{Estado del arte} \label{cap:eda}
-Este Trabajo de Fin de Máster trata de resolver el problema de construir un modelo de IA de clasificación para lesiones cancerosas en biposias de próstata y de la mejora en interpretabilidad del modelo mediante técnicas de XAI. Por lo tanto vamos a hacer una revisión del estado del arte para los cuatro siguientes puntos que son relevantes:
+Este Trabajo de Fin de Máster trata de abarcar el problema de construir un modelo de IA de clasificación para lesiones cancerosas en biopsias de próstata y de la mejora en explicabilidad del modelo mediante técnicas de XAI. Por lo tanto vamos a hacer una revisión del estado del arte para los cuatro siguientes puntos que son relevantes para nuestro TFM:
 
 
 \begin{itemize}
-\item Redes convolucionales para clasificación de imágenes.
-\item Métodos de XAI para producción de explicaciones, en particular, LLEs.
-\item Métodos de XAI de regularización para mejoras las explicaciones.
-\item Métricas de XAI de calidad de las explicaciones producidas para poder comparar los distintos métodos utilizados.
+\item Redes neuronales convolucionales para clasificación de imágenes.
+\item Métodos de XAI para producción de explicaciones, en particular, las LLEs.
+\item Métodos de XAI de regularización para mejorar las explicaciones.
+\item Métricas de XAI para evaluar la calidad de las explicaciones producidas para poder comparar los distintos métodos utilizados.
 \end{itemize}
 
 \subsection*{Modelo de clasificación de imágenes}
 
-\textbf{Efficientnet} \cite{efficientnet2019} es una red introducida en 2019 que se sigue considerando estado del arte en clasificación de imágenes cuando se mide eficiencia computacional, es decir, rendimiento obtenido número de parámetros. En la Figura \ref{fig:efficientnet_grafica} se puede apreciar como es más eficiente en cómputo respecto otros modelos de clasificación de imágenes ResNet \cite{resnet} o DenseNet \cite{densenet} para el dataset Imagenet. 
+\textbf{Efficientnet} \cite{efficientnet2019} es una red introducida en 2019 que se sigue considerando estado del arte en clasificación de imágenes cuando se mide eficiencia computacional, es decir, rendimiento obtenido por número de parámetros. En la Figura \ref{fig:efficientnet_grafica} se puede apreciar como es más eficiente en cómputo respecto a otros modelos de clasificación de imágenes como ResNet \cite{resnet} o DenseNet \cite{densenet} para el dataset Imagenet. 
 
-Existen otros modelos más modernos como CoCa \cite{coca}, DaViT \cite{DaViT} o ConvNeXt V2 \cite{ConvNext}, que utilizan transformadores en el caso de Coca y DaViT, o autoencoders en el caso de ConvNeXt V2. Estos modelos alcanzan precisiones mayores que EfficientNet sin embargo aumentan demasiado el número de parámetros utilizado para que sea una propuesta viable para nuestro trabajo.
+Existen otros modelos más modernos como CoCa \cite{coca}, DaViT \cite{DaViT} o ConvNeXt V2 \cite{ConvNext}, que utilizan transformadores en el caso de Coca y DaViT, o autoencoders, en el caso de ConvNeXt V2. Estos modelos alcanzan precisiones mayores que EfficientNet. Sin embargo, aumentan demasiado el número de parámetros utilizados como para que sea una propuesta viable para nuestro trabajo.
 
-Por ello hemos decidido utilizar el modelo EfficientNet en este trabajo ya que ofrece un balance muy bueno entre número de parámetros y precisión. En la Tabla \ref{tab:comparacion_modelos_efficientnet} se puede apreciar las diferencias entre el modelo que utilizaremos EfficientNet-B2 y las versiones más pequeñas de los modelos mentados. Se aprecia que EfficientNet es más eficiente en el número de parámetros.
+Por ello, hemos decidido utilizar el modelo EfficientNet en este trabajo ya que ofrece un balance muy bueno entre número de parámetros y precisión. En la Tabla \ref{tab:comparacion_modelos_efficientnet} se puede apreciar las diferencias entre el modelo que utilizaremos EfficientNet-B2, y las versiones más pequeñas de los modelos mencionados. Se aprecia que EfficientNet es más eficiente en el número de parámetros.
 
 \begin{table}[ht]
 \centering
 \begin{tabular}{|l|l|c|c|}
 \hline
-\textbf{Modelo} & \textbf{Arquitectura Base} & \textbf{Parámetros (M)} & \textbf{Precisión Top-1 (\%)} \\
+\textbf{Modelo} & \textbf{Arquitectura Base} & \textbf{Parámetros} & \textbf{Precisión Top-1} \\
 \hline
-EfficientNet-B2 & CNN & 9.1 & 80.1 \\
-DaViT-Small     & CNN + Transformer & 49.7 & 84.2 \\
-ConvNeXt V2-Tiny & CNN moderna (con Masked Autoencoder) & 28.6 & 85.1 \\
-CoCa-Base & Transformer & 383 & 91.0 \\
+EfficientNet-B2 & CNN & 9.1M & 80.1\% \\
+DaViT-Small     & CNN + Transformer & 49.7M & 84.2\% \\
+ConvNeXt V2-Tiny & CNN moderna (con Masked Autoencoder) & 28.6M & 85.1\% \\
+CoCa-Base & Transformer & 383M & 91.0\% \\
 \hline
 \end{tabular}
 \caption{Comparación de modelos en términos de precisión Top-1 en ImageNet y número de parámetros.}
@@ -588,7 +582,7 @@ CoCa-Base & Transformer & 383 & 91.0 \\
 
 \subsection*{Métodos de XAI para producción de explicaciones}
 
-Una revisión de todos los métodos de explicabilidad \textit{post-hoc}, que son los que se aplican a modelos de caja negra, está fuera de el alcance de este trabajo pues sería inabarcable. Sin embargo resumimos algunos métodos populares (esquema en la Tabla \ref{tab:xai_explicaciones}):
+Una revisión de todos los métodos de explicabilidad \textit{post-hoc}, que son los que se aplican a modelos de caja negra, está fuera del alcance de este trabajo. Sin embargo, resumimos algunos métodos populares (esquema en la Tabla \ref{tab:xai_explicaciones}):
 
 \begin{itemize}
     \item \textbf{LIME} \cite{LIME}: Modelo explicado con detalle en la subsección \ref{subsec:LIME}.
@@ -644,17 +638,17 @@ En este estudio nos hemos dejado muchos métodos como explicaciones por ejemplos
 
 \subsection*{Métricas para explicaciones}
 
-Debido a que hay muchos tipos de explicaciones en la literatura (LLEs, mapas de atribución, reglas...) no hay manera de comparar estas directamente. Debido a esto, se existen distintas métricas para medir de forma cuantitativa la calidad de las explicaciones.
+Dado que hay muchos tipos de explicaciones en la literatura (LLEs, mapas de atribución, reglas...) no hay manera de comparar estas directamente. Debido a esto, existen distintas métricas para medir de forma cuantitativa la calidad de las explicaciones.
 
-En \cite{metricasReglas} se proponen cuatro métricas para medir la calidad de explicaciones. Sin embargo estas son específicas para explicaciones basadas en reglas. Las métricas que representan son:
+En \cite{metricasReglas}, se proponen cuatro métricas para medir la calidad de explicaciones. Sin embargo, estas son específicas para explicaciones basadas en reglas. Las métricas que proponen son:
 \begin{itemize}
 \item $D$: la diferencia en rendimiento entre el modelo a explicar y la explicación basada en reglas. Cuantifica el cambio entre el modelo de caja negra y el mejor modelo de caja blanca observado.
-\item $R$: El número de reglas de la explicación. Busca cuantificar lo simple que es la explicación.
-\item $F$: El número de características que se han utilizado para construir la explicación. Es similar a $R$, cuanto menor es mejor se considera la explicación.
-\item $S$: La estabilidad de la explicación. Cuantifica la habilidad de la explicación de manejar robustamente perturbaciones pequeñas.
+\item $R$: El número de reglas de la explicación. Busca cuantificar lo fácil de entender que es la explicación.
+\item $F$: El número de características que se han utilizado para construir la explicación. Es similar a $R$; cuanto menor es mejor se considera la explicación.
+\item $S$: La estabilidad de la explicación. Cuantifica la habilidad de la explicación de manejar robustamente perturbaciones pequeñas. Para su cálculo se introducen pequeñas perturbaciones en los datos (sin cambiar las etiquetas), se vuelve a generar una explicación para los distintos datos perturbados y finalmente se calcula la media de la distancia de estas con la explicación para el dato original mediante medidas de similitud como Jaccard o Tanimoto. 
 \end{itemize} 
 
-En \cite{LEAF} se propone el framework \textit{LEAF}. En este se introducen 5 métricas para evaluar de forma clara las explicaciones de LLEs. Las métricas son las siguientes:
+En \cite{LEAF} se propone el framework \textit{LEAF}. En este, se introducen 4 métricas y 1 restricción para evaluar de forma clara las explicaciones de LLEs. Las métricas son las siguientes:
 
 \begin{itemize}
 \item \textit{Conciseness: }se interpreta como hasta qué punto el modelo es entendible por un humano. Se define como el número de pesos de la explicación (es una LLE) son no nulos.
