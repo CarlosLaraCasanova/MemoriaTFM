@@ -9,7 +9,21 @@
 \chapter{Summary}
 \paragraph*{KEYWORDS:} neural networks, xai, explainable ai, prediction, explainability, artifical inteligence, machine learning, computer vision, deep learning, prostate cancer, gleason score, gleason groups.  
 
-Aquí va el resumen en inglés
+This Master's Thesis addresses the problem of improving interpretability for classification models for cancerous lesions in prostate biopsies. Prostate cancer is the second most common type of cancer in men worldwide. Early diagnosis is crucial to reducing mortality rates. Prostate biopsy is the procedure used to diagnose cancer when it is suspected. In recent years, the growing use of Artificial Intelligence (AI) techniques in the field of healthcare has led to significant improvements in the diagnosis of prostate cancer.
+
+On the other hand, Explainable Artificial Intelligence (XAI) is a field of study that seeks to improve the interpretability of Machine Learning (ML) models. Its use is especially relevant in fields such as medicine, where decision-making has an impact on people's lives. For this work, we propose applying different XAI techniques to improve the interpretability of the model.
+
+To do this, we first explain key concepts for understanding it and study the state of the art of the different aspects relevant to our task. These are image classification models, XAI methods for producing explanations, metrics for measuring the quality of explanations, and XAI regularization methods.
+
+For image classification, we used the EfficientNet convolutional network, which is state-of-the-art in terms of precision relative to the number of model parameters. To produce explanations for our model, we use the LIME method, which produces local and linear explanations based on the model input. This allows us to measure the quality of the explanations generated quantitatively using REVEL metrics, which measure different aspects of local and linear explanations. 
+
+Based on the state-of-the-art XAI regularization method X-SHIELD, we propose three novel XAI regularization methods: FX-SHIELD, FR-SHIELD, and H-SHIELD. Regularization methods add a penalty to the model during training. The first, FX-SHIELD, adds a penalty as the model's prediction varies by removing the least important features extracted by the convolutional part of the model. FR-SHIELD does the same as FX-SHIELD but removes random features without considering their importance. Finally, H-SHIELD combines FX-SHIELD and X-SHIELD to try to combine the improvements introduced by each proposal.
+
+
+For training the model with the different methods, a dataset of 126,109 images measuring 224 × 224 pixels is available, corresponding to prostate biopsy patches. Each of these images is labeled with one of fourteen possibilities. Each possible label represents different types of prostate tissue according to their morphology and whether they are malignant or benign. This will be the class that the model we train predicts for an input patch. We have divided the dataset into 113,491 images ($90\%$) to train the model and 12,618 ($10\%$) to test the classification performance of the models. 
+
+The results obtained show that the X-SHIELD and H-SHIELD methods achieve the best accuracy in validation and testing, surpassing the baseline by $0.7\%$ and $0.6\%$, respectively. In contrast, FX-SHIELD and FR-SHIELD manage to maintain the accuracy of the base model without using regularization. However, FX-SHIELD clearly stands out from the others in terms of the quality of its explanations, achieving better results in two of the five REVEL metrics and obtaining the same results as the rest in another two of the five. The Bayesian tests used confirm that FX-SHIELD outperforms X-SHIELD and H-SHIELD in prescriptivity and conciseness (although the latter is not always significant), and significantly improves on FR-SHIELD in conciseness. In addition, all variants obtain similar values in local fidelity and local concordance. Therefore, although X-SHIELD achieves the best accuracy, FX-SHIELD offers the highest quality explanations, which is crucial in applications where interpretability is a priority.
+
 \thispagestyle{empty}
 
 

@@ -12,7 +12,22 @@
 
 \paragraph*{PALABRAS CLAVE:} redes neuronales, xai, ia explicable, clasificación, explicabilidad, inteligencia artificial, aprendizaje automático, visión por computador, aprendizaje profundo, cáncer de próstata, gleason score, gleason groups.
 
-Resumen en español.
+Este TFM ocupa el problema de mejorar la interpretabilidad para modelos de clasificación de lensiones canceoras en biopsias de próstata. El cáncer de próstata es el segundo tipo de cáncer más frecuente en varones a nivel mundial. Un diagnóstico temprano de este es crucial para reducir la mortalidad del mismo. La biopsia de próstata es el procedimiento utilizado para el diagnóstico del mismo en caso de sospecha. En los últimos años el creciente uso de técnicas de Inteligencia Artifical (IA) en el campo de la salud ha collevado mejoras significativas en el diagnóstico del cáncer de próstata.
+
+Por otro lado, la Inteligencia Artificial Explicable (XAI) es un campo de estudio que busca mejorar la interpretabiliad de los modelos de Machine Learning (ML). El uso de esta es especialmente importante en campos como la medicina, donde la toma de de decisiones repercute en la vida de personas. Para este trabajo proponemos aplicar distintas técnicas XAI para mejorar la interpretabilidad del modelo.
+
+Para la realización de este primero explicamos conceptos claves para entenderlo y estudiamos el estado del arte de los distintos aspectos relevantes a nuestra tarea. Estos son modelos de clasificación de imágenes, métodos XAI para producción de explicaciones, métricas para medir la calidad explicaciones y métodos de regularización XAI.
+
+Para clasificación de imágenes hemos utilizado la red convolucional EfficientNet, que es el estado del arte en poder de clasificación respecto al número de parámetros del modelo. Para producción de las explicaciones de nuestro modelo hacemos uso del método LIME que produce explicaciones locales y lineales a partir de la entrada al modelo. Esto nos permite medir la calidad de las explicaciones generadas de forma cuantitativa con las métricas REVEL, que miden distintos aspectos de explicaciones locales y lineales. 
+
+Partiendo del método X-SHIELD de regularización XAI, que representa el estado del arte, proponemos 3 métodos novedosos de regularización XAI FX-SHIELD, FR-SHIELD y H-SHIELD. Los métodos de regularización añaden una penalización al modelo durante el entrenamiento. El primero, FX-SHIELD, añade una penalización según varíe la predicción del modelo al quitar las características menos importantes extraídas por la parte convolucional del modelo. FR-SHIELD por su parte hace lo mismo que FR-SHIELD pero quitando características aleatorias sin tener en cuenta su importancia. Finalmente H-SHIELD combina FX-SHIELD y X-SHIELD para intentar combinar las mejoras introducidas por cada propuesta.
+
+Para el entrenamiento del modelo con los distintos métodos se dispone de un conjunto de datos de 126.109 imágenes de tamaño $224 \times 224$ correspondientes a parches de biopsias de próstata. Cada una de estas imágenes está etiquetada con una de catorce posibilidades. Cada posible etiqueta representa diferentes tipo de tejido prostático según la morfología de estas y si es tejido maligno o benigno. Esta será la clase que busca predecir el modelo que entrenamos para un parche de entrada. De estas hemos utilizado 113.491 imágenes ($90 \%$) para entrenar el modelo y 12.618 ($10 \%$) para evaluar el rendimiento en clasificación de los modelos.
+
+Los resultados obtenidos muestran que los métodos X-SHIELD y H-SHIELD obtienen la mejor \textit{accuracy} en validación y test, superando al baseline en un $0.7\%$ y $0.6\%$ respectivamente. En cambio, FX-SHIELD y FR-SHIELD consiguen mantener la \textit{accuracy} del modelo base sin utilizar regularización. Sin embargo, FX-SHIELD destaca claramente en la calidad de las explicaciones sobre los demás, logrando mejores resultados en dos de las cinco métricas REVEL y obteniendo los mismo resultados que el resto en otras dos de las cinco. Los test bayesianos utilizados confirman que FX-SHIELD supera a X-SHIELD y H-SHIELD en \textit{prescriptivity} y en \textit{conciseness} (aunque esta última no siempre con significancia), y mejora significativamente a FR-SHIELD en \textit{conciseness}. Además, todas las variantes obtienen valores similares en \textit{local fidelity} y \textit{local concordance}. Por tanto, aunque X-SHIELD logra la mejor precisión, FX-SHIELD ofrece las explicaciones de mayor calidad, lo que es crucial en aplicaciones donde la interpretabilidad es prioritaria.
+
+
+
 \thispagestyle{empty}
 
 \endinput

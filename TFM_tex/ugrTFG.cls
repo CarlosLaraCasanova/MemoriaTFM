@@ -293,7 +293,9 @@
 
           
           \bigskip
-          \textsf{\normalsize{Curso académico \miCurso}}
+          \textsf{\normalsize{Curso académico \miCurso  Convocatoria extraordinaria}}\\
+          \textsf{\today}
+          
         \end{flushleft}  
       \end{addmargin}       
 

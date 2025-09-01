@@ -28,12 +28,20 @@ En 2020, el \textbf{cáncer de próstata}, (\textit{Prostate Cancer, PCa}) fue e
     \label{fig:biopsias_ejemplos}
 \end{figure}
 
-
-En el campo de la \textbf{Inteligencia Artificial (IA)}, la necesidad de asegurar transparencia y confiabilidad a dado pie a acuñar el término de \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI}) \cite{XAIManifesto}. El uso de XAI es especiamente importantes en ámbitos donde la toma de decisiones repercute directamente en la vida de las personas, como es el caso de la medicina. La Unión Europea ha propuesto una \href{https://eur-lex.europa.eu/eli/reg/2024/1689/oj}{regulación} para el uso de IA asistida en estos aspectos, entre ellos, que estos sistemas sean capaces de explicar sus decisiones de forma clara y comprensible.
+En los últimos años, el creciente uso de técnicas de \textbf{Inteligencia Artificial (IA)} en el campo de la salud ha conllevado mejoras significativas en el diagnóstico de PCa \cite{Rabaan2022}. En el campo de la IA, la necesidad de asegurar transparencia y confiabilidad ha dado pie a acuñar el término de \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI}) \cite{XAIManifesto}, que es un campo que busca mejorar la interpretabiliad de los modelos de \textbf{Machine Learning (ML)}. El uso de XAI es especialmente importante en ámbitos donde la toma de decisiones repercute directamente en la vida de las personas, como es el caso de la medicina. La Unión Europea ha propuesto una \href{https://eur-lex.europa.eu/eli/reg/2024/1689/oj}{regulación} para el uso de IA asistida en estos aspectos, entre ellos, que estos sistemas sean capaces de explicar sus decisiones de forma clara y comprensible.
 
 Dentro del campo de la XAI, hay diferentes propuestas para la evaluación y la mejora de las explicaciones generadas. Por un lado, herramientas como \textbf{REVEL} \cite{REVEL} permiten analizar la calidad de las mismas de manera robusta. Por otro, enfoques como \textbf{X-SHIELD} \cite{XSHIELD} buscan mejorar las explicaciones mediante técnicas de regularización que aseguran el buen comportamiento de la generación de explicaciones. Aplicar estas técnicas en imagen médica puede ayudar a mejorar la interpretación de las personas profesionales de la salud de las decisiones de una IA que asista.
 
-En este contexto este Trabajo de Fin de Máster trata de resolver el problema de \textbf{construir un modelo de IA de clasificación para lesiones cancerosas en biposias de próstata} y de la \textbf{mejora en interpretabilidad del modelo mediante técnicas de XAI}. Para esto se vamos a utilizar las herramientas REVEL y XSHIELD, y propondremos posibles mejoras de XSHIELD.
+En este contexto este Trabajo de Fin de Máster trata de resolver el problema de \textbf{construir un modelo de IA de clasificación para lesiones cancerosas en biposias de próstata} y de la \textbf{mejora en interpretabilidad del modelo mediante técnicas de XAI}, ver la Figura \ref{fig:IntroduccionTFMFigura}. Para esto se vamos a utilizar las herramientas REVEL y XSHIELD, y propondremos posibles mejoras de XSHIELD.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/figura}
+
+    \caption{En esta imagen se resumen el problema del TFM. Entrenaremos un modelo de clasificación de IA para la predicción de imágenes de biopsias de próstata. Produciremos explicaciones del modelo para datos de entrada. Mediremos la calidad de estas explicaciones con REVEL. Para mejorar la calidad de estas, entrenaremos los modelos con técnicas de regularización XAI.}
+    \label{fig:IntroduccionTFMFigura}
+\end{figure}
+
 
 
 El TFM se estructura del siguiente modo. En primer lugar vamos a introducir los fundamentos teóricos necesarios para el correcto entendimiento del trabajo realizado (Capítulo \ref{cap:ft}). Después se va a hacer un estudio del estado del arte (Capítulo \ref{cap:eda}). A continuación presentamos las propuestas de este TFM (Capítulo \ref{cap:met}). En el Capítulo \ref{cap:exp} se describe el conjunto de datos con el que trabajamos, los distintos experimentos que realizamos y discutimos los resultados . Finalmente en el Capítulo \ref{cap:conc} se incluyen conclusiones y posibles trabajos futuros.
@@ -544,7 +552,7 @@ Este Trabajo de Fin de Máster trata de resolver el problema de construir un mod
 \item Métricas de XAI de calidad de las explicaciones producidas para poder comparar los distintos métodos utilizados.
 \end{itemize}
 
-\subsection*{Modelo de clasificación}
+\subsection*{Modelo de clasificación de imágenes}
 
 \textbf{Efficientnet} \cite{efficientnet2019} es una red introducida en 2019 que se sigue considerando estado del arte en clasificación de imágenes cuando se mide eficiencia computacional, es decir, rendimiento obtenido número de parámetros. En la Figura \ref{fig:efficientnet_grafica} se puede apreciar como es más eficiente en cómputo respecto otros modelos de clasificación de imágenes ResNet \cite{resnet} o DenseNet \cite{densenet} para el dataset Imagenet. 
 
