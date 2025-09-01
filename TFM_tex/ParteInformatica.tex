@@ -1,7 +1,7 @@
 \newpage
 \chapter{Introducción}
 
-En 2020, el \textbf{cáncer de próstata}, (\textit{Prostate Cancer, PCa}) fue el segundo tipo de cáncer más frecuente, y el quinto más mortal, en varones a nivel mundial \cite{GlobalCancer}. Un diagnóstico temprano de este es crucial para reducir la mortalidad del mismo. A día de hoy, el diagnóstico del PCa se basa en la realización de una \textbf{biopsia de próstata} en caso de sospecha, tras la evaluación inicial mediante pruebas como la medición del antígeno prostático específico o el examen rectal digital. Una biopsia de próstata es una prueba que consiste en la extracción de pequeños tejidos de la próstata para examinar posibles signos de cáncer (Ver Figura \ref{fig:biopsias_ejemplos}). El \textbf{Sistema de Puntuación de Gleason} (\textit{Gleason Score}) es una calificación, en el rango de 2 a 10, que se da a biopsias de la próstata tras ser examinadas bajo un microscopio \cite{GleasonGov}. Valores más altos indican cánceres más agresivos y de crecimiento más rápido. En 2014 la \textbf{Sociedad Internacional de Patología Urológica} (\textit{International Society of Urological Pathology, ISUP}) propuso un nuevo sistema basado en la Puntuación de Gleason, que propone cinco grupos ordenados (\textbf{Gleason Groups, GGs}) \cite{ISUP2014Disc}:
+En 2020, el \textbf{cáncer de próstata}, (\textit{Prostate Cancer, PCa}) \textcolor{red}{Yo no introduciría un acrónimo que solo vas a usar 2 veces contadas} fue el segundo tipo de cáncer más frecuente, y el quinto más mortal, en varones a nivel mundial \cite{GlobalCancer}. Un diagnóstico temprano de este es crucial para reducir la mortalidad del mismo. A día de hoy, el diagnóstico del PCa se basa en la realización de una \textbf{biopsia de próstata}\textcolor{red}{No se si pondría en negrita este detalle} en caso de sospecha, tras la evaluación inicial mediante pruebas como la medición del antígeno prostático específico o el examen rectal digital. Una biopsia de próstata es una prueba que consiste en la extracción de pequeños tejidos de la próstata para examinar posibles signos de cáncer (Ver Figura \ref{fig:biopsias_ejemplos}). El \textbf{Sistema de Puntuación de Gleason} (\textit{Gleason Score})\textcolor{red}{ Nuestro trabajo es en español, no debemos usar anglicismos además tan traducibles como lo has hecho (puntuación de Gleason vs Gleason Score)} es una calificación, en el rango de 2 a 10, que se da a biopsias de la próstata tras ser examinadas bajo un microscopio \cite{GleasonGov}. Valores más altos indican cánceres más agresivos y de crecimiento más rápido. En 2014 la \textbf{Sociedad Internacional de Patología Urológica} (\textit{International Society of Urological Pathology, ISUP}\textcolor{red}{Como estas siglas son una entidad, si está bien introducirla aunque sea para usarla una única vez}) propuso un nuevo sistema basado en la Puntuación de Gleason, que propone cinco grupos ordenados (\textbf{Gleason Groups, GGs}\textcolor{red}{Lo mismo, hace falta el acrónimo? Grupo de Gleason 1, Primer Grupo de Gleason...}) \cite{ISUP2014Disc}:
 \begin{itemize}
 \item \textbf{GG1: } Cáncer de grado bajo. Puntuación de gleason 6 o inferior.
 \item \textbf{GG2: } Cáncer de grado medio. Puntuación de gleason 7.
@@ -9,6 +9,7 @@ En 2020, el \textbf{cáncer de próstata}, (\textit{Prostate Cancer, PCa}) fue e
 \item \textbf{GG4: } Cáncer de grado alto. Puntuación de gleason 8.
 \item \textbf{GG5: } Cáncer de grado alto. Puntuación de gleason 9 o 10.
 \end{itemize}
+\textcolor{red}{A mi me parece que la descripción de los grupos se puede hacer de manera más concisa, en un único párrafo propio y haciendo incapié a su caracter incremental, no pondría una lista como tal. }
 
 \begin{figure}[H]
     \centering
@@ -28,6 +29,9 @@ En 2020, el \textbf{cáncer de próstata}, (\textit{Prostate Cancer, PCa}) fue e
     \label{fig:biopsias_ejemplos}
 \end{figure}
 
+\textcolor{red}{Aquí me falta un párrafo que justifique que el puntuar el grupo de Gleason es determinante para el diagnóstico y que se hace a mano por un experto, es costoso a nivel de tiempo de experto y puede ser subjetivo. Esto justifica el uso de IA para ayudar en la tarea.}
+
+\textcolor{red}{El siguiente párrafo me parece que debe ir conectyando en la linea anterior con que el uso de IA puede ayudar en la toma de decisiones pero, como comentas en el siguiente párrafo, en campos donde la decisión de la IA afecta a la vida de las personas, es necesario que la IA sea explicable, y ya entonces introduces XAI.}
 
 En el campo de la \textbf{Inteligencia Artificial (IA)}, la necesidad de asegurar transparencia y confiabilidad a dado pie a acuñar el término de \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI}) \cite{XAIManifesto}. El uso de XAI es especiamente importantes en ámbitos donde la toma de decisiones repercute directamente en la vida de las personas, como es el caso de la medicina. La Unión Europea ha propuesto una \href{https://eur-lex.europa.eu/eli/reg/2024/1689/oj}{regulación} para el uso de IA asistida en estos aspectos, entre ellos, que estos sistemas sean capaces de explicar sus decisiones de forma clara y comprensible.
 
@@ -38,10 +42,13 @@ En este contexto este Trabajo de Fin de Máster trata de resolver el problema de
 
 El TFM se estructura del siguiente modo. En primer lugar vamos a introducir los fundamentos teóricos necesarios para el correcto entendimiento del trabajo realizado (Capítulo \ref{cap:ft}). Después se va a hacer un estudio del estado del arte (Capítulo \ref{cap:eda}). A continuación presentamos las propuestas de este TFM (Capítulo \ref{cap:met}). En el Capítulo \ref{cap:exp} se describe el conjunto de datos con el que trabajamos, los distintos experimentos que realizamos y discutimos los resultados . Finalmente en el Capítulo \ref{cap:conc} se incluyen conclusiones y posibles trabajos futuros.
 
+\textcolor{red}{Una cosa que me corrijió muchas veces Julián en todos los trabajos que he hecho es poner \~ después de cada ref o cite, es decir, "...vease esta referencia~\cite{REVEL}} "
+
+
 
 \section{Objetivos}
 
-El objetivo principal del TFM es la utilización (y propuesta) de técnicas de evaluación y mejora de explicaciones  para modelos de clasificación de imágenes para detección de tejidos cancerosos en biopsias de próstata. Para el desarrollo del TFM, se divide el objetivo en distintos subobjetivos:
+El objetivo principal del TFM es el uso y propuesta de técnicas de evaluación y mejora de explicaciones de modelos de clasificación de imágenes para detección de tejidos cancerosos en biopsias de próstata. Para el desarrollo del TFM, se divide el objetivo en distintos subobjetivos:
 
 \begin{itemize}
 \item Revisión del estado del arte.
@@ -91,24 +98,35 @@ Finalmente han hecho falta alrededor de 300 horas para la realización del TFM. 
 \clearpage
 \chapter{Fundamentos teóricos} \label{cap:ft}
 
+\textcolor{red}{Aquí deberías poner un equeño repaso de los fundamentos teóricos necesarios para entender el trabajo, un párrafo que introduzca el capítulo.}
+
+\textcolor{red}{Por otra parte, haría varios cambios en la estructura de los fundamentos teóricos:}
+\begin{itemize}
+    \item \textcolor{red}{Primero, en aprendizaje automático, introduciría el concepto en un primer párrafo y, }
+    \item \textcolor{red}{Segundo, }
+\end{itemize}
 
 \section{Aprendizaje automático}
 
-El \textbf{aprendizaje automático} (AA) o \textbf{machine learning} (ML) es una rama de la \textbf{inteligencia artificial} que se encarga del desarrollo de algoritmos que aprendan de datos o experiencias con el fin de mejorar su rendimiento en ciertas tareas \cite{alpaydin_introduction_2010-1, Mostafa2012, PatternRecogLibro, pml1Book}. Estos algoritmos disponen de un \textbf{modelo} definido por ciertos parámetros y dichos parámetros serán los que se aprendan a través del \textbf{entrenamiento} o \textbf{aprendizaje}.
+El \textbf{aprendizaje automático} (AA) o \textbf{machine learning} (ML) es una rama de la \textbf{inteligencia artificial}\textcolor{red}{ya has introducido IA, si la introduces, lo suyo es usarlo siempre} que se encarga del desarrollo de algoritmos que aprendan de datos o experiencias con el fin de mejorar su rendimiento en ciertas tareas \cite{alpaydin_introduction_2010-1, Mostafa2012, PatternRecogLibro, pml1Book}\textcolor{red}{Normalmente, cuando se introduce una cita, se introduce solamente una, si poner vartias seguidas es como que las pones por cumplir.}. Estos algoritmos disponen de un \textbf{modelo} definido por ciertos parámetros y dichos parámetros\textcolor{red}{..., los cuales serán los que...} serán los que se aprendan a través del \textbf{entrenamiento} o \textbf{aprendizaje}. \textcolor{red}{se debería unificar la terminología utilizada a lo largo del documento. Por ejemplo, si se introduce el término "aprendizaje automático", se debería utilizar de forma consistente en lugar de alternar con "machine learning". Recomiendo el uso de AA, ya que es el término en español y el trabajo está en español. entrenamiento o aprendizaje, elije uno y úsalo de forma consistente.}
 
-Para saber a qué nos referimos cuando se habla de que el algoritmo \textit{``aprende''} conviene destacar la siguiente definición proveniente de \cite{mitchell_machine_1997}: \textit{``Un programa se dice que aprende de una experiencia E con respecto a una clase de tareas T y a una medida de rendimiento T, si su rendimiento en las tareas en T, medido por P, mejora con la experiencia E."}
+Para saber a qué nos referimos cuando se habla de que el algoritmo \textit{``aprende''} conviene destacar la siguiente definición proveniente de \cite{mitchell_machine_1997}: \textit{``Un programa se dice que aprende de una experiencia E con respecto a una clase de tareas T y a una medida de rendimiento T, si su rendimiento en las tareas en T, medido por P, mejora con la experiencia E."} \textcolor{red}{Antes de usar el término de "aprender", la debes introducir como haces aquí. Pegaría dentro del párrafo anterior resumido }
 
-El AA se utiliza habitualmente para resolver problemas complejos que no se pueden o se saben resolver con algoritmos tradicionales diseñados por humanos. Además se requiere tener datos de los que poder aprender. Algunos de los campos donde se utilizan el AA para resolver este tipo de problemas son el procesamiento de lenguaje natural, el reconocimiento del habla o la visión por computador, entre muchos otros.
+El AA se utiliza habitualmente para resolver problemas complejos que no se pueden o se saben resolver con algoritmos tradicionales diseñados por humanos\textcolor{red}{sería más claro decir "que no se pueden abarcar fácilmente" o "para los cuales no se conoce una solución algorítmica directa". Los problemas además no se resuelven, se abarcan. Resolver es para cosas exactas, los problemas de AA como clasificación de imágenes las cuales no son exactas, se abarcan}. Además, se requiere tener datos de los que poder aprender\textcolor{red}{haría hincapié en el volumen de datos también}. Algunos de los campos donde se utilizan el AA para resolver este tipo de problemas son el procesamiento de lenguaje natural, el reconocimiento del habla o la visión por computador, entre muchos otros.
 
-Los algoritmos de AA se clasifican en distintos paradigmas dependiendo de los datos o experiencia de la que se disponga. Existen tres paradigmas principales: el \textbf{aprendizaje supervisado}, el \textbf{aprendizaje no supervisado} y el \textbf{aprendizaje por refuerzo} \cite{Mostafa2012,Goodfellow-et-al-2016}.
+Los algoritmos de AA se clasifican en distintos paradigmas dependiendo de los datos o experiencia de la que se disponga. Existen tres paradigmas principales: el \textbf{aprendizaje supervisado}, el \textbf{aprendizaje no supervisado} y el \textbf{aprendizaje por refuerzo} \cite{Mostafa2012,Goodfellow-et-al-2016}\textcolor{red}{Lo dicho con las citas. Si las dos son importantes, puedes destacar cada cita individualmente. Si no, usa la más relevante nada mas}.
 
-El aprendizaje supervisado hace referencia a los algoritmos de AA en los que se tiene un conjunto de datos agrupados en pares dato-\textbf{etiqueta}. La etiqueta se corresponde con la salida que se requiere del algoritmo de AA cuando tenga de entrada dicho dato. Un ejemplo típico de conjunto de datos de este tipo sería un conjunto de imágenes de números escritos a mano y para cada imagen el número que está escrito en dicha imagen.
+\textcolor{red}{Además, existen otros tipos de AA: Semi supervisado, autosupervisado, por transferencia, aprendizaje activo... Yo comentaría solamente el supoervisado, el no supervisado y la existencia de otros tipos, los cuales no son relevantes para este trabajo.}
 
-El aprendizaje no supervisado hace referencia a los algoritmos de AA en los que se disponen de datos que no están etiquetados. En este tipo de algoritmos no se quiere aprender algo específico de los datos sino más bien encontrar patrones o estructurar los datos de entrada. Por ejemplo se dispone de distinta información relativa a libros (autor, título, número de páginas, etc) y el algoritmo categoriza los libros en distintas categorías, aunque no se sepa a qué se corresponde cada categoría.
+El aprendizaje supervisado hace referencia a los algoritmos de AA en los que se tiene un conjunto de datos agrupados en pares dato-\textbf{etiqueta}. La etiqueta se corresponde con la salida que se requiere del algoritmo de AA cuando tenga de entrada dicho dato. Un ejemplo típico de conjunto de datos \textcolor{red}{Si hablas de MNIST, citalo} de este tipo sería un conjunto de imágenes de números escritos a mano y para cada imagen el número que está escrito en dicha imagen. \textcolor{red}{Yo también pondría una reflexión que viene del término con su cita: Se le llama supervisado porque la etiqueta supervisa la salida que debe tener el algoritmo.}
+
+El aprendizaje no supervisado hace referencia \textcolor{red}{Usa otra palabra, ya has repetido hace referencia en este párrafo y en el anterior}a los algoritmos de AA en los que se disponen de datos que no están etiquetados. En este tipo de algoritmos no se quiere aprender algo específico de los datos sino más bien encontrar patrones o estructurar los datos de entrada. Por ejemplo se dispone de distinta información relativa a libros (autor, título, número de páginas, etc) y el algoritmo categoriza los libros en distintas categorías, aunque no se sepa a qué se corresponde cada categoría.
 
 En el aprendizaje por refuerzo no se disponen de datos de entrada, sino de una entrada y una \textit{recompensa} correspondiente a cada salida posible para dicha entrada. Este tipo de AA es especialmente útil para aprendizaje de juegos o tareas relacionadas con la teoría de control.
 
-Para este TFG es relevante el aprendizaje supervisado. En particular serán relevantes los dos siguientes problemas típicos de aprendizaje supervisado.
+Para este TFG\textcolor{red}{Ciudado, es TFM no TFG} es relevante el aprendizaje supervisado. En particular serán relevantes los dos siguientes problemas típicos de aprendizaje supervisado.\textcolor{red}{ No es que sea relevante, es que es el enfoque que más se usa en el trabajo.}
+
+\textcolor{red}{Resumen de las subsecciones que se vienen a continuación.}
 
 \subsection{Problema de clasificación}
 Este problema trata de clasificar las entradas de un tipo concreto en un número de clases $k$. Es decir, para una entrada el programa deberá clasificar dicha entrada en una de las $k$ clases. Por lo tanto el algoritmo produce una función $f:\mathbb{R}^n \rightarrow \{1,...,k\}$ que a cada entrada $\bx$ le asocie una clase $y = f(\bx)$. Dicha función tratará de aproximar una función objetivo $g$ que clasifique perfectamente todas las entradas.
