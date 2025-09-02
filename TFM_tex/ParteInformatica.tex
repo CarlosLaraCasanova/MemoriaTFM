@@ -106,26 +106,6 @@ Finalmente han hecho falta alrededor de 300 horas para la realización del TFM. 
 \clearpage
 \chapter{Fundamentos teóricos} \label{cap:ft}
 
-% CORRECCIONES ORGANIZATIVAS - CAPÍTULO 2: FUNDAMENTOS TEÓRICOS
-% =============================================================
-% PROBLEMAS IDENTIFICADOS:
-% - Mezcla conceptos generales de ML/DL con XAI específico
-% - Falta conexión clara con el problema específico del trabajo
-% - No hay justificación de por qué se incluye cada concepto
-%
-% REESTRUCTURACIÓN RECOMENDADA:
-% Dividir en 3 capítulos separados:
-% - Capítulo 2: Fundamentos de Aprendizaje Automático
-% - Capítulo 3: Aprendizaje Profundo y Redes Neuronales Convolucionales
-% - Capítulo 4: Inteligencia Artificial Explicable (XAI)
-%
-% CONTENIDO RECOMENDADO PARA ESTE CAPÍTULO (REDUCIDO):
-% - Solo conceptos esenciales para entender el trabajo
-% - Foco en XAI y regularización
-% - Métricas REVEL específicamente
-% - Conexión directa con métodos propuestos
-%
-
 \textcolor{red}{Aquí deberías poner un pequeño repaso de los fundamentos teóricos necesarios para entender el trabajo, un párrafo que introduzca el capítulo.}
 
 \textcolor{red}{Por otra parte, haría varios cambios en la estructura de los fundamentos teóricos:}
@@ -441,21 +421,25 @@ Como ambas matrices presentan información relevante se define la \textbf{matriz
 A_{i,j} = sign(A^l_{i,j}) \sqrt{|A^l_{i,j}|\cdot|A^p_{i,j}|}
 \end{equation}
 
-A partir de esta matriz se define la \textbf{matriz de importancia normalizada} $A_r=\frac{A}{ max_{A_{i,j}}\{|A_{i,j}|\} }$ que lleva los valores de $A$ al rango $[-1,1]$ manteniendo su signo. Finalmente se define la \textbf{matriz de importancia absoluta} como la matriz $|A|$ que simplemente es la matriz $A_r$ con todos sus elementos en positivo. 
+A partir de esta matriz se define la \textbf{matriz de importancia normalizada} $A_r=\frac{A}{ max_{A_{i,j}}\{|A_{i,j}|\} }$ que lleva los valores de $A$ al rango $[-1,1]$ manteniendo su signo. Finalmente se define la \textbf{matriz de importancia absoluta} como la matriz $|A|$ que simplemente es la matriz $A_r$ con todos sus elementos en positivo. \textcolor{red}{Donde cada elemento $a_{i,j}$ es el valor absoluto de $a_{i,j}$ de $A_r$.}
 
 \highlight{Leyendo tu artículo no me queda claro si la matriz de importancia absoluta es $|A_z|$ o $|A|$}
+\textcolor{red}{Si la confusión es si considero $A^l$ logits y $A^p$ probabilities, la matriz de importancia es la combinación de ambas. Le cambio el nombre a $\mathcal{A}$, no a una simple $A$. Defino varias porque cada uno sirve para una cosa distinta. Para concision, la matriz de importancia relativa absoluta, es decir, $|\mathcal{A}_r|$}. Para concordance y fidelity, la matriz de importancia es $\mathcal{A}_r$, aunque se puede usar indistintamente $\mathcal{A}$, pues es el mismo orden.
 
-Ya estamos en condiciones de introducir las cinco métricas introducidas en REVEL. De aquí en adelante $g(x)$ se toma en el espacio de probabilidades, no en el de \textit{logit}.
+Ya estamos en condiciones de introducir las cinco métricas introducidas en REVEL. De aquí en adelante, $g(x)$ se toma en el espacio de probabilidades, no en el de \textit{logit}.
+
+\textcolor{red}{Las comas se deben de introducir bastante más, es un respiro para el lector. Por ejemplo, en la frase anterior te lo he cambiado: De aquí en adelante,(coma)... . Repasa en el texto, o pidele a algún chat como copilot, chatgpt o cluade que te ofrezca cambios y los repasas.}
 
 \subsubsection*{Local concordance}
+\textcolor{red}{Siempre que hables de una introducción de un término o una propuesta, primero debes poner un párrafo con la idea intuitiva de la propuesta, y luego la definición matemática. Esto vale para todas las métricas.}
 
-Se define como:
+\textcolor{red}{Formalmente, dados el modelo $f$ y la explicación $g$ para una instancia $x$, podemos definir...}Se define como:
 
 \begin{equation}
-Local\_Concordance(g) =  1 - \frac{||f(x)-g(x)||}{C'}
+Local\_Concordance(g) =  1 - \frac{||f(x)-g(x)||}{C'}\textcolor{red}{como es la continuación de un frase que es una ecuación, se pone coma al final},
 \end{equation}
 
-Dónde $||\cdot||$ es una norma arbitraria (por ejemplo la norma euclídiana $||\cdot||_2$) y $C'$ es la distancia máxima posible entre dos vectores de probabilidad (por ejemplo en el caso de $||\cdot||_2$ se cumple que $C'=\sqrt{2}$). 
+\textcolor{red}{y se continua la frase con minúscula: d}ónde $||\cdot||$ es una norma arbitraria (por ejemplo la norma euclídiana $||\cdot||_2$) y $C'$ es la distancia máxima posible entre dos vectores de probabilidad (por ejemplo\textcolor{red}{ejemplo de coma:,} en el caso de $||\cdot||_2$ se cumple que $C'=\sqrt{2}$). 
 
 Notemos que esta métrica está definida en el intervalo $[0,1]$ dónde el valor máximo se alcanza cuando $f(x) = g(x)$ y la mínima ocurre cuando ambas funciones clasifican $x$ en clases distintas con probabilidad 1.
 
@@ -489,7 +473,8 @@ Esta métrica pretende estudiar si la explicación $g$ es capaz de predecir corr
 \subsubsection*{Conciseness}
 Se define como:
 
-\highlight{Aquí he adaptado la fórmula de \href{tu artículo}{https://arxiv.org/abs/2211.06154} con la información de la documentación de tu código en github para que quede más claro (a mi me queda más claro).} 
+\highlight{Aquí he adaptado la fórmula de \href{tu artículo}{https://arxiv.org/abs/2211.06154}\textcolor{red}{Okey pero mensiona el que está publicado, no el arxiv jaja} con la información de la documentación de tu código en github para que quede más claro (a mi me queda más claro).} 
+\textcolor{red}{Perfecto, sin problema}
 
 \begin{equation}
 Conciseness(g) =  \frac{1}{f'-1} \sum_{i=1}^{f'} 1-I_i \\
@@ -506,7 +491,7 @@ Observemos que $v_i$ es un vector en que cada elemento $j$ representa la importa
 
 Esta métrica busca medir la brevedad de la explicación, es decir, cuantas menos características sean relevantes para la explicación, más concisa se considera la explicación. Luego mide la habilidad de la explicación de concentrarse en las características importantes. Al contrario que las métricas anteriores, dependiendo de la tarea se podría querer más o menos \textit{conciseness} ya que valores demasiados bajos podrían indicar que el modelo se centra en cosas irrelevantes (por ejemplo en imágenes que se centre en pocos píxeles podría ser malo).
 
-\subsubsection*{Robustness over explanations}
+\subsubsection*{Robustness over explanations\textcolor{red}{Español}}
 
 Se define como:
 
@@ -529,9 +514,11 @@ Esta no es una métrica sobre la explicación en específico sino sobre el méto
 
 \subsection{Regularización X-Shield} \label{subsec:XSHIELD}
 
-La \textbf{regularización} \cite{XSHIELD, Regularization} es la modificación de la arquitectura del modelo, del proceso de aprendizaje o inferencia para imponer algún criterio sobre este. Por ejemplo, dropout, que ya se vió previamente, es una regularización. 
+La \textbf{regularización} \cite{XSHIELD, Regularization}\textcolor{red}{Es una regularización, no 'la'} es la modificación de la arquitectura del modelo\textcolor{red}{No se modifica la arquitectura, se modifican los pesos}, del proceso de aprendizaje o inferencia para imponer algún criterio \textcolor{red}{de calidad}sobre este. Por ejemplo, dropout, que ya se vió previamente, es una regularización.\textcolor{red}{No hace falta esta frase, ya lo has dicho. Igualmente, no hace falta que aclares qué es una regularizaciñon de nuevo si ya lo has dicho. En tal caso, este párrafo debe ir más en la linea de 'Como ya se ha visto, existen técnicas de regularización como dropout que...' }
 
-En particular nos interesan las regularizaciones que implican añadir a la función de coste un nuevo término que indica el criterio que queremos minimizar en el modelo. Algunos ejemplos típicos son la regularización L1 o L2. En general se tiene que una regularización de este tipo se expresa como:
+En particular nos interesan las regularizaciones que implican añadir a la función de coste un nuevo término que indica el criterio que queremos minimizar en el modelo. Algunos ejemplos típicos son la regularización L1 o L2. En general\textcolor{red}{coma} se tiene que una regularización de este tipo se expresa como:
+
+\textcolor{red}{Te propongo que primero hables de las regularizaciones generales y su definición. En párrafos posteriores, introduces 'lo particular' que te interesa.}
 
 \begin{equation}
 coste\_regularizado(\Theta, X, Y) = coste(f_\Theta (X), Y) + regularizacion(X,\Theta )
@@ -539,17 +526,15 @@ coste\_regularizado(\Theta, X, Y) = coste(f_\Theta (X), Y) + regularizacion(X,\T
 
 Dónde se tiene que $\Theta$ son el conjunto de parámetros del modelo, $X$ son las entradas del conjunto de datos y $Y$ las salidas. Por lo tanto la regularización es una función que puede ser de los parámetros y de las datos de entrada.
 
-En primer lugar presentamos la familia de regularizaciones \textbf{\textit{Transformation-Selective Hidden Input Evaluation for Learning} ,T-SHIELD} \cite{XSHIELD}. Esta esta diseñada para hacer que el modelo aprenda con menos features. Para ello se ocluye parte de la entrada. 
+En primer lugar, presentamos la familia de regularizaciones \textbf{\textit{Transformation-Selective Hidden Input Evaluation for Learning} ,T-SHIELD} \cite{XSHIELD}. Esta está diseñada para hacer que el modelo aprenda con menos features. Para ello se ocluye\textcolor{red}{ oculta} parte de la entrada. Formalmente, se utiliza una transformación $T: \mathbb{R}^F \rightarrow \mathbb{R}^F$ tal que $T(x)_i = x_0$ si $i$ es una característica a ocultar y $T(x)_i = x_i$ si no lo es. Es decir, está transformación cambia todas las características de una entrada $x$ por un valor constante $x_0$ y deja el resto intactos.
 
-Para ello se utiliza una transformación $T: \mathbb{R}^F \rightarrow \mathbb{R}^F$ tal que $T(x)_i = x_0$ si $i$ es una característica a esconder y $T(x)_i = x_i$ si no lo es. Es decir está transformación cambia todas las características de una entrada $x$ por un valor constante $x_0$ y deja el resto intactos.
-
-Para una transformación $T$ como la anterior descrita, se define la regularización T-SHIELD como sigue:
+Para una transformación $T$ como la anterior descrita\textcolor{red}{ descrita anteriomente}, se define la regularización T-SHIELD como sigue:
 
 \begin{equation}
 T-SHIELD(x,\Theta) = KL(f_\Theta(T(x)),f_\Theta(x)) + KL(f_\Theta(x),f_\Theta(T(x))) 
 \end{equation}
 
-Dónde $KL(\cdot,\cdot)$ denota la distancia de Kullback-Leibler, que se trata de un tipo de distancia que mide como difieren dos distribuciones distintas. Por lo tanto esta regularización no es más que la distancia de Kullback-Leibler simétrica. Según como se construya la transformación $T$ esta regularización penalizará ciertos aspectos del modelo. En la Figura \ref{fig:tshield_flow} se puede ver cómo funcionaría una regularización de esta familia de forma general.
+Dónde $KL(\cdot,\cdot)$ denota la distancia\textcolor{red}{ES UNA DIVERGENCIA, NO UNA DISTANCIA. A otro estudiante de TFG le sacaron los colores por decir esto} de Kullback-Leibler, que se trata de un tipo de distancia que mide como difieren dos distribuciones distintas. Por lo tanto, esta regularización no es más que la distancia de Kullback-Leibler simétrica. Según como se construya la transformación $T$ esta regularización penalizará ciertos aspectos del modelo. En la Figura \ref{fig:tshield_flow} se puede ver cómo funcionaría una regularización de esta familia de forma general.
 
 \begin{figure}[h]
 \noindent
