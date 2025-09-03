@@ -120,14 +120,14 @@ El aprendizaje no supervisado se refiere a los algoritmos de AA en los que se di
 
 Para este TFM el enfoque utilizado es el del aprendizaje supervisado dado que disponemos de datos etiquetados. En particular serán relevantes los dos siguientes problemas típicos de aprendizaje supervisado.
 
-\subsection{Problema de clasificación}
-Este problema trata de clasificar las entradas de un tipo concreto en un número de clases $k$. Es decir, para una entrada el programa deberá clasificar dicha entrada en una de las $k$ clases. Por lo tanto el algoritmo produce una función $f:\mathbb{R}^n \rightarrow \{1,...,k\}$ que a cada entrada $\bx$ le asocie una clase $y = f(\bx)$. Dicha función tratará de aproximar una función objetivo $g$ que clasifique perfectamente todas las entradas.
-
-Para este problema se disponen de una serie de datos de entrada $\{\bx_1,...,\bx_N\}$ con $\bx_i\in\mathbb{R}^n$ y sus clases correspondientes $\{y_1,...,y_N\}$ con $y_i \in \{1,...,k\}$. 
-
-
 \subsection{Problema de regresión}
-Este problema es similar al de clasificación, pero la función que aprende el algoritmo es de la forma $f:\mathbb{R}^n \rightarrow\mathbb{R}^m$. Por lo tanto ahora el programa debe predecir un valor numérico (o varios si $m > 1$) para una entrada concreta. Al igual que ocurría en el problema de clasificación se disponen de una serie de datos de entrada y el resultado que se espera del programa para dichas entradas, es decir $\{\bx_1,...,\bx_N\}$ con $\bx_i\in\mathbb{R}^n$ y  $\{\by_1,...,\by_N\}$ con $\by_i \in \mathbb{R}^m$. 
+Este problema consiste en aprender una función de la forma $f:\mathbb{R}^n \rightarrow\mathbb{R}^m$. Por lo tanto, el programa debe predecir un valor numérico (o varios si $m > 1$) para una entrada concreta. Para este problema se disponen de una serie de datos de entrada $\{\bx_1,...,\bx_N\}$ con $\bx_i\in\mathbb{R}^n$ y los resultados que se esperan del programa para dichas entradas, es decir $\{\by_1,...,\by_N\}$ con $\by_i \in \mathbb{R}^m$. Dicha función tratará de aproximar una función objetivo $g$ que relacione a cada entrada con su valor numérico exacto. 
+
+\subsection{Problema de clasificación}
+Este problema trata de clasificar las entradas de un tipo concreto en un número de clases $k$. Es decir, para una entrada el programa deberá clasificar dicha entrada en una de las $k$ clases. Por lo tanto, el algoritmo produce una función $f:\mathbb{R}^n \rightarrow \{1,...,k\}$ que a cada entrada $\bx$ le asocie una clase $y = f(\bx)$. Dicha función tratará de aproximar una función objetivo $g$ que clasifique perfectamente todas las entradas.
+
+Para este problema se disponen de una serie de datos de entrada $\{\bx_1,...,\bx_N\}$ con $\bx_i\in\mathbb{R}^n$ y sus clases correspondientes $\{y_1,...,y_N\}$ con $y_i \in \{1,...,k\}$.  
+
 
 \subsection{Optimización} \label{optimización}
 
@@ -192,6 +192,11 @@ Cuando se optimiza un modelo de IA, puede ocurrir que el modelo se ajuste muy bi
 \caption{ Esta figura muestra el error en entrenamiento en azul y el error en los datos con los que no se entrena el modelo en rojo a lo largo del entrenamiento. Se puede ver como a partir de la línea verde el modelo sigue aprendiendo de los datos de entrada pero empeora el poder de generalización con los datos con los que no entrena.}
 \label{fig:sobreentrenamiento}
 \end{figure}
+
+
+\subsection{Aprendizaje transferido}
+
+El \textbf{aprendizaje transferido} (\textit{transfer learning}) es una técnica de AA utilizada para transferir conocimiento extraído por un modelo para resolver una tarea para mejorar el rendimiento de dicho modelo para resolver otra tarea relacionada. La idea es que las representaciones aprendidas por el modelo pueden ser útiles para otros problemas distintos del problema específico para el que fueron entrenadas. Esta técnica permite ahorrar tiempo de entrenamiento, reduce el número de datos necesario y permite conseguir mejores resultados.
 
 \section{Deep Learning}
 \textbf{Deep learning} (DL) o \textbf{aprendizaje profundo}, (AP)~\cite{DeepLearningFoundationsConcepts, Goodfellow-et-al-2016, LeCun-Yann-Bengio, UnderstandingDeepLearning, Schmidhuber_2015} es un subcampo del AA determinado por los métodos con los que aprende y el tipo de datos con los que trata. Los algoritmos de AP pueden tratar datos poco estructurados como pueden ser imágenes o textos. Este tipo de algoritmos automatizan la extracción de características, es decir, determinan qué información de los datos es relevante para la resolución del problema. Esto elimina parte de la intervención humana necesaria a la hora de crear el algoritmo.
@@ -283,8 +288,8 @@ Este operador no es más que la adaptación de la convolución al caso en el que
  
 \begin{figure}[h]
 \noindent
-\makebox[\textwidth]{\includegraphics[scale=0.5]{images/ejemplo_convolucion}}
-\caption{En esta imagen se puede ver un ejemplo de una convolución aplicada a una entrada de dimensiones $3\times 4$ por un kernel de dimensiones $2\times 2$. Se puede ver que la salida tiene tamaño $2\times 3$. Notablemente se puede ver que al contrario que en la definición de la operación de convolución dada, aquí no se le da la vuelta al kernel, como suele ocurrir en la práctica. Imagen extraída de \protect\cite{Goodfellow-et-al-2016}.}
+\makebox[\textwidth]{\includegraphics[scale=0.4]{images/ejemplo_convolucion}}
+\caption{En esta figura se puede ver un ejemplo de una convolución aplicada a una entrada de dimensiones $3\times 4$ por un kernel de dimensiones $2\times 2$. Se puede ver que la salida tiene tamaño $2\times 3$. Notablemente se puede ver que al contrario que en la definición de la operación de convolución dada, aquí no se le da la vuelta al kernel, como suele ocurrir en la práctica. Imagen extraída de \protect\cite{Goodfellow-et-al-2016}.}
 \label{fig:ejemplo_convolucion}
 \end{figure}
 
@@ -295,7 +300,7 @@ Por lo visto hasta ahora, el filtro se aplica posición a posición de izquierda
 \begin{figure}[h]
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.5]{images/ejemplo_convolucion_3canales}}
-\caption{Aquí se puede ver un ejemplo de una convolución aplicada a una entrada con 3 canales, uno por cada color primario. Se ve cómo el kernel ahora tiene 3 canales también. Imagen extraída de \url{https://saturncloud.io/blog/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way/}.}
+\caption{En esta figura se puede ver un ejemplo de una convolución aplicada a una entrada con 3 canales, uno por cada color primario. Se ve cómo el kernel ahora tiene 3 canales también. Imagen extraída de \url{https://saturncloud.io/blog/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way/}.}
 \label{fig:ejemplo_convolucion_3canales}
 \end{figure}
 
@@ -949,10 +954,7 @@ Los experimentos han sido ejecutados en los servidores de cómputo Atenea y Hera
 
 Los datos están divididos en dos conjunto bien diferenciados, \textit{train} y \textit{val}. El conjunto de \textit{train} contiene 113.491 imágenes ($~90\%$ de los datos) mientras que \textit{val} contiene las 12.618 imágenes restantes ($~10\%$ de los datos). Está partición de los datos se realizó para entrenamiento/test de los modelos y es la que vamos a utilizar. Se puede comprobar que esta partición de los datos mantiene la proporción estratificada de las clases como se puede ver en la Figura \ref{fig:distribucionDatosTrainTest}.
 
-Los modelos se van a entrenar con el conjunto de entrenamiento y se evaluará con los datos del conjunto de test. Esta división de los datos se realiza para tener un conjunto,
-el de test, que no haya visto el modelo durante el entrenamiento para evaluar el rendimiento
-real del modelo para datos que aún no ha visto. Esta práctica se utiliza comúnmente para evitar
-el sobreentrenamiento de la red. La división de 90/10 es adecuada para nuestro conjunto de datos porque disponemos de una cantidad muy grande de datos (126.109 imágenes).
+Los modelos se van a entrenar con el conjunto de entrenamiento y se evaluará con los datos del conjunto de test. Esta división de los datos se realiza para tener un conjunto, el de test, que no haya visto el modelo durante el entrenamiento para evaluar el rendimiento real del modelo para datos que aún no ha visto. Esta práctica se utiliza comúnmente para evitar el sobreentrenamiento de la red. La división de 90/10 es adecuada para nuestro conjunto de datos porque disponemos de una cantidad muy grande de datos (126.109 imágenes).
 
 \paragraph*{Validacion}
 
