@@ -1,0 +1,27 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+\chapter{Archivos del proyecto}\label{ap:apendice1}
+
+En este apéndice mostramos una descripción de los distintos módulos utilizados en el proyecto y qué contiene cada uno. Estos son los siguientes:
+
+\begin{itemize}
+\item \textbf{SHIELD/shield.py:} éste es el módulo más importante de todo. En él vienen las funciones para calcular las importancias de las características y las implementaciones de los distintos métodos. En particular se ha añadido a este archivo los métodos FX-SHIELD y FR-SHIELD.
+
+\item \textbf{procedures/cargar\_datos.py:} este módulo es completamente nuevo y es necesario para cargar los datos del TFM en un \textit{dataset} de \textit{pytorch}. Este módulo se basa en la manera en la que se cargan los \textit{datasets} utilizados en el trabajo original de X-SHIELD, cuya implementación se puede ver en el \href{https://github.com/ari-dasci/S-ReVel}{GitHub} de las métricas REVEL.
+
+\item \textbf{procedures/procedures.py:} aquí vienen implementadas las funciones para cargar el modelo clasificador (\textit{EfficientNet} en nuestro caso) y las funciones que realizan un paso de entrenamiento y validación.
+
+\item \textbf{tests/test.py y tests/train.py:} scripts para el entrenamiento de la red con X-SHIELD y para obtención de \textit{accuracy} en test, respectivamente.
+
+\item \textbf{tests/mitrain.py, tests/mitest.py, tests/mitrain\_hibrido.py:} los dos primeros son scripts para el entrenamiento de la red con X-SHIELD, FX-SHIELD o FR-SHIELD, y para obtención de \textit{accuracy} en test, respectivamente. El tercero es una adaptación para entrenar H-SHIELD. Estos son muy parecidos a los anteriores pero están adaptados para utilizar nuestro conjunto de datos y los nuevos métodos.
+
+\item \textbf{tests/REVEL\_metrics.py y tests/mi\_REVEL\_metrics.py:} \textit{script} original para calcular las métricas REVEL para un modelo y la versión modificada para utilizar el conjunto de datos de este TFM.
+\end{itemize}
+
+Además durante la ejecución de los experimentos se disponía de una carpeta llamada \textbf{datosTFM} dónde había dos carpetas, \textbf{train} y \textbf{val} que contenían los datos de entrenamiento y test respectivamente.
+
+\endinput
+%------------------------------------------------------------------------------------
+% FIN DEL APÉNDICE. 
+%------------------------------------------------------------------------------------
