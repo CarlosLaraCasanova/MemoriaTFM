@@ -39,7 +39,7 @@ En este contexto este Trabajo de Fin de Máster trata de abarcar el problema de 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{images/figura}
+    \includegraphics[width=0.8\linewidth]{images/diagramaInicio}
 
     \caption{En esta figura se resume el problema del TFM. Entrenaremos un modelo de clasificación de IA para la predicción de imágenes de biopsias de próstata. Produciremos explicaciones del modelo para datos de entrada. Mediremos la calidad de estas explicaciones con REVEL. Para mejorar la calidad de estas, entrenaremos los modelos con técnicas de regularización XAI.}
     \label{fig:IntroduccionTFMFigura}
@@ -268,6 +268,21 @@ La función de activación sigmoidal se suele utilizar en la capa de salida en l
 \subsubsection{Dropout}
 
 \textbf{Dropout}~\cite{hinton2012improving} se refiere a la técnica utilizada en redes neuronales consistente en ignorar algunas neuronas de forma aleatoria durante el periodo de entrenamiento. Usualmente se le da a cada neurona una probabilidad $p$ de ser ignorado, y en cada paso del algoritmo de entrenamiento se desconecta cada neurona de la red con dicha probabilidad. De esta forma se busca que ninguna neurona sea muy dependiente de la salida de otra neurona específica. Esta técnica regulariza la red lo que hace que la red sea menos propensa a sobreentrenar.
+
+\subsection{Regularización} \label{subsec:Reg}
+
+Una \textbf{regularización}~\cite{XSHIELD, Regularization} es una técnica que consiste en modificar los pesos de un modelo, el proceso de entrenamiento o el de la inferencia para imponer algún criterio de calidad sobre este. Como ya se ha visto, existen técnicas de regularización como \textit{dropout}, que ayudan a reducir el sobreajuste en los modelos. Esta técnica introduce aleatoriedad durante el entrenamiento con el objetivo de mejorar la capacidad de generalización del modelo en datos no vistos.
+
+En particular nos interesan las regularizaciones que implican añadir a la función de coste un nuevo término que indica el criterio que queremos minimizar en el modelo. Algunos ejemplos típicos son la regularización L1 o L2. En general, se tiene que una regularización de este tipo se expresa como:
+
+\begin{equation}
+coste\_regularizado(\Theta, X, Y) = coste(f_\Theta (X), Y) + regularizacion(X,\Theta ),
+\end{equation}
+
+donde se tiene que $\Theta$ son el conjunto de parámetros del modelo, $X$ son las entradas del conjunto de datos y $Y$ las salidas. Por lo tanto la regularización es una función que puede ser de los parámetros y de los datos de entrada. 
+
+Este concepto es crucial para nuestro TFM pues las técnicas XAI que vamos a utilizar, la ya existente y las propuestas, son regularizaciones.
+
 
 \subsection{Redes neuronales convolucionales}
 Las \textbf{redes neuronales convolucionales} (\textit{Convolutional neural networks}, CNN)~\cite{9451544} son un tipo de red neuronal feedforward diseñadas para procesar datos en forma de múltiples arrays. En nuestro caso nos centraremos en el caso en el que la entrada son imágenes, que son arrays en 2 dimensiones (matrices) que contienen tres \textbf{canales}, uno por cada color primario (RGB).  La estructura de las CNNs es una capa de entrada, seguida de varias capas ocultas y una capa de salida. Las capas ocultas suelen estar compuestas por una o varias \textbf{capas convolucionales} seguidas de una \textbf{capa de pooling}, esto repetido varias veces. Además al final de la red se suelen colocar una o varias \textbf{capas totalmente conectadas} hasta la capa de salida.
@@ -502,63 +517,6 @@ En la práctica, para aproximar la \textit{Robustness} se hace la media de la si
 
 Esta no es una métrica sobre la explicación en específico sino sobre el método que las genera. Cuanta más cercana a 1 menos varían las explicaciones generadas por el método estudiado. Esta métrica al contrario que todas las anteriores puede obtener valores negativos, lo que indicaría explicaciones que se ``contradicen''.
 
-\subsection{Regularización X-Shield} \label{subsec:XSHIELD}
-
-Una \textbf{regularización}~\cite{XSHIELD, Regularization} es la modificación de los pesos de un modelo, del proceso de entrenamiento o de inferencia para imponer algún criterio de calidad sobre este. Como ya se ha visto, existen técnicas de regularización como \textit{dropout}, que ayudan a reducir el sobreajuste en los modelos. Esta técnica introduce aleatoriedad durante el entrenamiento con el objetivo de mejorar la capacidad de generalización del modelo en datos no vistos.
-
-En particular nos interesan las regularizaciones que implican añadir a la función de coste un nuevo término que indica el criterio que queremos minimizar en el modelo. Algunos ejemplos típicos son la regularización L1 o L2. En general, se tiene que una regularización de este tipo se expresa como:
-
-\begin{equation}
-coste\_regularizado(\Theta, X, Y) = coste(f_\Theta (X), Y) + regularizacion(X,\Theta ),
-\end{equation}
-
-donde se tiene que $\Theta$ son el conjunto de parámetros del modelo, $X$ son las entradas del conjunto de datos y $Y$ las salidas. Por lo tanto la regularización es una función que puede ser de los parámetros y de lo	s datos de entrada.
-
-En primer lugar presentamos la familia de regularizaciones \textbf{\textit{Transformation-Selective Hidden Input Evaluation for Learning} ,T-SHIELD}~\cite{XSHIELD}. Esta esta diseñada para hacer que el modelo aprenda con menos features. Para ello se oculta parte de la entrada. 
-
-Formalmente, se utiliza una transformación $T: \mathbb{R}^F \rightarrow \mathbb{R}^F$ tal que $T(x)_i = x_0$ si $i$ es una característica a esconder y $T(x)_i = x_i$ si no lo es. Es decir está transformación cambia todas las características de una entrada $x$ por un valor constante $x_0$ y deja el resto intactos.
-
-Para una transformación $T$ como la descrita anteriormente, se define la regularización T-SHIELD como sigue:
-
-\begin{equation}
-T-SHIELD(x,\Theta) = KL(f_\Theta(T(x)),f_\Theta(x)) + KL(f_\Theta(x),f_\Theta(T(x))) 
-\end{equation}
-
-Dónde $KL(\cdot,\cdot)$ denota la divergencia de Kullback-Leibler, que se trata de un tipo de divergencia que mide como difieren dos distribuciones distintas. Por lo tanto esta regularización no es más que la divergencia de Kullback-Leibler simétrica. Según como se construya la transformación $T$ esta regularización penalizará ciertos aspectos del modelo. En la Figura \ref{fig:tshield_flow} se puede ver cómo funcionaría una regularización de esta familia de forma general.
-
-\begin{figure}[h]
-\noindent
-\makebox[\textwidth]{\includegraphics[scale=0.5]{images/tshield_flow}}
-\caption{ En esta figura se puede ver cómo funciona en general la familia de regularizaciones T-SHIELD durante el entrenamiento. En gris se puede ver el flujo normal de la imagen en el modelo. En azul se encontraría la forma en la que la regularización decide qué características ocultar. Finalmente en rojo se encontraría el flujo de la imagen con las características ya ocultadas y cómo se calcula la función de regularización. Imagen extraída de \protect\cite{REVEL}.}
-\label{fig:tshield_flow}
-\end{figure}
-
-
-Se denomina \textbf{XAI-SHIELD (X-SHIELD)} a la regularización de la familia T-SHIELD que para un parámetro $\lambda \in [0,100]$ define la transformación $T$ como aquella que esconde el $\lambda\%$ de las características menos importantes. Para ello, a cada característica le otorga la importancia $||v_i||$ donde $v_i$ es la fila $i$ de la matriz de importancia $\mathcal{A}$ introducida en la subsección \ref{subsec:revel}, pero para el modelo que se está entrenando.
-
-De manera más formal se describe $T_{xai}(x;\lambda)$ como la transformación:
-
-\begin{equation}
-T_{xai}(x_1,...,x_F; \lambda) = (\underbrace{x_0,x_0...,x_0,x_0}_{0 \leq i\leq F : \quad \lambda < \frac{i}{n}\cdot 100\%},x_i,x_{i+1},....,x_F)
-\end{equation}
-
-
-Dónde se ha supuesto los atributos $x_i$ ordenados de menor a mayor por importancia y tenemos que $i$ es el menor valor tal que se ocultan al menos el $\lambda \%$ de características.
-
-
-Se denomina \textbf{Random-SHIELD (R-SHIELD)} a la regularización de la familia T-SHIELD que para un parámetro $\lambda \in [0,100]$ define la transformación $T$ como aquella que esconde un $\lambda\%$ de las características de forma aleatoria (misma probabilidad para cada una). Esta se puede ver como aplicar X-SHIELD dándole la misma importancia a todas las características.
-
-\begin{figure}[h]
-\noindent
-\makebox[\textwidth]{\includegraphics[scale=0.5]{images/rshield_vs_xshield}}
-\caption{ Comparación entre el comportamiento de $T$ en R-SHIELD y X-SHIELD. La imagen está sacada del dataset \textit{Flowers} de clasificación de imágenes de flores. Se puede ver que R-SHIELD oculta partes de la imagen aleatorias, incluyendo partes de la flor a clasificar. Por otro lado X-SHIELD oculta partes del fondo de la imagen que intuitivamente no parecen útiles para clasificar dicha flor. Imagen extraída de \protect\cite{REVEL}.}
-\label{fig:rshield_vs_xshield}
-\end{figure}
-
-
-
-En la Figura \ref{fig:rshield_vs_xshield} se puede apreciar la diferencia entre los comportamientos de los dos tipos de regularización T-SHIELD vistos.
-
 
 
 
@@ -721,7 +679,52 @@ Donde $C$ es el número de clases, $y_i$ es 1 cuando la entrada pertenece a la c
 
 \section{X-SHIELD}
 
-\textbf{X-SHIELD}~\cite{XSHIELD} es el método de regularización XAI con el que vamos a comparar los métodos propuestos a continuación. Además, nuestros métodos están basados en los mismos principios que este método: esconder al modelo las características menos relevantes y penalizar la diferencia entre la predicción original del modelo y la predicción sin dichas características. Todos los detalles acera de X-SHIELD están en la subsección \ref{subsec:XSHIELD}.
+\textbf{X-SHIELD}~\cite{XSHIELD} es el método de regularización XAI con el que vamos a comparar los métodos propuestos a continuación. Además, nuestros métodos están basados en los mismos principios que este método: esconder al modelo las características menos relevantes y penalizar la diferencia entre la predicción original del modelo y la predicción sin dichas características. A continuación describimos su funcionamiento.
+
+En primer lugar presentamos la familia de regularizaciones \textbf{\textit{Transformation-Selective Hidden Input Evaluation for Learning} ,T-SHIELD}~\cite{XSHIELD}. Esta esta diseñada para hacer que el modelo aprenda con menos features. Para ello se oculta parte de la entrada. 
+
+Formalmente, se utiliza una transformación $T: \mathbb{R}^F \rightarrow \mathbb{R}^F$, donde F es el número de características de la entrada al modelo, tal que $T(x)_i = x_0$ si $i$ es una característica a esconder y $T(x)_i = x_i$ si no lo es. Es decir está transformación cambia todas las características de una entrada $x$ por un valor constante $x_0$ y deja el resto intactos.
+
+Para una transformación $T$ como la descrita anteriormente, se define la regularización T-SHIELD como sigue:
+
+\begin{equation}
+T-SHIELD(x,\Theta) = KL(f_\Theta(T(x)),f_\Theta(x)) + KL(f_\Theta(x),f_\Theta(T(x))) 
+\end{equation}
+
+Donde $KL(\cdot,\cdot)$ denota la divergencia de Kullback-Leibler, que se trata de un tipo de divergencia que mide como difieren dos distribuciones distintas. Por lo tanto esta regularización no es más que la divergencia de Kullback-Leibler simétrica. Según como se construya la transformación $T$ esta regularización penalizará ciertos aspectos del modelo. En la Figura \ref{fig:tshield_flow} se puede ver cómo funcionaría una regularización de esta familia de forma general.
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.5]{images/tshield_flow}}
+\caption{ En esta figura se puede ver cómo funciona en general la familia de regularizaciones T-SHIELD durante el entrenamiento. En gris se puede ver el flujo normal de la imagen en el modelo. En azul se encontraría la forma en la que la regularización decide qué características ocultar. Finalmente en rojo se encontraría el flujo de la imagen con las características ya ocultadas y cómo se calcula la función de regularización. Imagen extraída de \protect\cite{REVEL}.}
+\label{fig:tshield_flow}
+\end{figure}
+
+
+Se denomina \textbf{XAI-SHIELD (X-SHIELD)} a la regularización de la familia T-SHIELD que para un parámetro $\lambda \in [0,100]$ define la transformación $T$ como aquella que esconde el $\lambda\%$ de las características menos importantes. Para ello, a cada característica le otorga la importancia $||v_i||$ donde $v_i$ es la fila $i$ de la matriz de importancia $\mathcal{A}$ introducida en la subsección \ref{subsec:revel}, pero para el modelo que se está entrenando.
+
+De manera más formal se describe $T_{xai}(x;\lambda)$ como la transformación:
+
+\begin{equation}
+T_{xai}(x_1,...,x_F; \lambda) = (\underbrace{x_0,x_0...,x_0,x_0}_{0 \leq i\leq F : \quad \lambda < \frac{i}{n}\cdot 100\%},x_i,x_{i+1},....,x_F)
+\end{equation}
+
+
+Donde se han supuesto los atributos $x_i$ ordenados de menor a mayor por importancia y tenemos que $i$ es el menor valor tal que se ocultan al menos el $\lambda \%$ de características.
+
+
+Se denomina \textbf{Random-SHIELD (R-SHIELD)} a la regularización de la familia T-SHIELD que para un parámetro $\lambda \in [0,100]$ define la transformación $T$ como aquella que esconde un $\lambda\%$ de las características de forma aleatoria (misma probabilidad para cada una). Esta se puede ver como aplicar X-SHIELD dándole la misma importancia a todas las características.
+
+\begin{figure}[h]
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.5]{images/rshield_vs_xshield}}
+\caption{ Comparación entre el comportamiento de $T$ en R-SHIELD y X-SHIELD. La imagen está sacada del dataset \textit{Flowers} de clasificación de imágenes de flores. Se puede ver que R-SHIELD oculta partes de la imagen aleatorias, incluyendo partes de la flor a clasificar. Por otro lado X-SHIELD oculta partes del fondo de la imagen que intuitivamente no parecen útiles para clasificar dicha flor. Notemos que para esta imagen, las características de la imagen de entrada son 64 cuadrados que dividen esta en $8\times 8$ características. Imagen extraída de \protect\cite{REVEL}.}
+\label{fig:rshield_vs_xshield}
+\end{figure}
+
+
+
+En la Figura \ref{fig:rshield_vs_xshield} se puede apreciar la diferencia entre los comportamientos de los dos tipos de regularización T-SHIELD vistos.
 
 
 
