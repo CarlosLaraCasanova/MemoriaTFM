@@ -3,7 +3,7 @@
 
 En 2020, el \textbf{cáncer de próstata}, fue el segundo tipo de cáncer más frecuente, y el quinto más mortal, en varones a nivel mundial~\cite{GlobalCancer}. Un diagnóstico temprano de este es crucial para reducir la mortalidad del mismo. A día de hoy, el diagnóstico del cáncer de próstata se basa en la realización de una biopsia de próstata en caso de sospecha, tras la evaluación inicial mediante pruebas como la medición del antígeno prostático específico o el examen rectal digital. Una biopsia de próstata es una prueba que consiste en la extracción de pequeños tejidos de la próstata para examinar posibles signos de cáncer (Ver Figura \ref{fig:biopsias_ejemplos}).
 
-El \textbf{Sistema de Puntuación de Gleason} es una calificación, en el rango de 2 a 10, que se da a biopsias de la próstata tras ser examinadas bajo un microscopio~\cite{GleasonGov}. Valores más altos indican cánceres más agresivos y de crecimiento más rápido. En 2014 la \textbf{Sociedad Internacional de Patología Urológica} (\textit{International Society of Urological Pathology, ISUP}) propuso un nuevo sistema basado en la Puntuación de Gleason, que propone cinco grupos ordenados~\cite{ISUP2014Disc}. Los grupos de Gleason (GG) clasifican el cáncer de próstata en función de su agresividad de manera incremental. El GG1 corresponde a tumores de bajo grado (Gleason $\leq$ 6). El GG2 y el GG3 abarcan los de grado intermedio, ambos con Gleason 7, aunque el GG3 se considera más agresivo que el GG2. El GG4 incluye tumores de alto grado con Gleason 8, mientras que el GG5 representa la forma más agresiva, con puntuaciones Gleason de 9 o 10.
+El \textbf{Sistema de Puntuación de Gleason} es una calificación, en el rango de 2 a 10, que se da a biopsias de la próstata tras ser examinadas bajo un microscopio~\cite{GleasonGov}. Valores más altos indican cánceres más agresivos y de crecimiento más rápido. En 2014 la \textbf{Sociedad Internacional de Patología Urológica} (\textit{International Society of Urological Pathology, ISUP}) propuso un nuevo sistema basado en la Puntuación de Gleason, que propone cinco grupos ordenados~\cite{ISUP2014Disc}. Los grupos de Gleason (GG) clasifican el cáncer de próstata en función de su agresividad de manera incremental. El GG1 corresponde a tumores de bajo grado (puntuación de Gleason $\leq$ 6). El GG2 y el GG3 abarcan los de grado intermedio, ambos con puntuación de Gleason 7, aunque el GG3 se considera más agresivo que el GG2. El GG4 incluye tumores de alto grado con puntuación de Gleason 8, mientras que el GG5 representa la forma más agresiva, con puntuaciones Gleason de 9 o 10.
 
 \begin{figure}[H]
     \centering
@@ -19,7 +19,7 @@ El \textbf{Sistema de Puntuación de Gleason} es una calificación, en el rango 
         \includegraphics[width=\linewidth]{images/EjemploBiopsia3.png}
     \end{subfigure}
 
-    \caption{Tres imágenes correspondientes a tres biopsias distintas.}
+    \caption{Tres imágenes correspondientes a tres biopsias de próstata.}
     \label{fig:biopsias_ejemplos}
 \end{figure}
 
@@ -29,13 +29,13 @@ El sistema de Gleason se ha consolidado como un factor determinante en el diagn�
 Además, un enfoque más cuantitativo, acompañado de la identificación de patrones más específicos, puede contribuir a diferenciar con mayor precisión entre distintas situaciones clínicas y, de esta manera, adaptar el diagnóstico, el plan de tratamiento y las condiciones de vigilancia. Por eso utilizaremos la distinción presentada en la Tabla \ref{tab:datasetClases}.
  
  
-Debido al éxito de los métodos de \textbf{Aprendizaje Automático} (\textit{Machine Learning, ML}) en el campo de la medicina, la Patología Computacional se ha convertido en los últimos años en uno de los temas de aplicación de la \textbf{Inteligencia Artificial (IA)} utilizando imágenes histológicas. Algunos estudios han demostrado que la clasificación de Gleason con IA se traduce en un mejor pronóstico~\cite{Wulczyn2021AIProstate}. 
+Debido al éxito de los métodos de \textbf{Aprendizaje Automático} en el campo de la medicina, la Patología Computacional se ha convertido en los últimos años en uno de los temas de aplicación de la \textbf{Inteligencia Artificial (IA)} utilizando imágenes histológicas. Algunos estudios han demostrado que la clasificación de Gleason con IA se traduce en un mejor pronóstico~\cite{Wulczyn2021AIProstate}. 
 
 En el campo de la IA, la necesidad de asegurar transparencia y confiabilidad ha dado pie a acuñar el término de \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI})~\cite{XAIManifesto}, que es un campo que busca mejorar la interpretabiliad de los modelos de AA. El uso de XAI es especialmente importante en ámbitos donde la toma de decisiones repercute directamente en la vida de las personas, como es el caso de la medicina. La Unión Europea ha propuesto una \href{https://eur-lex.europa.eu/eli/reg/2024/1689/oj}{regulación} para el uso de IA asistida en estos aspectos, entre ellos, que estos sistemas sean capaces de explicar sus decisiones de forma clara y comprensible.
 
 Dentro del campo de la XAI, hay diferentes propuestas para la evaluación y la mejora de las explicaciones generadas. Por un lado, herramientas como \textbf{REVEL}~\cite{REVEL} permiten analizar la calidad de las mismas de manera robusta. Por otro, enfoques como \textbf{X-SHIELD}~\cite{XSHIELD} buscan mejorar las explicaciones mediante técnicas de regularización que aseguran el buen comportamiento de la generación de explicaciones. Aplicar estas técnicas en imagen médica puede ayudar a mejorar la interpretación de las personas profesionales de la salud de las decisiones de una IA que asista.
 
-En este contexto este Trabajo de Fin de Máster trata de abarcar el problema de \textbf{construir un modelo de IA de clasificación para lesiones cancerosas en biposias de próstata} y de la \textbf{mejora en explicabiliadad del modelo mediante técnicas de XAI}, ver la Figura \ref{fig:IntroduccionTFMFigura}. Para esto se vamos a utilizar las herramientas REVEL y XSHIELD, y propondremos posibles mejoras de XSHIELD.
+En este contexto, este Trabajo de Fin de Máster trata de abarcar el problema de \textbf{construir un modelo de IA de clasificación para lesiones cancerosas en biposias de próstata} y de la \textbf{mejora en explicabiliadad del modelo mediante técnicas de XAI}, ver la Figura \ref{fig:IntroduccionTFMFigura}. Para esto se vamos a utilizar las herramientas REVEL y XSHIELD, y propondremos posibles mejoras de XSHIELD.
 
 \begin{figure}[H]
     \centering
@@ -47,7 +47,7 @@ En este contexto este Trabajo de Fin de Máster trata de abarcar el problema de 
 
 
 
-El TFM se estructura del siguiente modo. En primer lugar vamos a introducir los fundamentos teóricos necesarios para el correcto entendimiento del trabajo realizado (Capítulo \ref{cap:ft}). Después se va a hacer un estudio del estado del arte (Capítulo \ref{cap:eda}). A continuación presentamos las propuestas de este TFM (Capítulo \ref{cap:met}). En el Capítulo \ref{cap:exp} se describe el conjunto de datos con el que trabajamos, los distintos experimentos que realizamos y discutimos los resultados . Finalmente en el Capítulo \ref{cap:conc} se incluyen conclusiones y posibles trabajos futuros.
+El TFM se estructura del siguiente modo. En primer lugar vamos a introducir los fundamentos teóricos necesarios para el correcto entendimiento del trabajo realizado (Capítulo \ref{cap:ft}). Después se va a hacer un estudio del estado del arte (Capítulo \ref{cap:eda}). A continuación, presentamos las propuestas de este TFM (Capítulo \ref{cap:met}). En el Capítulo \ref{cap:exp} describimos el conjunto de datos con el que trabajamos, los distintos experimentos que realizamos y discutimos los resultados . Finalmente, en el Capítulo \ref{cap:conc} se incluyen las conclusiones y los posibles trabajos futuros.
 
 
 \section{Objetivos}
@@ -68,10 +68,9 @@ El objetivo principal del TFM es el uso y la propuesta de técnicas de evaluaci�
 \section{Planificación}
 
 
-Para la planificación del TFM se ha tenido en cuenta este son 12 créditos y que un crédito se corresponden con 25 horas de trabajo individual. Por lo tanto se estiman unas 225 horas de trabajo. Teniendo en cuenta que el estudiante se ha dedicado completamente, alrededor de 8 horas al día, el TFM pues empezó en Junio, esto se corresponden con unos dos meses de trabajo. Contando que se no se trabajan los fines de semana el trabajo total se queda en 7 semanas y media. Como no se pudieron dedicar las 8 horas todos los días, el trabajo finalmente se dividió en unas 10 semanas. 
+Para la planificación del TFM hemos tenido en cuenta este son 12 créditos y que un crédito se corresponden con 25 horas de trabajo individual. Por lo tanto se estiman unas 300 horas de trabajo. Teniendo en cuenta que el estudiante se ha dedicado completamente, alrededor de 8 horas al día, el TFM pues empezó en Junio, esto se corresponden con unos dos meses de trabajo. Contando que se no se trabajan los fines de semana el trabajo total se queda en 7 semanas y media. Como no se pudieron dedicar las 8 horas todos los días, el trabajo finalmente se dividió en unas 10 semanas. 
 
-Para el desarrollo de software empleamos una metodología en cascada pues se trata de un
-proyecto con unos requisitos claros y que va a ser desarrollado únicamente por el alumno.
+Para el desarrollo de software empleamos una metodología en cascada pues se trata de un proyecto con unos requisitos claros y que va a ser desarrollado únicamente por el alumno.
 
 
 El trabajo requerido para realizar esta parte del TFM se ha dividido en cuatro fases:
@@ -109,13 +108,13 @@ El \textbf{aprendizaje automático} (AA) o \textbf{machine learning} (ML) es una
 
 Para saber a qué nos referimos cuando se habla de que un algoritmo \textit{``aprende''} conviene destacar la siguiente definición proveniente de~\cite{mitchell_machine_1997}: \textit{``Un programa se dice que aprende de una experiencia E con respecto a una clase de tareas T y a una medida de rendimiento T, si su rendimiento en las tareas en T, medido por P, mejora con la experiencia E."}
 
-El AA se utiliza habitualmente para abarcar problemas complejos para los que no se conoce una solución algorítmica exacta o no se pueden abarcar fácilmente. Además, se requiere tener datos de los que poder aprender, normalmente en grandes volúmenes. Algunos de los campos donde se utilizan el AA para resolver este tipo de problemas son el procesamiento de lenguaje natural, el reconocimiento del habla o la visión por computador, entre muchos otros.
+El AA se utiliza habitualmente para abarcar problemas complejos para los que no se conoce una solución algorítmica exacta o eficiente. Además, se requiere tener datos de los que poder aprender, normalmente en grandes volúmenes. Algunos de los campos donde se utilizan el AA para resolver este tipo de problemas son el procesamiento de lenguaje natural, el reconocimiento del habla o la visión por computador, entre muchos otros.
 
 Los algoritmos de AA se clasifican en distintos paradigmas dependiendo de los datos o experiencia de la que se disponga. En este trabajo introducimos dos de los paradigmas principales: el \textbf{aprendizaje supervisado} y el \textbf{aprendizaje no supervisado}~\cite{Mostafa2012,Goodfellow-et-al-2016}. Existen otros paradigmas no relevantes para este trabajo como el aprendizaje semi supervisado o el autosupervisado.
 
-El aprendizaje supervisado hace referencia a los algoritmos de AA en los que se tiene un conjunto de datos agrupados en pares dato-\textbf{etiqueta}.  La etiqueta se corresponde con la salida que se requiere del algoritmo de AA cuando tenga de entrada dicho dato. El término supervisado proviene de este último hecho, la etiqueta supervisa la salida del algoritmo para un dato. Un ejemplo típico de conjunto de datos de este tipo sería MNIST~\cite{mnist}, este está formado por imágenes de números escritos a mano y para cada imagen el número que está escrito en dicha imagen.
+El aprendizaje supervisado hace referencia a los algoritmos de AA en los que se tiene un conjunto de datos agrupados en pares dato-\textbf{etiqueta}.  La etiqueta se corresponde con la salida que se requiere del algoritmo de AA cuando tenga de entrada dicho dato. El término supervisado proviene de este último hecho, la etiqueta supervisa la salida del algoritmo para un dato. Un ejemplo típico de conjunto de datos de este tipo es MNIST~\cite{mnist}, el cual está formado por imágenes de números escritos a mano y cuya etiqueta para cada imagen es el número que aparece en esta.
 
-El aprendizaje no supervisado se refiere a los algoritmos de AA en los que se disponen de datos que no están etiquetados. En este tipo de algoritmos no se quiere aprender algo específico de los datos sino más bien encontrar patrones o estructurar los datos de entrada. Por ejemplo se dispone de distinta información relativa a libros (autor, título, número de páginas, etc) y el algoritmo categoriza los libros en distintas categorías, aunque no se sepa a qué se corresponde cada categoría.
+El aprendizaje no supervisado se refiere a los algoritmos de AA en los que se disponen de datos que no están etiquetados. En este tipo de algoritmos no se quiere aprender algo específico de los datos sino más bien encontrar patrones o estructurar los datos de entrada. Por ejemplo se dispone de distinta información relativa a libros (autor, título, número de páginas, etc) y el algoritmo categoriza los libros en distintas categorías, aunque no se sepa a qué se corresponde cada una.
 
 
 Para este TFM el enfoque utilizado es el del aprendizaje supervisado dado que disponemos de datos etiquetados. En particular serán relevantes los dos siguientes problemas típicos de aprendizaje supervisado.
@@ -138,24 +137,24 @@ Formalmente, sea $\{\bx_1,...,\bx_N\}$ el conjunto de datos de entrada con $\bx_
 \mathcal{L}(f) = \frac{1}{N} \sum_{i=1}^{N} \ell(y_i, f(\bx_i)),
 \end{equation}
 
-donde $\ell$ es una función de pérdida en un único ejemplo y mide la discrepancia entre la salida real $y_i$ y la predicción del modelo $f(\bx_i)$. El objetivo del AA es encontrar la función $f$, con parametrizada por $\theta$, que minimice $\mathcal{L}(f)$, es decir:
+donde $\ell$ es una función de pérdida en un único ejemplo y mide la discrepancia entre la salida real $y_i$ y la predicción del modelo $f(\bx_i)$. El objetivo del AA es encontrar la función $f$, con parámetros $\theta$, que minimice $\mathcal{L}(f)$, es decir:
 
 \begin{equation}
 \theta^* = \arg\min_{\theta} \mathcal{L}(f_\theta).
 \end{equation}
 
-Por ejemplo, una función de coste habitual en clasificación es el error de entropía cruzada:
+Por ejemplo, una función de coste habitual en clasificación es el error de entropía cruzada, que para un ejemplo puntual, su función de pérdida se define tal que:
 
 \begin{align*}
 \ell(\by, \hat{\by}) = - \sum_{k=1}^{K} y_k \log(\hat{y}_k)
 \end{align*} 
 
-Donde $\hat{\by}$ es la predicción de nuestro modelo representada como un vector de probabilidades e $\by$ es la salida correcta de salida para esa entrada que contiene un 1 en la clase correcta y 0 en el resto.
+Donde $\hat{\by}$ es la predicción de nuestro modelo representada como un vector de probabilidades, mientras que $\by$ es la salida correcta para esa entrada que contiene 1 en la posición de la clase correcta y 0 en el resto.
 
 Para la minimización de la función de coste, se suelen optimizar los parámetros del modelo utilizado el método del \textbf{gradiente descendente}. Este método iterativo se basa en que, para una función multivariable dos veces diferenciable, el gradiente de dicha función en ese punto apunta en la dirección contraria de mayor ascenso. Por lo tanto tomando pasos en la dirección contraria al gradiente, debería disminuir la función de coste y por lo tanto dar un mejor rendimiento.
 
 
-Se recuerda que el gradiente de una función $E:\mathbb{R}^n \rightarrow \mathbb{R}$ en un punto no es más que le vector compuesto de las derivadas parciales respecto a cada variable en dicho punto:
+Se recuerda que el gradiente de una función $E:\mathbb{R}^n \rightarrow \mathbb{R}$ en un punto no es más que el vector compuesto de las derivadas parciales respecto a cada variable en dicho punto:
 
 \begin{align*}
 \nabla E(\bw) = \left[ \frac{\partial E}{\partial x_1}(\bw),...,\frac{\partial E}{\partial x_n}(\bw) \right]^\top
@@ -175,7 +174,7 @@ La función de coste dependerá de dichos parámetros. Luego, el gradiente desce
 \end{align*} 
 Donde $\bw_n\in\mathbb{R}^l$ son los nuevos parámetros, $\bw\in\mathbb{R}^l$ son los parámetros del paso actual, $E$ es el función de coste, $\nabla E$ representa el gradiente de $E$ y $\eta$ es un hiperparámetro (parámetro del algoritmo) en $\mathbb{R}$ llamado \textbf{learning rate}(lr).
 
-El lr determina el tamaño de los pasos tomados por el algoritmo en cada iteración. Un valor del lr alto puede hacer que	el algoritmo converja más rápido pero también puede hacer que el algoritmo no llegue a converger o se salte soluciones. Por otro lado un valor bajo del lr hace que el algoritmo converja demasiado lento a un mínimo de la función. En la práctica se suelen utilizar métodos que hacen que el lr varíe a lo largo del entrenamiento, normalmente de mayor a menor.
+El lr determina el tamaño de los pasos tomados por el algoritmo en cada iteración. Un valor del lr alto puede hacer que	el algoritmo converja más rápido pero también puede hacer que el algoritmo no llegue a converger o se salte soluciones. Por otro lado, un valor bajo del lr hace que el algoritmo converja demasiado lento a un mínimo de la función. En la práctica se suelen utilizar métodos que hacen que el lr varíe a lo largo del entrenamiento, normalmente de mayor a menor.
 
 El algoritmo del gradiente descendente inicia los pesos $\bw$ a un valor aleatorio y empieza a iterar con la regla del descenso buscando reducir el error en cada paso durante un número de \textbf{épocas}, donde en cada época itera sobre todos los datos de entrenamiento. En caso de converger, el algoritmo se detiene en un mínimo local del error de pérdida. Se suele buscar además que la función de pérdida sea una función convexa para asegurar que este mínimo sea global. 
 
@@ -196,15 +195,15 @@ Cuando se optimiza un modelo de IA, puede ocurrir que el modelo se ajuste muy bi
 
 \subsection{Aprendizaje transferido}
 
-El \textbf{aprendizaje transferido} (\textit{transfer learning}) es una técnica de AA utilizada para transferir conocimiento extraído por un modelo para resolver una tarea para mejorar el rendimiento de dicho modelo para resolver otra tarea relacionada. La idea es que las representaciones aprendidas por el modelo pueden ser útiles para otros problemas distintos del problema específico para el que fueron entrenadas. Esta técnica permite ahorrar tiempo de entrenamiento, reduce el número de datos necesario y permite conseguir mejores resultados.
+El \textbf{aprendizaje transferido} (\textit{transfer learning}) es una técnica de AA utilizada para transferir conocimiento extraído por un modelo para resolver una tarea para mejorar el rendimiento de dicho modelo en otra tarea relacionada. La idea es que las representaciones aprendidas por el modelo pueden ser útiles para otros problemas distintos del problema específico para el que fueron entrenadas. Esta técnica permite ahorrar tiempo de entrenamiento, reduce el número de datos necesario para entrenar el modelo y permite conseguir mejores resultados.
 
 \section{Deep Learning}
-\textbf{Deep learning} (DL) o \textbf{aprendizaje profundo}, (AP)~\cite{DeepLearningFoundationsConcepts, Goodfellow-et-al-2016, LeCun-Yann-Bengio, UnderstandingDeepLearning, Schmidhuber_2015} es un subcampo del AA determinado por los métodos con los que aprende y el tipo de datos con los que trata. Los algoritmos de AP pueden tratar datos poco estructurados como pueden ser imágenes o textos. Este tipo de algoritmos automatizan la extracción de características, es decir, determinan qué información de los datos es relevante para la resolución del problema. Esto elimina parte de la intervención humana necesaria a la hora de crear el algoritmo.
+\textbf{Deep learning} (DL) o \textbf{aprendizaje profundo}, (AP)~\cite{DeepLearningFoundationsConcepts, LeCun-Yann-Bengio, UnderstandingDeepLearning, Schmidhuber_2015} es un subcampo del AA determinado por los métodos con los que aprende y el tipo de datos con los que trata. Los algoritmos de AP pueden tratar datos poco estructurados como pueden ser imágenes o textos. Este tipo de algoritmos automatizan la extracción de características, es decir, determinan qué información de los datos es relevante para la resolución del problema. Esto elimina parte de la intervención humana necesaria a la hora de crear el algoritmo.
 
 El AP en los últimos años ha supuesto un avance significativo en muchos campos en los que apenas se avanzaba con otras técnicas de IA como el reconocimiento del habla o el procesamiento de lenguaje natural.
 
 \subsection{Redes neuronales artificiales}
-Una \textbf{red neuronal artificial} (RNA)~\cite{NNPatternRecogLibro,Haykin,NNTricks} es un modelo de AA que consiste en una red conectada de \textbf{nodos} o \textbf{neuronas}. Cada neurona recibe una serie de números reales (entradas) de las neuronas conectadas a esta, realiza una operación con dichos números que resulta en una salida y la manda a los nodos conectados a esta. 
+Una \textbf{red neuronal artificial} (RNA)~\cite{Haykin,NNTricks} es un modelo de AA que consiste en una red conectada de \textbf{nodos} o \textbf{neuronas}. Cada neurona recibe una serie de números reales (entradas) de las neuronas conectadas a esta, realiza una operación con dichos números que resulta en una salida y la manda a los nodos conectados a esta. 
 
 La operación que realiza una neurona con $n\in\mathbb{N}$ entradas es la siguiente:
 
@@ -216,7 +215,7 @@ Donde $x_i$ son las entradas de la neurona, $w_i$ son los \textbf{pesos} de la n
 
 Existen dos tipos de RNA según el flujo de la información dentro de la red. Nos centramos en el caso en el que este flujo es una única dirección, en cuyo caso se tiene una \textbf{red neuronal hacia delante} (\textit{feedforward neural network} o \textit{multilayer perceptron}, MLP).
 
-Las MLP son el modelo fundamental del AP. Estas están compuestas por distintas \textbf{capas}, cada una compuesta de varias neuronas en paralelo. La primera capa es la \textbf{capa de entrada} que recibe la entrada a la red y la propaga a la siguiente capa. Luego puede haber una o más \textbf{capas ocultas}, donde cada una de estas están compuestas de neuronas que reciben las señales de la capas anterior y propagan su salida a las neuronas de la siguiente capa. Por último está la \textbf{capa de salida} que está compuesta por uno o varias neuronas cuya salida se considera la salida de la red. El número de capas ocultas determina la \textbf{profundidad} de la red. Se puede ver un ejemplo de un modelo de este tipo en la figura \ref{fig:red_neuronal_ff}.
+Las MLP son el modelo fundamental del AP. Estas están compuestas por distintas \textbf{capas}, cada una compuesta de varias neuronas en paralelo. La primera capa es la \textbf{capa de entrada} que recibe la entrada a la red y la propaga a la siguiente capa. Luego puede haber una o más \textbf{capas ocultas}, donde cada una de estas están compuestas de neuronas que reciben las señales de la capas anteriores y propagan su salida a las neuronas de la siguiente capa. Por último está la \textbf{capa de salida} que está compuesta por una o varias neuronas cuya salida se considera la salida de la red. El número de capas ocultas determina la \textbf{profundidad} de la red. Se puede ver un ejemplo de un modelo de este tipo en la figura \ref{fig:red_neuronal_ff}.
 
 
 \begin{figure}[h]
@@ -226,7 +225,7 @@ Las MLP son el modelo fundamental del AP. Estas están compuestas por distintas 
 \label{fig:red_neuronal_ff}
 \end{figure}
 
-Si se considera ahora la función $f$ que implementa una red MLP, se tiene que esta depende de los pesos de la red. Una vez se tengan unos datos con los que entrenar la red y una función de coste que evalúe el rendimiento de la red, se puede aplicar el gradiente descendente estocástico para entrenar la red modificando los pesos de la misma. Sin embargo, el cálculo del gradiente de la función de error en una red puede resultar muy costoso, especialmente para el cálculo de las derivadas parciales del error respecto de los pesos de las neuronas en las capas más cercanas a la salida. Es por esto que se suele utilizar un algoritmo, denominado \textbf{backpropagation}, para el cálculo del gradiente. 
+Si se considera ahora la función $f$ que implementa una red MLP, se tiene que esta depende de los pesos de la red. Una vez se tengan unos datos con los que entrenar la red y una función de coste que evalúe el rendimiento de la red, se puede aplicar el gradiente descendente estocástico para entrenar la red modificando los pesos de la misma. Sin embargo, el cálculo del gradiente de la función de error en una red puede resultar muy costoso, especialmente para el cálculo de las derivadas parciales del error respecto de los pesos de las neuronas en las capas más cercanas a la entrada. Es por esto que se suele utilizar un algoritmo, denominado \textbf{backpropagation}, para el cálculo del gradiente. 
 
 Este algoritmo está basado en la aplicación de la regla de la cadena que dicta que si se tiene una función $f$ que depende de otra función $g$ que a su vez depende de otra función $h$, entonces se cumple que:
 \begin{align*}
@@ -237,7 +236,7 @@ De esta forma se puede calcular la parcial de la función de coste respecto a lo
 
 \subsubsection{Funciones de activación}
 
-Como se comenta en la ecuación \eqref{eq:salida_neurona}, la salida de una neurona es una suma ponderada de las entradas más un sesgo, a las que se le aplica una función de activación. La inclusión de este tipo de funciones es para evitar que la red sea lineal. Si la ecuación \eqref{eq:salida_neurona} fuese idéntica sin aplicar la función de activación entonces la salida de la red sería una función lineal respecto de la entrada, esto es, un polinomio de primer grado. Esto haría que la red no pudiera implementar funciones complejas lo que es necesario para aprender patrones más complejos presentes en los datos.  Es por esto que normalmente las funciones de activación deben ser funciones no lineales. Destacar que la función de activación debe ser derivable para poder calcular el gradiente de la función de coste con el algoritmo \textit{backpropagation} cuando se entrene la red.
+Como se comenta en la ecuación \eqref{eq:salida_neurona}, la salida de una neurona es una suma ponderada de las entradas más un sesgo, a la que se le aplica una función de activación. La inclusión de este tipo de funciones es para evitar que la red sea lineal. Si la ecuación \eqref{eq:salida_neurona} fuese idéntica sin aplicar la función de activación entonces la salida de la red sería una función lineal respecto de la entrada, esto es, un polinomio de primer grado. Esto haría que la red no pudiera implementar funciones complejas lo que es necesario para aprender patrones más complejos presentes en los datos.  Es por esto que normalmente las funciones de activación deben ser funciones no lineales. Destacar que la función de activación debe ser derivable para poder calcular el gradiente de la función de coste con el algoritmo \textit{backpropagation} cuando se entrene la red.
 
 Existen varias funciones de activación que se pueden utilizar, sin embargo son especialmente interesantes la función de activación \textbf{ReLU} (\textit{rectifier linear unit}) definida como $ f(x) = max\{0,x\}$ y la \textbf{sigmoidal} definida como $f(x) = \frac{1}{1+e^{-x}}$. Se pueden ver sus gráficas en la figura \ref{fig:ejemplos_activacion_relu} y la figura \ref{fig:ejemplos_activacion_sigmoidal}, respectivamente.
 
@@ -267,21 +266,21 @@ La función de activación sigmoidal se suele utilizar en la capa de salida en l
 
 \subsubsection{Dropout}
 
-\textbf{Dropout}~\cite{hinton2012improving} se refiere a la técnica utilizada en redes neuronales consistente en ignorar algunas neuronas de forma aleatoria durante el periodo de entrenamiento. Usualmente se le da a cada neurona una probabilidad $p$ de ser ignorado, y en cada paso del algoritmo de entrenamiento se desconecta cada neurona de la red con dicha probabilidad. De esta forma se busca que ninguna neurona sea muy dependiente de la salida de otra neurona específica. Esta técnica regulariza la red lo que hace que la red sea menos propensa a sobreentrenar.
+\textbf{Dropout}~\cite{hinton2012improving} se refiere a la técnica utilizada en redes neuronales consistente en ignorar algunas neuronas de forma aleatoria durante el periodo de entrenamiento. Usualmente se le da a cada neurona una probabilidad $p$ de ser apagada, y en cada paso del algoritmo de entrenamiento se desconecta cada neurona de la red con dicha probabilidad. De esta forma se evita que las neuronas dependan excesivamente unas de otras. Esta técnica regulariza la red lo que hace que la red sea menos propensa a sobreentrenar.
 
 \subsection{Regularización} \label{subsec:Reg}
 
 Una \textbf{regularización}~\cite{XSHIELD, Regularization} es una técnica que consiste en modificar los pesos de un modelo, el proceso de entrenamiento o el de la inferencia para imponer algún criterio de calidad sobre este. Como ya se ha visto, existen técnicas de regularización como \textit{dropout}, que ayudan a reducir el sobreajuste en los modelos. Esta técnica introduce aleatoriedad durante el entrenamiento con el objetivo de mejorar la capacidad de generalización del modelo en datos no vistos.
 
-En particular nos interesan las regularizaciones que implican añadir a la función de coste un nuevo término que indica el criterio que queremos minimizar en el modelo. Algunos ejemplos típicos son la regularización L1 o L2. En general, se tiene que una regularización de este tipo se expresa como:
+En particular nos interesan las regularizaciones que implican añadir a la función de coste un nuevo término que indica un criterio que queremos minimizar en el modelo. Algunos ejemplos típicos son la regularización L1 o L2. En general, se tiene que una regularización de este tipo se expresa como:
 
 \begin{equation}
 coste\_regularizado(\Theta, X, Y) = coste(f_\Theta (X), Y) + regularizacion(X,\Theta ),
 \end{equation}
 
-donde se tiene que $\Theta$ son el conjunto de parámetros del modelo, $X$ son las entradas del conjunto de datos y $Y$ las salidas. Por lo tanto la regularización es una función que puede ser de los parámetros y de los datos de entrada. 
+donde se tiene que $\Theta$ son el conjunto de parámetros del modelo, $X$ son las entradas del conjunto de datos y $Y$ las salidas. Por lo tanto la regularización es una función que puede depender de los parámetros y de los datos de entrada. 
 
-Este concepto es crucial para nuestro TFM pues las técnicas XAI que vamos a utilizar, la ya existente y las propuestas, son regularizaciones.
+Este concepto es crucial para nuestro TFM pues las técnicas XAI que vamos a utilizar, tanto la ya existente y como las propuestas, son regularizaciones.
 
 
 \subsection{Redes neuronales convolucionales}
@@ -298,7 +297,7 @@ Basado en este operador, existe la \textbf{convolución discreta} en 2 dimension
 (f\star g)[i,j] = \sum_{m=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}f(m,n)g(i-m,j-n)
 \end{align*}
 
-Este operador no es más que la adaptación de la convolución al caso en el que $f$ y $g$ sean funciones discretas, es decir, definidas sobre los números enteros, $\mathbb{Z}$. Este es el operador que aplican las capas convolucionales a sus entradas. En el caso de las convoluciones aplicadas en una CNN $f$ se corresponde con la entrada de la capa convolucional y $g$ con el \textbf{núcleo}, \textbf{kernel} o \textbf{filtro} de la convolución. El \textit{kernel} no es más que una matriz de dimensiones $n\times m$ de valores reales. Véase la Figura \ref{fig:ejemplo_convolucion} para ver un ejemplo de una convolución.
+Este operador no es más que la adaptación de la convolución al caso en el que $f$ y $g$ sean funciones discretas, es decir, definidas sobre los números enteros, $\mathbb{Z}$. Este es el operador que aplican las capas convolucionales a sus entradas. En el caso de las convoluciones aplicadas en una CNN, $f$ se corresponde con la entrada de la capa convolucional y $g$ con el \textbf{núcleo}, \textbf{kernel} o \textbf{filtro} de la convolución. El \textit{kernel} no es más que una matriz de dimensiones $n\times m$ de valores reales. Véase la Figura \ref{fig:ejemplo_convolucion} para ver un ejemplo de una convolución.
 
  
 \begin{figure}[h]
@@ -327,7 +326,7 @@ El objetivo de las capas convolucionales es la detección de características lo
 
 Las capas de \textit{pooling} se encargan de reducir las dimensiones espaciales de la entrada manteniendo el número de canales. Esto es, disminuyen el número de filas y columnas. Para ello dividen cada mapa de características en ventanas disjuntas que cubren todas las filas y columnas, y ``\textit{resumen}''  todos los valores en una ventana a uno sólo. Esto disminuye el coste computacional de la red. Este tipo de capas también busca juntar valores que son similares en uno sólo.
 
-Los dos tipos típicos de \textit{pooling} son el \textbf{max pooling} que toma el máximo de los valores de la ventana y el \textbf{average pooling} que toma la media aritmética de los valores de la ventana. Se cree que \textit{max pooling} tiene mejor rendimiento y, de hecho, en la parte matemática de este TFM se pueden ver argumentos de por qué podría ser cierto. En la Figura \ref{fig:ejemplo_pooling} se puede ver un ejemplo de ambos tipos de \textit{pooling}.
+Los dos tipos típicos de \textit{pooling} son el \textbf{max pooling} que toma el máximo de los valores de la ventana y el \textbf{average pooling} que toma la media aritmética de los valores de la ventana. En la Figura \ref{fig:ejemplo_pooling} se puede ver un ejemplo de ambos tipos de \textit{pooling}.
 
 
 
@@ -353,13 +352,13 @@ Por otro lado los modelos de caja negra son modelos difíciles de interpretar y 
 Algunos trabajos incluyen una categoría conocida como \textbf{modelos de caja gris} (\textit{gray-box models}), los cuales son modelos que se pueden interpretar, al menos parcialmente, si se diseñan adecuadamente.
 
 
-La \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI})~\cite{XAIManifesto, XAIWHATWEKNOW, XAINOTIONS, XAICONCEPTS} es un campo de estudio que pretende desarrollar métodos para construir modelos de AA que aumenten la interpretabilidad de estos sin que esto afecte demasiado a su rendimiento. Para ello existen dos enfoques principales: construir modelos de caja blanca o gris con rendimientos altos, y dotar a los modelos de caja negra de un mayor nivel de interpretabilidad.
+La \textbf{Inteligencia Artificial eXplicable} (\textit{eXplainable Artificial Inteligence, XAI})~\cite{XAIManifesto, XAICONCEPTS} es un campo de estudio que pretende desarrollar métodos para construir modelos de AA que aumenten la interpretabilidad de estos sin que esto afecte demasiado a su rendimiento. Para ello existen dos enfoques principales: construir modelos de caja blanca o gris con rendimientos altos, y dotar a los modelos de caja negra de un mayor nivel de interpretabilidad.
 
 Por un lado, construir modelos de caja blanca o gris con rendimientos altos implica desarrollar algoritmos basados en técnicas transparentes, como árboles de decisión, regresiones lineales o modelos basados en reglas, que logren resultados competitivos. Estos modelos permiten a los usuarios entender con facilidad los factores que influyen en las predicciones.
 
 Por otro lado, dotar a los modelos de caja negra de un mayor nivel de interpretabilidad busca aprovechar la potencia predictiva de algoritmos complejos, como RNAs o CNNs, con técnicas que faciliten su entendimiento. En este enfoque se ecuentran herramientas como métodos de atribución de características, visualizaciones locales de importancia o aproximaciones mediante modelos simplificados.
 
-En XAI, la \textbf{Interpretabilidad} se refiere a la capacidad de comprender cómo los modelos de IA toman sus decisiones. Por otro lado, la \textbf{explicabilidad} se refiere a la capacidad de hacer inferencias y describir el funcionamiento interno de un sistema de IA en términos humanos. Estos dos son los dos principales criterios a la hora de evaluar métodos de XAI, además de ellos existen otros como \textbf{transparencia}, \textbf{justicia} (\textit{fairness}) y \textbf{robustez}. 
+En XAI, la \textbf{Interpretabilidad} se refiere a la capacidad de comprender cómo los modelos de IA toman sus decisiones. Por otro lado, la \textbf{explicabilidad} se refiere a la capacidad de hacer inferencias y describir el funcionamiento interno de un sistema de IA en términos humanos. Estos son los dos principales criterios a la hora de evaluar métodos de XAI, además de ellos existen otros como \textbf{transparencia}, \textbf{justicia} (\textit{fairness}) y \textbf{robustez}. 
 
 En general, el objetivo de la explicabilidad es hacer algún aspecto del modelo entendible para el usuario. Si lo que se intenta hacer explicable es una salida del modelo para una instancia concreta, se habla de \textbf{explicabilidad local}. Si esa explicación además es capaz de explicar el comportamiento completo se habla de \textbf{explicabilidad global}.
 
@@ -375,10 +374,10 @@ Las \textbf{Explicaciones lineales locales} (\textit{Linear Local Explanation, L
  Sea $X \subset \mathbb{R}^F$ el conjunto de datos de entrada, siendo $F$ el número de características por ejemplo, y sea $f : \mathbb{R}^F \rightarrow \mathbb{R}^C$ la función que implementa un modelo de caja negra, donde $C$ es el número de clases de un problema de clasificación al que se aplica. Sea $x\in X$ una entrada a ser explicada. Un explicador LLE de caja blanca es una función $g: \mathbb{R}^F \rightarrow \mathbb{R}^C$ definida como:
  
 \begin{equation}
-g(x) = Ax + B, \quad A \in \mathcal{M}_{F,C}, B \in \mathbb{R}^C
+g(z) = Az + B, \quad A \in \mathcal{M}_{F,C}, B \in \mathbb{R}^C
 \end{equation}
 
-Donde $\mathcal{M}_{F,C}$ es el conjunto de todas las matrices con $F$ filas y $C$ columnas. Es decir, $g$ no es más que una función lineal que lleva una entrada del modelo al espacio de salida del modelo. Este modelo se puede interpretar pues intuitivamente para cada peso $a_{i,j}$ de $A$ denota la importancia que tiene la característica de entrada $i$ para la predicción de la salida $j$. Por otro lado cada valor $b_j$ del vector $B$ está conectado con la importancia en general de la salida $j$.
+Donde $\mathcal{M}_{F,C}$ es el conjunto de todas las matrices con $F$ filas y $C$ columnas. Es decir, $g$ no es más que una función lineal que lleva una entrada del modelo al espacio de salida del modelo. Este modelo se puede interpretar pues intuitivamente cada peso $a_{i,j}$ de $A$ denota la importancia que tiene la característica de entrada $i$ para la predicción de la salida $j$. Por otro lado cada valor $b_j$ del vector $B$ está conectado con la importancia en general de la salida $j$.
 
 Para obtener la función $g$ anterior los métodos LLE utilizan regresión lineal sobre una vecindad del ejemplo $x$. El error que minimizan es el siguiente:
 
@@ -399,7 +398,7 @@ dónde $d(\cdot,\cdot)$ es la distancia euclídea (en el caso de imágenes) y $\
 
 Para la generación de vecinos en $N(x)$ se muestrea un valor $v'$ de la distribución exponencial $Exp(\lambda)$ con $\lambda = \frac{1}{\sigma}$. Después se toma $v = \min\{\lfloor v' \rfloor, F\}$. El valor $v$ determina cuantas características de $x$ se van a ocultar. Estas se escogen de forma aleatoria (uniformemente).
 
-La elección de lo que es una característica depende del tipo de dato con el que se trate. En el caso de este TFM se trata con imágenes. Para las imágenes se puede tratar cada pixel individualmente como una característica. Sin embargo esto hace que haya muchas características lo que hace que generar este tipo de explicaciones sea caro. Además desde un punto de vista humano un pixel individual no suele tener un significado específico en una imagen, es más natural que un conjunto de pixeles tengan un significado. Por ello consideramos una división de la imagen en cuadrados del mismo tamaño y cada uno de ello conlleva una característica.
+La elección de lo que es una característica depende del tipo de dato con el que se trate. En el caso de este TFM se trata con imágenes. Para las imágenes se puede tratar cada pixel individualmente como una característica. Sin embargo esto hace que haya muchas características lo que hace que generar este tipo de explicaciones sea caro. Además desde un punto de vista humano un pixel individual no suele tener un significado específico en una imagen, es más natural que un conjunto de pixeles tengan un significado. Por ello consideramos una división de la imagen en cuadrados del mismo tamaño y cada uno de ellos es una característica.
 
 \subsection{Métricas ReVEL} \label{subsec:revel}
 
@@ -454,7 +453,7 @@ Formalmente, se define como:
 
 donde $|N(x)|$ es el número de vecinos generados para la explicación. 
 
-Esta métrica se puede ver como la media de la métrica anterior sobre los vecinos de $x$, por lo tanto también está definida en el intervalo $[0,1]$. Esta métrica mide cómo de cercan están las probabilidades calculadas por el modelo de caja blanca de las que calcula el modelo de caja negra. Luego mide la similitud entre la explicación y el modelo $f$ en la vecindad de $x$. Al igual que pasaba con la \textit{local concordance}, debe ser cercano a 1 para obtener buenas explicaciones.
+Esta métrica se puede ver como la media de la métrica anterior sobre los vecinos de $x$, por lo tanto también está definida en el intervalo $[0,1]$. Esta métrica mide cómo de cerca están las probabilidades calculadas por el modelo de caja blanca de las que calcula el modelo de caja negra. Luego mide la similitud entre la explicación y el modelo $f$ en la vecindad de $x$. Al igual que pasaba con la \textit{local concordance}, debe ser cercano a 1 para obtener buenas explicaciones.
 
 \subsubsection{Prescriptivity}
 
@@ -468,9 +467,9 @@ Presciptivity(g) =  1 - \frac{||f(x+h)-g(x+h)||}{C'},
 
 donde $h$ es una perturbación sobre $x$ que quita la presencia de las características más importantes (de forma positiva) de la clase asignada por $g$ al ejemplo $x$. De esta forma, para encontrar $h$ se van quitando dichas características hasta que se cumpla que $argmax(g(x))\neq argmax(g(x+h))$.
 
-Notemos que esta métrica también está contenida en $[0,1]$ y obtiene el valor 1 cuando $f(x+h)=g(x+h)$ y obtiene el valor 0 cuando ambas funciones clasifican $x+h$ en clases distintas con probabilidad 1.
+Notemos que esta métrica también está contenida en $[0,1]$. Esta alcanza el valor máximo cuando $f(x+h)=g(x+h)$ y el mínimo cuando ambas funciones clasifican $x+h$ en clases distintas con probabilidad 1.
 
-Esta métrica pretende estudiar si la explicación $g$ es capaz de predecir correctamente los cambios necesarios en el ejemplo $x$ para cambiar la clase original. Para ello busca un valor lo suficientemente alejado del ejemplo para que la explicación cambie la clase predicha y mida cómo cambia la predicción respecto del modelo de caja negra. Al contrario que las dos métricas anteriores un valor cercano a 1, aunque buscado, no es necesario para obtener buenas explicaciones.
+Esta métrica pretende estudiar si la explicación $g$ es capaz de predecir correctamente los cambios necesarios en el ejemplo $x$ para cambiar la clase original. Para ello busca un valor lo suficientemente alejado del ejemplo para que la explicación cambie la clase predicha y mide cómo cambia la predicción respecto del modelo de caja negra. Al contrario que las dos métricas anteriores un valor cercano a 1, aunque buscado, no es necesario para obtener buenas explicaciones.
 
 \subsubsection{Conciseness}
 
@@ -490,11 +489,11 @@ donde $f'$ es el número de filas de la matriz de importancia absoluta (equivale
 I_i = \frac{||v_i||}{max_{1\leq  j \leq f'}\{||v_j||\}}
 \end{equation}
 
-Observemos que $v_i$ es un vector en que cada elemento $j$ representa la importancia de la característica $i$ para la clase $j$ luego se puede interpretar que $I_i$ es la importancia de dicha característica (normalizada a $[0,1]$). Si analizamos la expresión de la métrica tenemos que esta está comprendida entre $[0,1]$ y alcanza 1 si una métrica tiene importancia 1 y el resto tiene importancia 0. Si todas las características tuvieran la misma importancia, por estar $I$ normalizada serían todas 1 y se obtendría el menor valor posible en 0.
+Observemos que $v_i$ es un vector en que cada elemento $j$ representa la importancia de la característica $i$ para la clase $j$ luego se puede interpretar que $I_i$ es la importancia de dicha característica (normalizada a $[0,1]$). Si analizamos la expresión de la métrica tenemos que esta está comprendida entre $[0,1]$ y alcanza 1 si una característica tiene importancia 1 y el resto tiene importancia 0. Si todas tuvieran la misma importancia, por estar $I$ normalizada serían todas 1 y se obtendría el menor valor posible en 0.
 
-Esta métrica busca medir la brevedad de la explicación, es decir, cuantas menos características sean relevantes para la explicación, más concisa se considera la explicación. Luego mide la habilidad de la explicación de concentrarse en las características importantes. Al contrario que las métricas anteriores, dependiendo de la tarea se podría querer más o menos \textit{conciseness} ya que valores demasiados bajos podrían indicar que el modelo se centra en cosas irrelevantes (por ejemplo en imágenes que se centre en pocos píxeles podría ser malo).
+Esta métrica busca medir la brevedad de la explicación, es decir, cuantas menos características sean relevantes para la explicación, más concisa se considera la explicación. Por lo tanto mide la habilidad de la explicación de concentrarse en las características importantes. Al contrario que las métricas anteriores, dependiendo de la tarea se podría querer más o menos \textit{conciseness} ya que valores demasiados bajos podrían indicar que el modelo se centra en cosas irrelevantes (por ejemplo en imágenes que se centre en pocos píxeles podría ser malo).
 
-\subsubsection{Robustness over explanations}
+\subsubsection{Robustness}
 
 La robustez mide qué tan consistentes son las explicaciones generadas por un método ante pequeñas variaciones aleatorias. Una explicación robusta es aquella que no cambia drásticamente cada vez que se vuelve a ejecutar el método de producción de explicaciones sobre el mismo ejemplo.
 
@@ -510,7 +509,7 @@ donde $G$ representa el conjunto de todas las explicaciones que podría generar 
 similarity(g,g') = \left(\frac{\mathcal{A}_r\cdot \mathcal{A}'_r}{||\mathcal{A}_r|| ||\mathcal{A}'_r||} \right)  \left(1-  \frac{|\quad  ||\mathcal{A}_r||-||\mathcal{A}'_r|| \quad |}{max\{||\mathcal{A}_r||,||\mathcal{A}'_r||\}}\right)
 \end{equation}
 
-Observemos que la componente de la derecha mide cómo de similares son las magnitudes de las las matrices de importancia absoluta normalizadas de las explicaciones mientras que el valor de la izquierda se corresponde con la similaridad coseno entre $\mathcal{A}_r$ y $\mathcal{A}_r'$ (matrices correspondientes con $g$ y $g'$ correspondientemente), esta mide como distan las direcciones de las explicaciones. El producto de matrices de esta función es el elemento a elemento. El mejor caso, cuando ambas explicaciones son iguales, se tiene que la similaridad es 1 y el peor caso ocurre son ``perpendiculares'' y la similaridad es 0. 
+Observemos que la componente de la derecha mide cómo de similares son las magnitudes de las las matrices de importancia absoluta normalizadas de las explicaciones mientras que el valor de la izquierda se corresponde con la similaridad coseno entre $\mathcal{A}_r$ y $\mathcal{A}_r'$ (matrices correspondientes con $g$ y $g'$ correspondientemente), esta mide como distan las direcciones de las explicaciones. El producto de matrices de esta función es el elemento a elemento. El mejor caso, cuando ambas explicaciones son iguales, se tiene cuando la similaridad es 1 y el peor caso ocurre cuando son ``perpendiculares'' y la similaridad es 0. 
 
 En la práctica, para aproximar la \textit{Robustness} se hace la media de la similaridad generando muchas otra explicaciones $g'$ para $x$. Esto únicamente se puede hacer para LLEs que no son deterministas, pues en otro caso siempre se tendría la misma explicación y obtendrían siempre 1. Por ejemplo con LIME sí se puede calcular esta métrica pues tiene no determinismo en la generación de la vecindad.
 
@@ -534,9 +533,9 @@ Este Trabajo de Fin de Máster trata de abarcar el problema de construir un mode
 
 \section{Modelos de clasificación de imágenes}
 
-\textbf{Efficientnet}~\cite{efficientnet2019} es una red introducida en 2019 que se sigue considerando estado del arte en clasificación de imágenes cuando se mide eficiencia computacional, es decir, rendimiento obtenido por número de parámetros. En la Figura \ref{fig:efficientnet_grafica} se puede apreciar como es más eficiente en cómputo respecto a otros modelos de clasificación de imágenes como ResNet~\cite{resnet} o DenseNet~\cite{densenet} para el dataset Imagenet. 
+\textbf{Efficientnet}~\cite{efficientnet2019} es una red introducida en 2019 que se sigue considerando estado del arte en clasificación de imágenes cuando se mide eficiencia computacional, es decir, rendimiento obtenido por número de parámetros. En la Figura \ref{fig:efficientnet_grafica} se puede apreciar como esta es más eficiente en cómputo respecto a otros modelos de clasificación de imágenes como ResNet~\cite{resnet} o DenseNet~\cite{densenet} para el dataset Imagenet. 
 
-Existen otros modelos más modernos como CoCa~\cite{coca}, DaViT~\cite{DaViT} o ConvNeXt V2~\cite{ConvNext}, que utilizan transformadores en el caso de CoCa y DaViT, o autoencoders, en el caso de ConvNeXt V2. Estos modelos alcanzan precisiones mayores que EfficientNet. Sin embargo, aumentan demasiado el número de parámetros utilizados como para que sea una propuesta viable para nuestro trabajo.
+Existen otros modelos más modernos como CoCa~\cite{coca}, DaViT~\cite{DaViT} o ConvNeXt V2~\cite{ConvNext}, que utilizan transformers en el caso de CoCa y DaViT, o autoencoders, en el caso de ConvNeXt V2. Estos modelos alcanzan precisiones mayores que EfficientNet. Sin embargo, aumentan demasiado el número de parámetros utilizados como para que sea una propuesta viable para nuestro trabajo.
 
 Para el desarrollo del TFM tenemos acceso a GPUs GTX Titan Xp, que disponen de 12 GB de memoria VRAM y una capacidad de cómputo limitada en comparación con las GPUs de última generación. Modelos como CoCa-Base, con 383 millones de parámetros, o DaViT-Small, con casi 50 millones, requieren una cantidad de memoria y potencia de cómputo que excede la capacidad disponible, lo que resultaría en cuellos de botella durante el entrenamiento y aumentaría significativamente los tiempos de entrenamiento de los modelos.
 
@@ -575,13 +574,13 @@ Una revisión completa de todos los métodos de explicabilidad post-hoc está fu
 
 Entre los métodos más destacados en esta categoría se encuentran LIME~\cite{LIME} y SHAP~\cite{SHAP}. Ambos atribuyen importancia a las características de entrada para un ejemplo dado. Por un lado, SHAP se basa en teoría de juegos y proporciona garantías teóricas de consistencia y equidad, pero tiene un mayor coste computacional. Por otro lado, LIME utiliza modelos lineales locales para aproximar el comportamiento del modelo alrededor de un ejemplo, lo que lo hace significativamente más ligero computacionalmente y fácil de aplicar en escenarios prácticos.
 
-En este trabajo utilizaremos LIME debido a su baja complejidad computacional, facilidad de interpretación y adaptabilidad a diferentes tipos de datos y modelos. También utilizamos LIME por los resultados presentados en~\cite{REVEL}, dónde este obtiene mejores resultados que SHAP.
+En este trabajo utilizaremos LIME debido a su baja complejidad computacional, facilidad de interpretación y adaptabilidad a diferentes tipos de datos y modelos. También utilizamos LIME por los resultados presentados en~\cite{REVEL}, donde las explicaciones producidas por LIME obtienen mejores resultados que SHAP en métricas REVEL.
 
 \section{Métricas para explicaciones}
 
 Dado que hay muchos tipos de explicaciones en la literatura, como LLEs, mapas de atribución o reglas, no hay manera de comparar estas directamente. Debido a esto, existen distintas métricas para medir de forma cuantitativa la calidad de las explicaciones según su tipo (por ejemplo, medidas de fidelidad, compacidad o métricas específicas para explicaciones visuales). En particular, hemos encontrado dos marcos relevantes que introducen métricas para LLEs: LEAF y REVEL.
 
-En~\cite{LEAF} se propone el framework \textit{LEAF}. En este, se introducen 4 métricas y 1 restricción (\textit{conciseness}) para evaluar de forma clara las explicaciones de LLEs. Sea $f$ la función que implementa un modelo de caja negra y $g$ el modelo de una LLE, entonces las métricas y la restricción de LEAF son las siguientes:
+En~\cite{LEAF} se propone el framework \textit{LEAF}. En este, se introducen 4 métricas y 1 restricción (\textit{conciseness}) para evaluar de forma clara las explicaciones de LLEs. Sea $f$ la función que implementa un modelo de caja negra y $g$ la explicación producida por una LLE para un ejemplo $x$, entonces las métricas y la restricción de LEAF son las siguientes:
 
 \begin{itemize}
 \item \textit{Conciseness: }se interpreta como hasta qué punto el modelo es entendible por un humano. Se define como el número de pesos de la explicación (es una LLE) que son distintos de cero en la explicación dada al usuario. Por ejemplo en LIME en un número fijado a priori.
@@ -593,11 +592,11 @@ En~\cite{LEAF} se propone el framework \textit{LEAF}. En este, se introducen 4 m
 
 Finalmente, en~\cite{REVEL} se introducen las métricas REVEL, que ya hemos introducido en \ref{subsec:revel}. REVEL está compuesto de las mismas 5 métricas, cambiando \textit{Reiteration Similarity} por \textit{Robustness} que busca medir lo mismo. Sin embargo, REVEL cambia cómo se calcula cada una de las métricas introduciendo mejoras en todas ellas. Es por esto que vamos a utilizar en este trabajo estas métricas para medir la calidad de nuestras explicaciones. A continuación indico las mejorías que introduce cada métrica en REVEL respecto a la correspondiente métrica o restricción en LEAF:
 \begin{itemize}
-\item \textit{Conciseness }(igual en LEAF):  En LEAF esta se proponía como restricción para las explicaciones y no como métrica. En contraste, REVEL introduce como una métrica a evaluar para cada explicación $g$.
-\item \textit{Local Fidelity }(igual en LEAF):  El método LEAF evalúa la similitud entre una explicación $g$ y el modelo $f$ mediante la métrica \textit{F1-score} en el vecindario $N(x)$, pero el uso del \textit{F1-score} presenta dos limitaciones: el desbalanceo de clases en dicho vecindario (comparten clase con el ejemplo la mayoría) y los problemas en los bordes de decisión hacen que penalice casos en los que la explicación imita correctamente la incertidumbre del modelo. Por otro lado, la métrica REVEL no tiene problema con el desbalanceo de clases en $N(x)$ ni está sesgada por la selección de un umbral.
-\item \textit{Local Concordance} (igual en LEAF): La propuesta LEAF utiliza una función no diferenciable para el cálculo de esta, minetras que la de REVEL es diferenciable. Por lo tanto la propuesta de REVEL supera las inconsistencias de LEAF.
+\item \textit{Conciseness}:  En LEAF esta se proponía como restricción para las explicaciones y no como métrica. En contraste, REVEL introduce como una métrica a evaluar para cada explicación $g$.
+\item \textit{Local Fidelity}:  El método LEAF evalúa la similitud entre una explicación $g$ y el modelo $f$ mediante la métrica \textit{F1-score} en el vecindario $N(x)$, pero el uso del \textit{F1-score} presenta dos limitaciones: el desbalanceo de clases en dicho vecindario (comparten clase con el ejemplo la mayoría) y los problemas en los bordes de decisión hacen que penalice casos en los que la explicación imita correctamente la incertidumbre del modelo. Por otro lado, la métrica REVEL no tiene problema con el desbalanceo de clases en $N(x)$ ni está sesgada por la selección de un umbral.
+\item \textit{Local Concordance}: La propuesta LEAF utiliza una función no diferenciable para el cálculo de esta, mientras que la de REVEL es diferenciable. 
 \item \textit{Robustness} (\textit{reiteration similarity} en LEAF): En LEAF mide cuánto varían dos explicaciones generadas por el mismo método al comparar las \textit{top-k} características seleccionadas en cada caso, esto presenta tres desventajas: depende directamente de la restricción \textit{conciseness}, no toma en cuenta la importancia relativa de las características, penalizando por igual la selección de características relevantes e irrelevantes, y no penaliza escoger características importantes que son positivas como negativas. En cambio, la propuesta de REVEL no depende de restricciones externas y no tiene los otros problemas previamente descritos.
-\item \textit{Prescriptivity }(igual en LEAF): En LEAF, esta mide qué tan cerca está un ejemplo de cambiar de clase según la proyección sobre una frontera fija, usando la función \textit{hinge} normalizada. Sin embargo, presenta varias limitaciones: está diseñada para una sola variable de salida, depende de un valor fijo $y$, no garantiza cambios de clase en problemas de clasificación con más de dos clases y no asegura un aumento suave de 0 a 1. En REVEL el cálculo de esta considera todo el vector de probabilidades, no depende de fronteras fijas y está bien definida en el intervalo $[0,1]$, con un aumento suave del peor valor posible al mejor. 
+\item \textit{Prescriptivity}: En LEAF, esta mide qué tan cerca está un ejemplo de cambiar de clase según la proyección sobre una frontera fija, usando la función \textit{hinge} normalizada. Sin embargo, presenta varias limitaciones: está diseñada para una sola variable de salida, depende de un valor fijo $y$, no garantiza cambios de clase en problemas de clasificación con más de dos clases y no asegura un aumento suave de 0 a 1. En REVEL el cálculo de esta considera todo el vector de probabilidades, no depende de fronteras fijas y está bien definida en el intervalo $[0,1]$, con un aumento suave del peor valor posible al mejor. 
 \end{itemize}
 
 
@@ -667,14 +666,7 @@ En la Tabla \ref{tab:EfficientNetB2_arquitectura} muestro la arquitectura de Eff
 \label{tab:EfficientNetB2_arquitectura}
 \end{table}
 
-Para el entrenamiento del modelo utilizaremos la función de pérdida del error de entropía cruzada, que es la función de pérdida comúnmente utilizada en problemas de clasificación. Esta se define como sigue:
-
-\begin{equation}
-\mathcal{L}_{\text{CE}} = - \sum_{i=1}^{C} y_i \log(\hat{y}_i)
-\end{equation}
-
-Donde $C$ es el número de clases, $y_i$ es 1 cuando la entrada pertenece a la clase $i$ y 0 en cualquier otro caso y $\hat{y}_i$ es la probabilidad predicha por el modelo de que la entrada pertenezca a la clase $i$.
-
+Para el entrenamiento del modelo utilizaremos la función de pérdida del error de entropía cruzada, que es la función de pérdida comúnmente utilizada en problemas de clasificación.
 
 
 \section{X-SHIELD}
@@ -683,7 +675,7 @@ Donde $C$ es el número de clases, $y_i$ es 1 cuando la entrada pertenece a la c
 
 En primer lugar presentamos la familia de regularizaciones \textbf{\textit{Transformation-Selective Hidden Input Evaluation for Learning} ,T-SHIELD}~\cite{XSHIELD}. Esta esta diseñada para hacer que el modelo aprenda con menos features. Para ello se oculta parte de la entrada. 
 
-Formalmente, se utiliza una transformación $T: \mathbb{R}^F \rightarrow \mathbb{R}^F$, donde F es el número de características de la entrada al modelo, tal que $T(x)_i = x_0$ si $i$ es una característica a esconder y $T(x)_i = x_i$ si no lo es. Es decir está transformación cambia todas las características de una entrada $x$ por un valor constante $x_0$ y deja el resto intactos.
+Formalmente, se utiliza una transformación $T: \mathbb{R}^F \rightarrow \mathbb{R}^F$, donde F es el número de características de la entrada al modelo, tal que $T(x)_i = x_0$ si $i$ es una característica a esconder y $T(x)_i = x_i$ si no lo es. Es decir, esta transformación cambia algunas características de la entrada $x$ por un valor constante $x_0$ y deja el resto intactas.
 
 Para una transformación $T$ como la descrita anteriormente, se define la regularización T-SHIELD como sigue:
 
@@ -729,13 +721,13 @@ En la Figura \ref{fig:rshield_vs_xshield} se puede apreciar la diferencia entre 
 
 
 \section{Métodos propuestos}
-En las siguientes tres subsecciones voy a introducir mis propuestas de métodos de regularización desarrolladas en este trabajo.
+En las siguientes tres subsecciones vamos a introducir los métodos propuestas de regularización desarrollados en este trabajo.
 
 \subsection{FX-Shield}
 
-En \textbf{FX-SHIELD} (\textit{Feature X-SHIELD}) proponemos una regularización que oculta las distintas características extraídas por la parte de red convolucional del modelo. La idea principal es mejorar la interpretación del modelo evaluando la importancia de sus características intermedias. Por ejemplo, en una red convolucional que analiza una imagen: primero extrae características que representan patrones (bordes, texturas, formas, conceptos), y luego usa estos para realizar la clasificación final. FX-SHIELD funciona evaluando qué pasa si las menos importantes según el modelo se ocultan. Al ver cómo cambia la predicción, podemos regularizar el modelo y ver cuáles son realmente importantes para su decisión.
+En \textbf{FX-SHIELD} (\textit{Feature X-SHIELD}) proponemos una regularización que oculta las distintas características extraídas por la parte de red convolucional del modelo. La idea principal es mejorar la explicabilidad del modelo evaluando la importancia de sus características intermedias. Por ejemplo, una red convolucional que clasifica una imagen: primero extrae características que representan patrones (bordes, texturas, formas, conceptos), y luego usa estos para realizar la clasificación final. FX-SHIELD funciona evaluando qué pasa si las menos importantes según el modelo se ocultan. Al ver cómo cambia la predicción, podemos regularizar el modelo y ver cuáles son realmente importantes para su decisión.
 
-Formalmente, sea $x \in \mathbb{R}^F$ un dato de entrada; luego $F$ es el número de características de la entrada. Sea $f:\mathbb{R}^F \rightarrow \mathbb{R}^C$ la función que implementa el modelo de caja negra, siendo $C$ el número de clases del problema. En el caso de una red convolucional se tiene que $f(x) = l(c(x))$ donde $c:\mathbb{R}^F \rightarrow \mathbb{R}^{F_c}$ es la función que implementan las capas convolucionales de la red y $l:\mathbb{R}^{F_c} \rightarrow \mathbb{R}^C$ la función que implementan las capas no convolucionales (por ejemplo una o varias capas totalmente conectadas). En las expresiones anteriores, $F_c$ representa el número de características que extrae la red convolucional de las entradas (ver Figura \ref{fig:fxshield_esquema}). Por ejemplo, en la Tabla \ref{tab:EfficientNetB2_arquitectura} podemos ver que para EfficientNet-B2 se tiene que $F_c=1408$. 
+Formalmente, sea $x \in \mathbb{R}^F$ un dato de entrada; luego $F$ es el número de características de la entrada. Sea $f:\mathbb{R}^F \rightarrow \mathbb{R}^C$ la función que implementa el modelo de caja negra, siendo $C$ el número de clases del problema. En el caso de una red convolucional se tiene que $f(x) = l(c(x))$ donde $c:\mathbb{R}^F \rightarrow \mathbb{R}^{F_c}$ es la función que implementan las capas convolucionales de la red y $l:\mathbb{R}^{F_c} \rightarrow \mathbb{R}^C$ es la función que implementan las capas no convolucionales (por ejemplo una o varias capas totalmente conectadas). En las expresiones anteriores, $F_c$ representa el número de características que extrae la red convolucional de las entradas (ver Figura \ref{fig:fxshield_esquema}). Por ejemplo, en la Tabla \ref{tab:EfficientNetB2_arquitectura} podemos ver que para EfficientNet-B2 se tiene que $F_c=1408$. 
 
 \begin{figure}[h]
 \noindent
@@ -745,15 +737,15 @@ Formalmente, sea $x \in \mathbb{R}^F$ un dato de entrada; luego $F$ es el númer
 \end{figure}
 
 
-En X-SHIELD las características de las entradas, si son imágenes, dependen de cómo se quieran definir. Hay varias posibilidades como tomar que cada píxel se corresponda con una característica, dividir la imagen de entrada en cuadrados del mismo tamaño o utilizar métodos para dividir la imagen de entrada en superpíxeles. En FX-SHIELD no hace falta tomar esta decisión porque independientemente de la imagen de entrada (incluso para distintos tamaños de ésta) siempre se va a obtener el mismo número $F_c$ de características extraídas por los bloques convolucionales, es decir, la representación interna es consistente entre imágenes. Esto es una ventaja sobre X-SHIELD porque: elimina decisiones arbitrarias que podrían afectar al entrenamiento y hace que el método se pueda aplicar a diferentes conjuntos de datos y resoluciones de manera más sencilla.
+En X-SHIELD las características de las entradas, si son imágenes, dependen de cómo se quieran definir. Hay varias posibilidades como tomar que cada píxel se corresponda con una característica, dividir la imagen de entrada en cuadrados del mismo tamaño o utilizar métodos para dividir la imagen de entrada en superpíxeles. En FX-SHIELD no hace falta tomar esta decisión porque independientemente de la imagen de entrada (incluso para distintos tamaños de ésta) siempre se va a obtener el mismo número $F_c$ de características extraídas por los bloques convolucionales, es decir, la representación interna es consistente entre imágenes. Esto es una ventaja sobre X-SHIELD porque elimina decisiones arbitrarias que podrían afectar al entrenamiento y hace que el método se pueda aplicar a diferentes conjuntos de datos y resoluciones de manera más sencilla.
 
-Sean $z=c(x)$ las características intermedias. Ahora buscamos ocultar las características menos importantes de $z$. La importancia que se le da a las distintas características se puede definir con la matriz de importancia $\mathcal{A} = \frac{\delta f}{\delta Z}(x) = \frac{\delta l}{\delta Z}(z)$. Para cada característica $i \in \{1,2,...,F_c\}$ vamos a definir la importancia de ésta como:
+Sean $z=c(x)$ las características intermedias. Ahora buscamos ocultar las características menos importantes de $z$. La importancia que se le da a las distintas características se puede definir con la matriz de importancia $\mathcal{A} = \frac{\delta f}{\delta z}(x) = \frac{\delta l}{\delta z}(z)$. Para cada característica $i \in \{1,2,...,F_c\}$ vamos a definir la importancia de ésta como:
 
 \begin{equation}
 I_i(z) =  \frac{||\mathcal{A}_i||_1}{C} = \frac{1}{C}\sum_{j=1}^C |\mathcal{A}_{i,j}| 
 \end{equation}
 
-Por lo tanto esta es la media aritmética de la suma absoluta de la derivada de cada valor de salida sobre dicha características. Volviendo al ejemplo de la arquitectura de EfficientNet-B2 \ref{tab:EfficientNetB2_arquitectura} tenemos que la cabeza de la red consta de una única capa totalmente conectada, es decir en este caso se tiene que:
+Por lo tanto esta es la media aritmética de la suma absoluta de la derivada de cada valor de salida sobre dicha características. Volviendo al ejemplo de la arquitectura de EfficientNet-B2 (Tabla \ref{tab:EfficientNetB2_arquitectura}) tenemos que la cabeza de la red consta de una única capa totalmente conectada, es decir en este caso se tiene que:
 
 \begin{equation}
 l(z) = Az + B
@@ -761,7 +753,7 @@ l(z) = Az + B
 
 Dónde $A$ es una matriz real de dimensión $C\times F_c$ y $B$ es un vector de $C$ valores. Como $l$ es una aplicación lineal se sigue que $\mathcal{A}=A$ y la importancia no es más que la suma para cada característica de los valores de $A$ para esta.
 
-Sea $\lambda\in [0,100]$ un parámetro que determina que porcentaje de las características se va a ocultar, definimos la siguiente transformación $T_{fxshield}: \mathbb{R}^{F_c} \rightarrow \mathbb{R}^{F_c}$ que enmascara el $\lambda \%$ de elementos menos importantes. En la práctica se escoge el menor $m$ tal que $\lambda < \frac{m}{F_c} \cdot 100$ y se enmascaran las $m$ características menos importantes. En X-SHIELD, como se enmascaran características de la entrada que son imágenes, lo que se hace es sustituir estas por el color medio de la entrada. Para FX-SHIELD estamos en el espacio de features, dónde los valores que van de $-\infty$ a $\infty$. Por lo tanto hemos decidido sustituir dichos valores por $0$. Suponiendo, sin pérdida de generalidad, que las características en $z$ están ordenadas de menor importancia a mayor, se define $T_{fxshield}$ como:
+Sea $\lambda\in [0,100]$ un parámetro que determina que porcentaje de las características se va a ocultar, definimos la siguiente transformación $T_{fxshield}: \mathbb{R}^{F_c} \rightarrow \mathbb{R}^{F_c}$ que enmascara el $\lambda \%$ de elementos menos importantes. En la práctica se escoge el menor $m$ tal que $\lambda < \frac{m}{F_c} \cdot 100$ y se enmascaran las $m$ características menos importantes. En X-SHIELD, como se enmascaran características de la entrada que son imágenes, lo que se hace es sustituir estas por el color medio de la entrada. Para FX-SHIELD estamos en el espacio de características, dónde los valores que van de $-\infty$ a $\infty$. Por lo tanto hemos decidido sustituir dichos valores por $0$. Suponiendo, sin pérdida de generalidad, que las características en $z$ están ordenadas de menor importancia a mayor, se define $T_{fxshield}$ como:
 
 \begin{equation}
 z' = T_{fxshield}(z) = (0,0,...,0,z_{m+1},...,z_{F_c})
@@ -775,7 +767,7 @@ Ya estamos en condiciones de definir el factor de regularización que se utiliza
 FX-SHIELD(x,\Theta) = KL(y,y') + KL(y',y)
 \end{equation}
 
-Donde $KL$ es la divergencia de Kullback-Leibler que se utiliza para medir la diferencia estadística entre las distribuciones de probabilidad entre los modelos. Luego estamos utilizando la divergencia de Kullback-Leibler simétrica. Utilizamos ésta porque es mejor para medir similitud entre dos distribuciones sin dar preferencia a ninguna.
+Donde $KL$ es la divergencia de Kullback-Leibler que se utiliza para medir la diferencia estadística entre las distribuciones de probabilidad entre los modelos. Luego estamos utilizando la divergencia de Kullback-Leibler simétrica. Utilizamos ésta porque permite medir la similitud entre dos distribuciones sin dar preferencia a ninguna.
 
 Es decir, FX-SHIELD utiliza este valor regularizador en el entrenamiento por lo que en este método se minimiza la siguiente función:
 
@@ -788,7 +780,7 @@ Una ventaja que presenta este método sobre X-SHIELD es que no necesita que el m
 
 Otra ventaja es que es más rápido que X-SHIELD ya que para el cálculo de la regularización no hace falta pasar las características enmascaradas por toda la red sino por las capas posteriores a las convolucionales, que suelen ser mucho más rápidas y con menos parámetros.
 
-En X-SHIELD se esconden las características menos relevantes de la entrada a la red, que es una imagen, con la idea de eliminar partes de imagen que no son relevantes para la tarea de clasificación. En FX-SHIELD se esconden las características menos relevantes de las extraídas por las capas convolucionales. Esto puede ser interesante pues varios trabajos anteriores como~\cite{NetDiss,tcav,distill} muestran que las capas intermedias en CNNs representan conceptos de alto nivel. Por lo tanto tiene sentido trabajar con estas características intermedias que codifican conceptos que tienen sentido para los humanos. Esto se puede ver como una ventaja de FXSHIELD sobre X-SHIELD (cuando se toman características de la imagen de entrada como una división de la imagen en cuadrados) ya que estas features intermedias pueden tener un mayor significado.
+En X-SHIELD se esconden las características menos relevantes de la entrada a la red, que es una imagen, con la idea de eliminar partes de imagen que no son relevantes para la tarea de clasificación. En FX-SHIELD se esconden las características menos relevantes de las extraídas por las capas convolucionales. Esto puede ser interesante pues varios trabajos anteriores como~\cite{NetDiss,tcav} muestran que las capas intermedias en CNNs representan conceptos de alto nivel. Por lo tanto tiene sentido trabajar con estas características intermedias que codifican conceptos que tienen sentido para los humanos. Esto se puede ver como una ventaja de FXSHIELD sobre X-SHIELD (cuando se toman características de la imagen de entrada como una división de la imagen en cuadrados) ya que estas features intermedias pueden tener un mayor significado.
 
 \subsection{FR-Shield}
 
@@ -816,7 +808,7 @@ En el Apéndice \ref{ap:apendice1} hacemos un resumen de todos los módulos del 
 
 
 
-Para la gestión de paquetes de \textit{Python} se ha utilizado la herramienta \textit{Conda} que permite crearentornos con los paquetes de \textit{Python} necesarios para el proyecto. Se ha utilizado la versión de Conda 4.10.1 y se ha creado un entorno con Python 3.9.23. Se han instalado los siguiente paquetes paquetes de \textit{Python}:
+Para la gestión de paquetes de \textit{Python} se ha utilizado la herramienta \textit{Conda} que permite crear entornos con los paquetes de \textit{Python} necesarios para el proyecto. Se ha utilizado la versión de Conda 4.10.1 y se ha creado un entorno con Python 3.9.23. Se han instalado los siguiente paquetes paquetes de \textit{Python}:
 
 \begin{itemize}
     \item torch (versión 2.0.1): con CUDA versión 11.7
@@ -841,7 +833,7 @@ Para la gestión de paquetes de \textit{Python} se ha utilizado la herramienta \
     \item revel-xai: paquete con la implementación de las métricas REVEL.
 \end{itemize}
 
-Todo el código desarrollado para el TFM está disponible en el siguiente \href{https://github.com/CarlosLaraCasanova/Codigo_TFM/tree/main}{enlace}.
+Todo el código desarrollado para el TFM está disponible en el siguiente \href{https://github.com/CarlosLaraCasanova/Codigo_TFM/tree/main}{enlace} a GitHub.
 
 
 \clearpage
@@ -964,7 +956,7 @@ Los modelos se van a entrenar con el conjunto de entrenamiento y se evaluará co
 Teniendo en cuenta el tamaño de nuestro conjunto de datos y de los recursos computacionales de los que disponemos hemos decidido utilizar un conjunto de validación fijo. 
 
 
-Esta técnica consiste en separar un porcentaje del conjunto de entrenamiento para no entrenar con él. Sin embargo se va a utilizar para evaluar el modelo al final de cada época, calculando su función de error sobre este conjunto. Utilizar un conjunto para validación es relevante para el entrenamiento del modelo porque cumple un rol distinto a los conjuntos de entrenamiento y test. Este nos ayudará a realizar un ajuste de hiperparámetros del modelo 	y ayuda a prevenir el sobreajuste, eligiendo el modelo que menor error tenga en validación, en vez de en entrenamiento. 
+Esta técnica consiste en separar un porcentaje del conjunto de entrenamiento para no entrenar con él. Este se va a utilizar para evaluar el modelo al final de cada época, calculando su función de error sobre este conjunto. Utilizar un conjunto para validación es relevante para el entrenamiento del modelo porque cumple un rol distinto a los conjuntos de entrenamiento y test. Este nos ayudará a realizar un ajuste de hiperparámetros del modelo 	y ayuda a prevenir el sobreajuste, eligiendo el modelo que menor error tenga en validación, en vez de en entrenamiento. 
 
 Nosotros vamos a dividir el conjunto de entrenamiento en 90/10 para entrenamiento y para validación respectivamente. En la Figura \ref{fig:distribucionTrainTestVal} presentamos un esquema con la división del conjunto de datos seguida para los experimentos.
 
@@ -985,33 +977,33 @@ Cómo \textbf{\textit{learning rate}} inicial Adam se ha escogido el valor $0.00
 
 El tamaño del \textbf{\textit{minibatch}} escogido ha sido 32. En~\cite{batchSize} se ve que tamaños grandes de \textit{minibatches} acelera el entrenamiento y estabiliza la convergencia del modelo mientras que un tamaño pequeño puede mejorar la capaz de generalizar del modelo. Por esto hemos decidido escoger tamaño $32$ ya que es el mayor tamaño de \textit{minibatch} para el que la gráfica dónde ejecutamos los experimentos no se quedaba sin memoria.
 
-Para el número de \textbf{épocas} hemos escogido 24. Esta decisión la tomamos por los recursos computacionales de los que disponemos. Por ello se hicieron pruebas experimentales previas para buscar un valor que garantizaba la convergencia de estos pero no se excedía en tiempo de entrenamiento. El número de épocas es por lo tanto $24$. Con este número de épocas los modelos entrenados tardan hasta un día en ser entrenados.
+Para el número de \textbf{épocas} hemos escogido 24. Esta decisión la tomamos por los recursos computacionales de los que disponemos. Por ello se hicieron pruebas experimentales previas para buscar un valor que garantizaba la convergencia de estos pero no se excedía en tiempo de entrenamiento. El número de épocas es por lo tanto $24$. Con este número de épocas los modelos tardan hasta un día en ser entrenados.
 
 Cómo ya sabemos el modelo que vamos a utilizar en los experimentos es EfficientNet-B2 con entradas de tamaño $224 \times 224$. Este modelo lo cargamos de la librería de \textit{pytorch}. Además lo vamos a cargar con los pesos preentrenados de esta red sobre el conjunto de datos IMAGENET-1K lo que se conoce como \textit{transfer learning} y nos permite comenzar el entrenamiento con un modelo cuyas características ya tienen cierto entrenamiento.
 
-En primer lugar vamos a entrenar el modelo EfficientNet-B2 base con los parámetros que hemos especificado. Después se entrenará esta red aplicando los distintos métodos de regularización explicados, estos son: el método original con el que comparamos los propuestos (X-SHIELD) y los métodos nuevos que proponemos en este trabajo (FX-SHIELD, FR-SHIELD y H-SHIELD).
+En primer lugar vamos a entrenar el modelo EfficientNet-B2 base, sin utilizar ninguna regularización XAI. Después se entrenará esta red aplicando los distintos métodos de regularización explicados, estos son: el método original con el que comparamos los propuestos (X-SHIELD) y los métodos nuevos que proponemos en este trabajo (FX-SHIELD, FR-SHIELD y H-SHIELD).
 
 Los hiperparámetros a los que se va a probar a cambiar sus valores son los correspondientes a los métodos de regularización de XAI. Estos son:
 
 \begin{itemize}
 
-\item $\lambda$: En el caso de X-SHIELD, FX-SHIELD y FR-SHIELD este parámetro determina que porcentaje de las caracterísitcas (de las entrada en el caso de X-SHIELD y los intermedios en el caso de los nuestros) se van a ocultar para el cálculo de los valores de regularización. Para X-SHIELD se ha probado con los parámetros 3, 6, 9 y 12, ya que en~\cite{XSHIELD} se demostró que funcionaba mejor para valores similares a estos. Para los métodos nuevos, como no tenemos esta información hemos probado con más variedad de valores. Para FX-SHIELD hemos probado con los parámetros a 3, 6, 9, 12, 25, 35, 45, 55, 65, 75 y 85, como funcionaba mejor para 75 también probamos con los valores vecinos 70, 73 y 77. Para FR-SHIELD hemos probado con 3, 45, 65 y 75. Hemos decidido probar con menos valores y más dispersos para FR-SHIELD este presenta una mayor aleatoriedad en su comportamiento experimental y una exploración más fina eleva el riesgo de sobreajustar a ruido.
+\item $\lambda$: En el caso de X-SHIELD, FX-SHIELD y FR-SHIELD este parámetro determina que porcentaje de las caracterísitcas (de las entrada en el caso de X-SHIELD y los intermedios en el caso de los nuestros) se van a ocultar para el cálculo de los valores de regularización. Para X-SHIELD se ha probado con los parámetros 3, 6, 9 y 12, ya que en~\cite{XSHIELD} se demostró que funcionaba mejor para valores similares a estos. Para los métodos nuevos, como no tenemos esta información hemos probado con más variedad de valores. Para FX-SHIELD hemos probado con los parámetros a 3, 6, 9, 12, 25, 35, 45, 55, 65, 75 y 85, como funcionaba mejor para 75 también probamos con los valores vecinos 70, 73 y 77. Para FR-SHIELD hemos probado con 3, 45, 65 y 75. Hemos decidido probar con menos valores y más dispersos para FR-SHIELD ya que este presenta una mayor aleatoriedad en su comportamiento experimental y una exploración más fina eleva el riesgo de sobreajustar a ruido.
 
 \item $\alpha_1$ y $ \alpha_2$: Estos son los parámetros para H-SHIELD. Son los pesos que se aplican a la regularización X-SHIELD y FX-SHIELD respectivamente. Para los hiperparámetros $\lambda$ para cada uno de estos hemos escogido los que mejores resultados daban por individual que son 12 y 77 respectivamente. Para $(\alpha_1,\alpha_2)$ se han probado $(1,1)$, $(1,2)$ y $(1,3)$. Hemos probado con estas combinaciones porque hemos visto experimentalmente que el valor de regularización en FX-SHIELD es menor que el de X-SHIELD en entrenamiento y queremos comprobar que ocurre al darle mayor peso a FX-SHIELD.
 \end{itemize}
 
-Además para las características de X-SHIELD se divide la imagen de entrada en 64 cuadrados del mismo tamaño para cada imagen como se hace en~\cite{XSHIELD}.
+Además para las características de X-SHIELD se divide la imagen de entrada en 64 cuadrados del mismo tamaño como se hace en~\cite{XSHIELD}.
 
-De esta manera, el modelo se entrena aplicando cada método con la distintas elecciones de hiperparámetros. Para evitar el sobreentrenamiento, durante el entrenamiento de los modelos en cada época se calcula la función de pérdida sobre el conjunto de validación y el modelo final del entrenamiento es el que menor pérdida en validación haya obtenido, no necesariamente el que minimice el error en entrenamiento. 
+De esta manera, el modelo se entrena aplicando cada método con la distintas elecciones de hiperparámetros. Para evitar el sobreajuste, durante el entrenamiento de los modelos en cada época se calcula la función de pérdida sobre el conjunto de validación y el modelo final del entrenamiento es el que menor pérdida en validación haya obtenido, no necesariamente el que minimice el error en entrenamiento. 
 
-Para elegir los mejores hiperparámetros para cada método se escoge modelo entrenado que minimicen la \textit{accuracy} en validación para dichos hiperparámetros.
+Para elegir los mejores hiperparámetros para cada método se escoge modelo entrenado que minimice la \textit{accuracy} en validación para dichos hiperparámetros.
 
 
 \section{Métricas}
 
 Para el entrenamiento del modelo se utiliza como función de pérdida el \textbf{error de entropía cruzada} que se utiliza habitualmente para entrenar redes neuronales en clasificación.
 
-La \textit{accuracy} es una métrica que mide la proporción de elementos bien clasificados, por lo tanto se valor se encuentra en el rango $[0,1]$, siendo 0 sino clasifica bien ningún elemento y 1 si clasifica bien todos. Formalmente se define como:
+La \textit{accuracy} es una métrica que mide la proporción de elementos bien clasificados por el modelo, por lo tanto su valor se encuentra en el rango $[0,1]$, siendo 0 cuando no clasifica bien ningún elemento y 1 si clasifica bien todos. Formalmente se define como:
 
 \begin{equation}
 accuracy = \frac{elementos\ bien\ clasificados}{total\ elementos}
@@ -1019,18 +1011,18 @@ accuracy = \frac{elementos\ bien\ clasificados}{total\ elementos}
 
 Utilizaremos esta métrica para evaluar el rendimiento del modelo en la tarea de clasificación. 
 
-Por otro lado para evaluar la calidad de las explicaciones utilizamos la métricas \textbf{REVEL}. Recordamos que estas son: \textit{local concordance}, \textit{local fidelity}, \textit{presciptivity}, \textit{conciseness} y \textit{robustness}. Para cada método de regularización las obtenemos para el modelo final que ha sido calculado para los mejores parámetros de dicho método.
+Por otro lado, para evaluar la calidad de las explicaciones utilizamos la métricas \textbf{REVEL}. Recordamos que estas son: \textit{local concordance}, \textit{local fidelity}, \textit{presciptivity}, \textit{conciseness} y \textit{robustness}. Para cada método de regularización las obtenemos para el modelo final que ha sido entrenado con los mejores hiperparámetros de dicho método.
 
 Para el cálculo de estas métricas, se generan explicaciones con un generador de LLEs. Elegimos LIME por los resultados presentados en~\cite{REVEL}, dónde este obtiene mejores resultados que SHAP. Utilizamos las mismas características que X-SHIELD para LIME, es decir, 64 cuadrados del mismo tamaño que dividen la imagen de entrada.  Para los cálculos de la explicación de un ejemplo generamos 1000 vecinos. El parámetro $\sigma$ lo ponemos a 12.
 
-Para cada ejemplo, generamos 10 explicaciones para el cálculo de las cuatro primeras métricas y calculamos la media aritmética de cada una para obtener su valor final para ese ejemplo. En total utilizamos 100 ejemplos. Para el cálculo de la \textit{robustness} se utilizan las 10 explicaciones generadas para las otras métricas para calcular esta métrica. Hemos elegido estos parámetros para calcular las métricas por límites de coste computacional. El cálculo de estas métricas para un modelo ya entrenado tarda alrededor de 1 día.
+Para cada ejemplo, generamos 10 explicaciones para el cálculo de las cuatro primeras métricas y calculamos la media aritmética de cada una para obtener su valor final para ese ejemplo. En total utilizamos 100 ejemplos. Para el cálculo de la \textit{robustness} se utilizan las 10 explicaciones generadas para las otras métricas. Hemos elegido estos parámetros para calcular las métricas porque son los mismos que se utilizan en \cite{XSHIELD}, excepto el número de ejemplos, que lo hemos disminuido por límites de coste computacional. El cálculo de estas métricas para un modelo ya entrenado tarda alrededor de 1 día.
 
 
 \paragraph*{Test estadísticos bayesianos}
 
-Una vez tenemos los 100 valores de las métricas REVEL para cada método utilizamos los tests estadísticos bayesianos, estos se encuentran implementados en la librería de \textit{Python} \href{https://baycomp.readthedocs.io/en/latest/\#baycomp}{baycomp}. Esta biblioteca introduce los tests bayesianos para comparación de método. Estos tests permiten comparar dos métodos de manera probabilística, estimando directamente la probabilidad de que uno sea mejor que otro, o que la diferencia entre ellos sea significativamente relevante.
+Una vez tenemos los 100 valores de las métricas REVEL para cada método utilizamos tests estadísticos bayesianos, estos se encuentran implementados en la librería de \textit{Python} \href{https://baycomp.readthedocs.io/en/latest/\#baycomp}{baycomp}. Esta biblioteca introduce los tests bayesianos para comparación de método. Estos tests permiten comparar dos métodos de manera probabilística, estimando directamente la probabilidad de que uno sea mejor que otro, o que la diferencia entre ellos sea significativamente relevante.
 
-Los tests bayesianos se basan en la estimación de la distribución posterior de la diferencia de desempeño entre dos métodos. Se calculan las tres probabilidades siguientes:
+Los tests bayesianos se basan en la estimación de la distribución posterior de la diferencia de desempeño entre dos métodos. Se calculan las tres probabilidades siguientes para cada métrica:
 \begin{itemize}
 
 \item Método A es mejor que método B.
@@ -1039,9 +1031,9 @@ Los tests bayesianos se basan en la estimación de la distribución posterior de
 
 \end{itemize}
 
-ROPE define un umbral de diferencia prácticamente insignificante. En la página del propio método recomienda ROPE = 0.01 para métricas en el rango $[0,1]$ que es el caso de las métricas REVEL (técnicamente \textit{robustness} podría ser negativa, en la práctica suele estar en el rango).
+ROPE define un umbral de diferencia prácticamente insignificante. Se recomienda establecer el umbral ROPE a 0.01 para métricas en el rango $[0,1]$ que es el caso de las métricas REVEL (técnicamente \textit{robustness} podría ser negativa, en la práctica suele estar en el rango).
 
-Diremos que un método es mejor que otro para una métrica cuando la probabilidad de que sea mejor es $>95\%$. Además de los test mostraremos las gráficas de violin para las distintas métricas y métodos. En particular compararemos: FX-SHIELD con X-SHIELD, porque X-SHIELD es un método probado que mejora el rendimiento de las métricas REVEL, FX-SHIELD con FR-SHIELD, para ver como influye ocultar características aleatorias y FX-SHIELD con HSHIELD, para ver como se comparan estos dos métodos nuevos.
+Diremos que un método es mejor que otro para una métrica con una diferencia estadísticamente significativa cuando la probabilidad de que sea mejor es $>95\%$. Además de los test mostraremos las gráficas de violin para las distintas métricas y métodos. En particular compararemos: FX-SHIELD con X-SHIELD, porque X-SHIELD es un método probado que mejora el rendimiento de las métricas REVEL, FX-SHIELD con FR-SHIELD, para ver como influye ocultar características aleatorias y FX-SHIELD con HSHIELD, para ver como se comparan estos dos métodos nuevos.
 
 \section{Resultados}
 
@@ -1051,11 +1043,11 @@ En esta sección vamos a presentar los resultados obtenidos. En primer lugar com
 
 En esta subsección introducimos los resultados obtenidos en los entrenamientos utilizando cada método con todos los distintos hiperparámetros utilizados. Tras esto, comentaremos los resultados para el conjunto test de cada método con sus mejores hiperparámetros. Finalmente, haremos un estudio del comportamiento de las curvas de aprendizaje para cada regularización.
 
-Los resultados de todas las redes entrenadas con los distintos métodos y para todas las combinaciones de hiperparámetros se encuentran en la Tabla \ref{tab:resultadosTodo}. En esta se puede ver que hiperparámetros son los que presentan un mejor rendimiento para cada modelo, es decir, con qué parámetros han conseguido la mejor \textit{accuracy} en el conjunto de validación. 
+Los resultados de todas las redes entrenadas con los distintos métodos y para todas las combinaciones de hiperparámetros se encuentran en la Tabla \ref{tab:resultadosTodo}. En esta se puede ver qué hiperparámetros son los que presentan un mejor rendimiento para cada modelo, es decir, con qué parámetros han conseguido la mejor \textit{accuracy} en el conjunto de validación. 
 
 Es destacable que para FX-SHIELD se obtiene el mejor resultado para $\lambda = 77$ mientras que para FR-SHIELD alcanza su mejor rendimiento con $\lambda = 3$. En H-SHIELD la mejor \textit{accuracy} se alcanza cuando se combinan X-SHIELD y FX-SHIELD con el mismo peso. Por otro lado X-SHIELD obtiene su mejor rendimiento con $\lambda = 12$ y es el que mejor \textit{accuracy} en validación obtiene de todos, aunque por un margen del $1\%$.
 
-Más allá de comparar modelos de forma aislada, los resultados muestran un patrón consistente respecto al efecto de las distintas regularizaciones. En general, al aumentar el valor de $\lambda$ (o $\alpha_2$ en H-SHIELD) se observa una ligera degradación en la \textit{accuracy} de entrenamiento y un incremento en el valor de regularización, esto indica un mayor control del sobreajuste. En FR-SHIELD valores altos de $\lambda$ penalizan fuertemente el entrenamiento, con un rápido aumento en la regularización. En contraste, FX-SHIELD es más robusto, manteniendo un desempeño estable incluso para $\lambda$ grandes. 
+Más allá de comparar modelos de forma aislada, los resultados muestran un patrón consistente respecto al efecto de las distintas regularizaciones. En general, al aumentar el valor de $\lambda$ (o $\alpha_2$ en H-SHIELD) se observa una ligera degradación en la \textit{accuracy} de entrenamiento y un incremento en el valor de regularización. En FR-SHIELD valores altos de $\lambda$ penalizan fuertemente el entrenamiento, con un rápido aumento en la regularización. En contraste, FX-SHIELD es más robusto, manteniendo un desempeño estable incluso para $\lambda$ grandes. 
 
 
 \begin{table}[htbp]
@@ -1105,7 +1097,7 @@ H-SHIELD ($\alpha_1=1, \alpha_2=3$) & 0.953 & 0.00434 & 0.002547 & 0.948 & 0.083
 \end{table}
 
 \newpage
-En la Tabla \ref{tab:resultadosMejoresTest} tenemos los valores obtenidos en test para los mejores modelos de cada método. X-SHIELD mejora la \textit{accuracy} del modelo \textit{baseline}, en este caso en 0.07. Luego es una mejora significativa. Por otro lado el método híbrido H-SHIELD consigue capturar está mejoría, empeorando únicamente en un 0.01 su \textit{accuracy} respecto de X-SHIELD. Por otro lado los métodos FX-SHIELD y FR-SHIELD no han conseguido mejorar al modelo base, obteniendo ambas 0.949 de \textit{accuracy}, prácticamente la misma que el modelo base (un 0.01 de diferencia a favor del modelo base). Observemos también que H-SHIELD tiene con diferencia el mayor valor de su función de regularización en test a pesar de ser la suma de X-SHIELD y FX-SHIELD. Esto parece indicar que H-SHIELD no es capaz de minimizar ambos valores de regularización al mismo tiempo.
+En la Tabla \ref{tab:resultadosMejoresTest} tenemos los valores obtenidos en test para los mejores modelos de cada método. X-SHIELD mejora la \textit{accuracy} del modelo \textit{baseline}, en este caso en 0.07. Luego es una mejora significativa. El método híbrido H-SHIELD consigue capturar está mejoría, empeorando únicamente en un 0.01 su \textit{accuracy} respecto de X-SHIELD. Por otro lado, los métodos FX-SHIELD y FR-SHIELD no han conseguido mejorar al modelo base, obteniendo ambos 0.949 de \textit{accuracy}, prácticamente la misma que el modelo base (un 0.01 de diferencia a favor del modelo base). Observemos también que H-SHIELD tiene con diferencia el mayor valor de su función de regularización en test. A pesar de ser la suma de X-SHIELD y FX-SHIELD este valor supera con creces la suma de la regularización obtenida en estos dos métodos por separado. Esto parece indicar que H-SHIELD no es capaz de minimizar ambos valores de regularización al mismo tiempo.
 
 \begin{table}[htbp]
 \centering
@@ -1127,7 +1119,7 @@ H-SHIELD ($\alpha_1=1.0, \alpha_2=1.0$) & 0.956 & 0.071610 & 0.015749 \\
 \end{table}
 
 
-En la Figura \ref{fig:metrics_xshield} se encuentran las curvas de aprendizaje de X-SHIELD para sus distintos parámetros. Se observa un comportamiento natural de convergencia de la red: la función de pérdida en entrenamiento continúa disminuyendo mientras que, en comparativa, la de  validación se estabiliza. Cabe destacar que aunque en validación los valores de regularización siguen un orden y parecen converger a valores distintos (mayor cuanto mayor es el $\lambda$) lo cual es esperable, en entrenamiento estos convergen a valores muy cercanos.
+En la Figura \ref{fig:metrics_xshield} se encuentran las curvas de aprendizaje de X-SHIELD para sus distintos parámetros. Se observa un comportamiento natural de convergencia de la red: la función de pérdida en entrenamiento continúa disminuyendo mientras que, en comparativa, la de  validación se estabiliza. Cabe destacar que aunque en validación los valores de regularización siguen un orden y parecen converger a valores distintos (mayor cuanto mayor es el $\lambda$), en entrenamiento estos convergen a valores muy cercanos.
 
 
 % === Figura: xshield ===
@@ -1171,7 +1163,7 @@ En la Figura \ref{fig:metrics_xshield} se encuentran las curvas de aprendizaje d
     \label{fig:metrics_xshield}
 \end{figure}
 
-En las curvas de aprendizaje de FX-SHIELD (Figura \ref{fig:metrics_fxshield}) se observa un comportamiento parecido al de X-SHIELD. Al igual que ocurría en este, sus valores de regularización convergen todos a valores muy cercanos en entrenamiento. Por otro lado, esto también ocurre con sus valores de regularización. Podemos ver que la función de pérdida en entrenamiento converge correctamente y en validación este método necesita menos épocas para converger ya que el valor en validación de la pérdida empieza a aumentar ligeramente (aunque la métrica de precisión en validación sigue mejorando). Esto puede indicar que el modelo empieza a sobreajustar pero no afecta a nuestros resultados porque el modelo tras el entrenamiento es el que mejor pérdida obtuvo en validación, no el de la última época.
+En las curvas de aprendizaje de FX-SHIELD (Figura \ref{fig:metrics_fxshield}) se observa un comportamiento parecido al de X-SHIELD. Al igual que ocurría en este, sus valores de regularización convergen todos a valores muy cercanos en entrenamiento. Por otro lado, esto también ocurre con sus valores de regularización en validación. Podemos ver que la función de pérdida en entrenamiento converge correctamente y en validación este método necesita menos épocas para converger ya que el valor de la pérdida empieza a aumentar ligeramente, aunque la métrica de precisión en validación sigue mejorando. Esto puede indicar que el modelo empieza a sobreajustar, lo cual no afecta a nuestros resultados porque el modelo que obtenemos tras el entrenamiento es el que menor pérdida obtuvo en validación, no el de la última época.
 
 En la Figura \ref{fig:metrics_frshield}, observamos la evolución de las métricas para el modelo FR-SHIELD. Se observa que ocurre lo mismo para la función de pérdida que para FX-SHIELD. Por otra parte este no es capaz de minimizar la regularización en entrenamiento y validación tan rápido como el resto de métodos, especialmente para valores altos de $\lambda$. Esto podría ser causado por la naturaleza aleatoria de esta regularización.
 
@@ -1305,7 +1297,7 @@ Finalmente para H-SHIELD (Figura \ref{fig:metrics_hshield}) se obtienen resultad
 
 En esta subsección nos centramos en evaluar la calidad de las explicaciones generadas por los distintos métodos a través de las métricas REVEL. Para ello se analizan las distribuciones obtenidas  mediante gráficos de violín, lo que permite comparar visualmente el comportamiento de cada regularización para las distintas métricas. Después realizamos test bayesianos para realizar un comparación estadística de los resultados obtenidos.
 
-Vemos en la Figura \ref{fig:violinplots} como se distribuyen las 100 medidas por métrica REVEL para cada método. Los métodos FX-SHIELD, X-SHIELD y H-SHIELD tienen distribuciones casi idénticas para la \textit{local concordance} y para la \textit{local fidelity}. Tienen distribuciones muy concentradas al valor máximo. Por otro lado FR-SHIELD tiene un distribución parecida pero menos concentrada, con mayor varianza. 
+Vemos en la Figura \ref{fig:violinplots} como se distribuyen las 100 medidas por métrica REVEL para cada método. Los métodos FX-SHIELD, X-SHIELD y H-SHIELD tienen distribuciones casi idénticas para la \textit{local concordance} y para la \textit{local fidelity}. Estas distribuciones están muy concentradas sobre el valor máximo posible. Por otro lado FR-SHIELD tiene un distribución parecida pero menos concentrada, con mayor varianza. 
 
 X-SHIELD y H-SHIELD tienen un distribución de la \textit{Robustness} parecida, con H-SHIELD un poco mayor. Para FX-SHIELD esta es claramente más baja. FR-SHIELD presenta la peor distribución de los cuatro métodos con mayor varianza.
 
@@ -1350,11 +1342,11 @@ Por último, para la presciptividad se tienen dos distribuciones parecidas para 
     \label{fig:violinplots}
 \end{figure}
 
-Los últimos resultados obtenidos vienen de los test bayesianos que hemos realizado sobre estas métricas. En la Tabla \ref{tab:bay-X-FX} se tiene que para la concordancia local y la fidelidad local de los métodos X-SHIELD y FX-SHIELD son iguales. Además FX-SHIELD mejora la \textit{prescriptivity} y la \textit{conciseness}, aunque esta última sin una diferencia estadísticamente significativa. De la misma forma, X-SHIELD presenta una mejor \textit{robustness}.
+Los últimos resultados obtenidos vienen de los test bayesianos que hemos realizado sobre estas métricas. En la Tabla \ref{tab:bay-X-FX} se tienen los resultados de los tests entre X-SHIELD y FX-SHIELD. Para la concordancia local y la fidelidad local de los métodos X-SHIELD y FX-SHIELD tienen un probabilidad del $100\%$ de ser iguales. Además FX-SHIELD mejora la \textit{prescriptivity} y la \textit{conciseness}, aunque esta última sin una diferencia estadísticamente significativa. De la misma forma, X-SHIELD presenta una mejor \textit{robustness}.
 
-Para las comparaciones entre FX-SHIELD y FR-SHIELD (Tabla \ref{tab:bay-FX-FR}) tenemos que una vez más la \textit{local concordance} y la \textit{local fidelity} de ambos métodos coinciden completamente. FX-SHIELD mejora la \textit{conciseness} y \textit{prescriptivity} de FR-SHIELD, aunque únicamente con diferencia estadísticamente significativa en la primera. Por último ambas coinciden en su rendimiento en \textit{robustness}.
+Para las comparaciones entre FX-SHIELD y FR-SHIELD (Tabla \ref{tab:bay-FX-FR}) tenemos que una vez más la \textit{local concordance} y la \textit{local fidelity} de ambos métodos coinciden completamente. FX-SHIELD mejora la \textit{conciseness} y \textit{prescriptivity} de FR-SHIELD, aunque únicamente con diferencia estadísticamente significativa en la primera y una probabilidad del $77.69\%$ en la segunda. Por último ambas tiene una probabilidad alta de ser iguales en \textit{robustness}.
 
-El último test realizado es entre FX-SHIELD y H-SHIELD (Tabla \ref{tab:bay-FX-H}). Otra vez ocurre que para la \textit{local concordance} y la \textit{local fidelity} de ambos métodos son iguales. FX-SHIELD mejora la \textit{prescriptivity} y la \textit{conciseness}, aunque esta última sin una diferencia estadísticamente significativa (pero muy alta igualmente). H-SHIELD mejora en \textit{robustness} de manera significativa a FX-SHIELD.
+El último test realizado es entre FX-SHIELD y H-SHIELD (Tabla \ref{tab:bay-FX-H}). Otra vez ocurre que para la \textit{local concordance} y la \textit{local fidelity} de ambos métodos son iguales. FX-SHIELD mejora la \textit{prescriptivity} y la \textit{conciseness}, aunque esta última sin una diferencia estadísticamente significativa, pero con probabilidad del $83.28\%$. H-SHIELD mejora en \textit{robustness} de manera estadísticamente significativa a FX-SHIELD.
 
 
 
@@ -1414,26 +1406,26 @@ Robustness        & 0.00\% & 1.29\% & 98.71\% \\
 
 \section{Discusión} \label{sec:discusion}
 
-Respecto al entrenamiento de los modelos el punto principal es que tanto X-SHIELD como H-SHIELD se podrían beneficiar de un mayor número de épocas para entrenar los modelos.
+Respecto al entrenamiento de los modelos, el punto principal es que tanto X-SHIELD como H-SHIELD se podrían beneficiar de un mayor número de épocas para entrenar los modelos.
 
-Por otro lado hemos visto que X-SHIELD y H-SHIELD son regularizaciones centradas en mejorar la interpretabilidad del modelo que además consiguen una mejora en el rendimiento en clasificación. Sin embargo los métodos FX-SHIELD y FR-SHIELD mantienen prácticamente intacto este aspecto del modelo, aunque esto de por sí se puede considerar un aspecto positivo de estos ya que muchos métodos utilizados en XAI empeoran el rendimiento en clasificación a cambio de mejora de la interpretabilidad.
+Por otro lado hemos visto que X-SHIELD y H-SHIELD son regularizaciones centradas en mejorar la explicabilidad del modelo que además consiguen una mejora en el rendimiento en clasificación. Sin embargo los métodos FX-SHIELD y FR-SHIELD mantienen prácticamente intacto este aspecto del modelo, aunque esto de por sí se puede considerar un aspecto positivo de estos ya que muchos métodos utilizados en XAI empeoran el rendimiento en clasificación a cambio de mejora de la interpretabilidad del modelo.
 
-En cuanto a explicabilidad, el método propuesto FX-SHIELD es una versión mejor de FR-SHIELD. Esto se podría deber a que FR-SHIELD es una versión estocástica de FX-SHIELD y parece afirmar la importancia de ocultar las características menos importantes en el método. Por otro lado FX-SHIELD produce explicaciones más concisas y prescriptivas que X-SHIELD, aunque menos robustas. Por otro lado X-SHIELD mejora el rendimiento del modelo en la tarea de clasificación, mejorando la \textit{accuracy} en test. Nuestro último método propuesto H-SHIELD, que combina los métodos X-SHIELD y FX-SHIELD consigue capturar las ventajas de X-SHIELD (mejor \textit{accuracy} y mayor \textit{robustness}) pero no es capaz de mejorar a FX-SHIELD en el resto de métricas REVEL, sin embargo, es capaz de mejorar la robustez de las explicaciones respecto al método X-SHIELD, pues obtiene una diferencia estadísticamente significativa en esta métrica respecto a FX-SHIELD mientras que X-SHIELD no. Además todos los métodos con los que hemos experimentado aseguran un mínimo de calidad en sus explicaciones al tener las métricas de \textit{local fidelity} y \textit{local concordance} de alta calidad, con distribuciones muy concentradas alrededor del valor máximo.
+En cuanto a explicabilidad, el método propuesto FX-SHIELD es una versión mejor de FR-SHIELD. Esto se podría deber a que FR-SHIELD es una versión estocástica de FX-SHIELD y parece confirmar la importancia de ocultar las características menos importantes en el método. Por otro lado, FX-SHIELD produce explicaciones más concisas y prescriptivas que X-SHIELD, aunque menos robustas. Nuestro último método propuesto, H-SHIELD, que combina los métodos X-SHIELD y FX-SHIELD consigue capturar las ventajas de X-SHIELD (mejor \textit{accuracy} y mayor \textit{robustness}) pero no es capaz de mejorar a FX-SHIELD en el resto de métricas REVEL. Sin embargo, es capaz de mejorar la robustez de las explicaciones respecto al método X-SHIELD, pues obtiene una diferencia estadísticamente significativa en esta métrica respecto a FX-SHIELD mientras que X-SHIELD no. Además todos los métodos con los que hemos experimentado aseguran un mínimo de calidad en sus explicaciones al tener las métricas de \textit{local fidelity} y \textit{local concordance} de alta calidad, con distribuciones muy concentradas alrededor del valor máximo.
 
 \clearpage
 \chapter{Conclusiones} \label{cap:conc}
 
-En este trabajo nos hemos centrado en el problema de mejorar la explicabilidad de modelos de clasificación de lesiones cancerosas en biopsias de próstata utilizando técnicas de IA explicable. Para el desarrollo de este, lo dividimos en objetivos más pequeños que hemos cumplido a lo largo del trabajo. En primer lugar realizamos una revisión del estado del arte de los distintos métodos necesarios para abordar el problema principal: modelos de clasificación, de métodos de XAI para generación de explicaciones, métodos de XAI para la mejora de explicaciones y métricas XAI que midan aspectos cuantitativos de los distintos métodos propuestos. A continuación, realizamos un estudio del código de la regularización X-SHIELD~\cite{XSHIELD}, método del que parten los que proponemos nosotros, y las métricas REVEL~\cite{REVEL}, que son las que utilizamos para comparar los distintos métodos. Después, presentamos en detalle nuestros métodos originales: FX-SHIELD, FR-SHIELD y H-SHIELD, tres regularizaciones de la familia T-SHIELD. Tras implementarlos, diseñamos los distintos experimentos. Finalmente, ejecutamos estos experimentos, evaluamos los resultados obtenidos y discutimos su significado.
+En este trabajo nos hemos centrado en el problema de mejorar la explicabilidad de modelos de clasificación de lesiones cancerosas en biopsias de próstata utilizando técnicas de IA explicable. Para el desarrollo de este, lo dividimos en objetivos más pequeños que hemos cumplido a lo largo del trabajo. En primer lugar realizamos una revisión del estado del arte de los distintos métodos necesarios para abordar el problema principal: modelos de clasificación, de métodos de XAI para generación de explicaciones, métodos de XAI para la mejora de explicaciones y métricas XAI que midan aspectos cuantitativos de los distintos métodos propuestos. A continuación, realizamos un estudio del código de la regularización X-SHIELD~\cite{XSHIELD}, método del que parten los métodos propuestos por nosotros, y las métricas REVEL~\cite{REVEL}, que son las que utilizamos para comparar los distintos métodos. Después, presentamos en detalle nuestros métodos originales: FX-SHIELD, FR-SHIELD y H-SHIELD, tres regularizaciones de la familia T-SHIELD. Tras implementarlos, diseñamos los distintos experimentos. Finalmente, ejecutamos estos experimentos, evaluamos los resultados obtenidos y discutimos su significado.
 
 
 Nuestro método FX-SHIELD mejora al método del estado del arte X-SHIELD en dos de las cinco métricas REVEL, consigue el mismo rendimiento en otras dos métricas y empeora levemente la \textit{robustness}. Además, FX-SHIELD mantiene la \textit{accuracy} obtenida por el modelo base. Podemos afirmar por lo tanto que FX-SHIELD muestra ventajas de interpretabilidad sobre X-SHIELD. Por otro lado, también hemos visto que FX-SHIELD presenta un mejor comportamiento que FR-SHIELD, pues para cada métrica REVEL lo mejora o iguala, destacando lo importante que es que las características enmascaradas por FX-SHIELD sean las de menor importancia. Nuestro último método, H-SHIELD, que combina FX-SHIELD y X-SHIELD tiene un rendimiento parecido a X-SHIELD en las métricas REVEL y también en \textit{accuracy}. 
 
-Por todo lo expuesto anteriormente, podemos afirmar que hemos conseguido el objetivo final del TFM, pues hemos presentado un método de regularización XAI novedoso, FX-SHIELD, que mejora las explicaciones obtenidas en dos de las cinco métricas REVEL respecto al método del estado del arte, X-SHIELD, y lo hemos aplicado a un modelo de clasificación de lesiones cancerosas en biopsias de próstata, mejorando su interpretabilidad. Si bien la mejora no es en todas las métricas, nuestros resultados abren una línea prometedora para posibles mejoras posteriores y por lo tanto puede contribuir al entrenamiento de modelos más explicables y fiables.
+Por todo lo expuesto anteriormente, podemos afirmar que hemos conseguido el objetivo final del TFM, pues hemos presentado un método de regularización XAI novedoso, FX-SHIELD, que mejora las explicaciones obtenidas en dos de las cinco métricas REVEL respecto al método del estado del arte, X-SHIELD, y lo hemos aplicado a un modelo de clasificación de lesiones cancerosas en biopsias de próstata, mejorando su explicabilidad. Si bien la mejora no es en todas las métricas, nuestros resultados abren una línea prometedora para posibles mejoras posteriores y por lo tanto puede contribuir al entrenamiento de modelos más explicables y fiables.
 
 Para el desarrollo de este TFM, se ha utilizado principalmente conocimientos adquiridos durante el Máster Universitario en Ciencia de Datos e Ingeniería de Computadores. También se ha aprendido a utilizar en más profundidad la librería fundamental para aprendizaje profundo \textit{Pytorch} y el gestor de paquetes \textit{Conda}.
 
 
-Finalmente presentamos varias líneas para posibles trabajos futuros. En primer lugar, sería interesante probar FX-SHIELD y X-SHIELD con distintos conjuntos de datos, modelos y LLEs, con el fin de obtener más evidencia sobre la calidad de las explicaciones producidas por nuestro método y de como se comparan con las de X-SHIELD. En segundo lugar, seria valioso estudiar otras formas más sofisticadas de combinar FX-SHIELD y X-SHIELD que el método H-SHIELD propuesto, para intentar conseguir que las bondades que presentan ambos se combinen. Por ejemplo, un método que calcule la importancia de las características de la entrada e intermedias, tras lo que hace un paso por la red del dato perturbado ocultando también las características intermedias. Por otro lado, proponemos buscar mecanismos que aumenten la generalización del modelo cuando se entrene con FX-SHIELD para desarrollar un método que mejore interpretabilidad y poder de clasificación simultáneamente. En último lugar proponemos el uso de métodos XAI de explicaciones visuales para estudiar diferencias cualitativas entre los distintos métodos evaluados.
+Finalmente presentamos varias líneas para posibles trabajos futuros. En primer lugar, sería interesante probar FX-SHIELD y X-SHIELD con distintos conjuntos de datos, modelos y LLEs, con el fin de obtener más evidencia sobre la calidad de las explicaciones producidas por nuestro método y de como se comparan. En segundo lugar, seria valioso estudiar otras formas más sofisticadas de combinar FX-SHIELD y X-SHIELD que el método H-SHIELD propuesto, para intentar conseguir que las bondades que presentan ambos se combinen. Por ejemplo, un método que calcule la importancia de las características de la entrada e intermedias, tras lo que hace un paso por la red del dato perturbado ocultando también las características intermedias. Por otro lado, proponemos buscar mecanismos que aumenten la generalización del modelo cuando se entrene con FX-SHIELD para desarrollar un método que mejore explicabilidad y capacidad de clasificación simultáneamente. En último lugar proponemos el uso de métodos XAI de explicaciones visuales para estudiar diferencias cualitativas entre los distintos métodos evaluados.
 
 
 
